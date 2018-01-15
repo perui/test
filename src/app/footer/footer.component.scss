@@ -1,0 +1,23 @@
+@import '~scss/_variables';
+
+#footer {
+  padding-top: 2%;
+  padding-bottom: 0.75%;
+  background-color: black;
+  color: white;
+  font-size: 1.465vw;
+}
+
+img.social-media {
+  max-height: 30px;
+  max-width: 30px;
+  margin-right: 10px;
+}
+
+#copyright {
+  padding-top: 2%;
+  padding-bottom: 0.75%;
+  background-color: #323232;
+  color: white;
+  font-size: 1.465vw;
+}
