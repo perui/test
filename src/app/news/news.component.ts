@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MenuService} from '../_services/menu.service';
 
 @Component({
   selector: 'app-news',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private menuService: MenuService) {
+  }
 
   ngOnInit() {
+    this.menuService.activeRoute = 'News';
   }
 
 }
