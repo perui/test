@@ -1,4 +1,70 @@
 
+.roadmap-wrapper {
+    max-width: 1350px;
+    display: block;
+    margin: auto;
+    padding: 0 10px
+}
+
+@media screen and (max-width: 768px) {
+    .roadmap-wrapper {
+        padding: 0
+    }
+}
+
+.roadmap-wrapper .roadmap-content {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 40px
+}
+
+.roadmap-wrapper .roadmap-content p {
+    color: #666
+}
+
+.roadmap-wrapper .roadmap-content img {
+    padding: 10px 5px
+}
+
+.roadmap-wrapper .roadmap-content {
+    padding: 20px 20px;
+    min-height: 300px
+}
+
+.roadmap-wrapper .roadmap-content .roadmap-feed h2 {
+    border-bottom: 1px solid rgba(15, 70, 100, 0.12);
+    margin-top: 70px
+}
+
+.roadmap-wrapper .roadmap-content .roadmap-feed h2:first-child {
+    margin-top: 4px
+}
+
+
+
+.breadcrumb {
+    padding-left: 0px !important
+}
+
+@media screen and (max-width: 768px) {
+    .breadcrumb {
+        padding-left: 20px !important
+    }
+}
+
+.breadcrumb a {
+    color: #666
+}
+
+.breadcrumb li.active {
+    color: #000
+}
+
+.breadcrumb>li+li:before {
+    content: "\003E\00a0" !important
+}
+
+
 .timeline {
     width: 100%;
     position: relative;
