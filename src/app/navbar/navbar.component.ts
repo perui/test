@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {MenuService} from '../_services/menu.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,11 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(route: ActivatedRoute) {
-    console.log('route:',route)
-   }
+  constructor(route: ActivatedRoute, private menuService: MenuService) {
+    console.log('route:', route);
+  }
 
   ngOnInit() {
   }
 
+  getActiveRoute() {
+    return this.menuService.activeRoute;
+  }
 }

@@ -16,6 +16,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {HomeComponent} from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FooterComponent} from './footer/footer.component';
+import {MenuService} from './_services/menu.service';
 
 @NgModule({
   declarations: [
@@ -35,14 +36,16 @@ import {FooterComponent} from './footer/footer.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [
     LogedinGuard,
+    MenuService
   ],
   exports: [
     RouterModule
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
