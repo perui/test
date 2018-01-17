@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -23,3 +25,4 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
