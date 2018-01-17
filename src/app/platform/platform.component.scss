@@ -40,31 +40,6 @@
     margin-top: 4px
 }
 
-
-
-.breadcrumb {
-    padding-left: 0px !important
-}
-
-@media screen and (max-width: 768px) {
-    .breadcrumb {
-        padding-left: 20px !important
-    }
-}
-
-.breadcrumb a {
-    color: #666
-}
-
-.breadcrumb li.active {
-    color: #000
-}
-
-.breadcrumb>li+li:before {
-    content: "\003E\00a0" !important
-}
-
-
 .timeline {
     width: 100%;
     position: relative;
