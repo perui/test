@@ -1,15 +1,21 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<nav class="navbar navbar-default navbar-expand-md">
     <a class="navbar-brand" [routerLink]="['/']">
       <img src="/assets/images/jobtechlogo.png">
     </a>
 
-    <button type="button" class="navbar-toggler" (click)="isCollapsed = !isCollapsed"
-            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <button class="navbar-toggler btn btn-outline-primary"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed"
+          aria-controls="navbarMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div id="navbarNav" [ngbCollapse]="isCollapsed">
+  <div class="collapse navbar-collapse" id="navbarMenu" [ngbCollapse]="isCollapsed">
       <ul class="navbar-nav">
         <li class="nav-item ">
           <a class="nav-link" [routerLink]="['/assets']" routerLinkActive="active">ASSETS</a>
@@ -25,7 +31,6 @@
         </li>
       </ul>
     </div>
-  </div>
 </nav>
 
 <header [ngClass]="getActiveRoute() | lowercase">
