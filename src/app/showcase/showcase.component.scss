@@ -1,0 +1,151 @@
+
+.our-products,
+.our-vision,
+.sharing-insights {
+    margin: 40px 0 80px
+}
+
+@media screen and (max-width: 992px) {
+    .our-products,
+    .our-vision,
+    .sharing-insights {
+        margin-top: 0px
+    }
+}
+
+.our-products .view-videos,
+.our-vision .view-videos,
+.sharing-insights .view-videos {
+    margin-top: 35px;
+    display: block;
+    width: 120px
+}
+
+.our-products .view-products,
+.our-vision .view-products,
+.sharing-insights .view-products {
+    margin-top: 15px;
+    display: block;
+    width: 170px
+}
+
+.our-vision {
+    background: #fff
+}
+
+@media screen and (max-width: 992px) {
+    .our-vision {
+        padding: 20px 15px
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .our-vision .section-header,
+    .our-vision .section-description {
+        text-align: center;
+        max-width: 720px;
+        display: block;
+        margin: auto
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .our-vision .section-header {
+        margin-top: 60px
+    }
+}
+
+.our-vision .read-more {
+    margin-top: 35px;
+    display: block;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+    color: #0967b2
+}
+
+@media screen and (max-width: 992px) {
+    .our-vision .read-more {
+        text-align: center
+    }
+}
+
+
+
+.showcase-description {
+    font-size: 19px
+}
+
+.showcase-description:first-child {
+    margin-bottom: 0px
+}
+
+@media screen and (max-width: 768px) {
+    .showcase-description {
+        font-size: 14px
+    }
+    .showcase-description:first-child {
+        margin-bottom: 20px
+    }
+}
+
+
+.puffs {
+    max-width: 1360px;
+    margin: 50px auto 0
+}
+
+@media screen and (max-width: 992px) {
+    .puffs {
+        max-width: 730px
+    }
+}
+
+.puffs .puff {
+    width: 110%;
+    max-width: 322px;
+    margin: auto;
+    height: 313px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px 0 #c4c9cc;
+    position: relative;
+    margin-bottom: 20px
+}
+
+.puffs .puff:hover img {
+    transform: scale(1.1)
+}
+
+.puffs .puff img {
+    width: 120%;
+    transition: all 0.2s
+}
+
+.puffs .puff .puff-text {
+    position: absolute;
+    bottom: 0;
+    background: #fff;
+    height: 140px;
+    padding: 20px
+}
+
+.puffs .puff .puff-text .puff-title {
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.4px
+}
+
+.puffs .puff .puff-text .puff-description {
+    color: #666;
+    font-size: 14px
+}
+
+.puffs .puff .puff-text .puff-type {
+    color: #4a90e2;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.3px
+}
