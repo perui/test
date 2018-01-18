@@ -9,6 +9,8 @@ import {MenuService} from '../_services/menu.service';
 })
 export class NavbarComponent implements OnInit {
 
+  isCollapsed = true;
+
   constructor(route: ActivatedRoute, private menuService: MenuService) {
     console.log('route:', route);
   }
