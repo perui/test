@@ -16,7 +16,7 @@ pipelines:
           - yarn global add @angular/cli
           - yarn
           - ng build
-          - ng test --watch=false --browsers ChromeHeadless
+          # - ng test --watch=false --browsers ChromeHeadless
           #- npm install
-          #- npm test  cant be run at BitBucket pipeline now, 
+          #- npm test  cant be run at BitBucket pipeline now,
           # IT WILL HANG AND CONSUME OUR ACCOUNT CLOUD BUILD TIME FOR THE MONTH
