@@ -1,84 +1,25 @@
 
-.insights-wrapper,
-.vision-wrapper,
-.news-wrapper {
-    max-width: 880px;
-    display: block;
-    margin: auto;
-    padding: 0 10px
-}
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
-@media screen and (max-width: 768px) {
-    .insights-wrapper,
-    .vision-wrapper,
-    .news-wrapper {
-        padding: 0
+@include media-breakpoint-up(sm) {
+    .news-content {
+        padding: 20px 40px
     }
 }
 
-.insights-wrapper .insights-content,
-.insights-wrapper .vision-content,
-.insights-wrapper .news-content,
-.vision-wrapper .insights-content,
-.vision-wrapper .vision-content,
-.vision-wrapper .news-content,
-.news-wrapper .insights-content,
-.news-wrapper .vision-content,
-.news-wrapper .news-content {
+.news-content {
     width: 100%;
-    background-color: #fff;
-    padding: 20px 40px
+    background-color: #fff;    
+    padding: 0 1em
 }
 
-.insights-wrapper .insights-content p,
-.insights-wrapper .vision-content p,
-.insights-wrapper .news-content p,
-.vision-wrapper .insights-content p,
-.vision-wrapper .vision-content p,
-.vision-wrapper .news-content p,
-.news-wrapper .insights-content p,
-.news-wrapper .vision-content p,
-.news-wrapper .news-content p {
-    color: #666
-}
-
-.insights-wrapper .insights-content .video-title,
-.insights-wrapper .vision-content .video-title,
-.insights-wrapper .news-content .video-title,
-.vision-wrapper .insights-content .video-title,
-.vision-wrapper .vision-content .video-title,
-.vision-wrapper .news-content .video-title,
-.news-wrapper .insights-content .video-title,
-.news-wrapper .vision-content .video-title,
-.news-wrapper .news-content .video-title {
-    margin-bottom: 20px;
-    display: block
-}
-
-.insights-wrapper .news-content,
-.vision-wrapper .news-content,
-.news-wrapper .news-content {
-    padding: 20px 20px;
-    min-height: 300px
-}
-
-.insights-wrapper .news-content .news-feed h2,
-.vision-wrapper .news-content .news-feed h2,
-.news-wrapper .news-content .news-feed h2 {
+h2 {
     border-bottom: 1px solid rgba(15, 70, 100, 0.12);
-    margin-top: 70px
+    margin-top: 1em
 }
 
-.insights-wrapper .news-content .news-feed h2:first-child,
-.vision-wrapper .news-content .news-feed h2:first-child,
-.news-wrapper .news-content .news-feed h2:first-child {
-    margin-top: 4px
-}
-
-@media screen and (max-width: 992px) {
-    .insights-wrapper .news-content .twitter-feed,
-    .vision-wrapper .news-content .twitter-feed,
-    .news-wrapper .news-content .twitter-feed {
-        margin-top: 70px
-    }
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
