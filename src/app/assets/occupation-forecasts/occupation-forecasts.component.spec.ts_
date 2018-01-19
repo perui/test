@@ -1,0 +1,25 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { OccupationForecastsComponent } from './occupation-forecasts.component';
+
+describe('OccupationForecastsComponent', () => {
+  let component: OccupationForecastsComponent;
+  let fixture: ComponentFixture<OccupationForecastsComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ OccupationForecastsComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(OccupationForecastsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -19,7 +19,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {FooterComponent} from './footer/footer.component';
 import {MenuService} from './_services/menu.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { CookieLawModule } from 'angular2-cookie-law';
+import {CookieLawModule} from 'angular2-cookie-law';
+import {PlatsbankenComponent} from './assets/platsbanken/platsbanken.component';
+import {OccupationsComponent} from './assets/occupations/occupations.component';
+import {HistoricalJobPostingsComponent} from './assets/historical-job-postings/historical-job-postings.component';
+import {OccupationForecastsComponent} from './assets/occupation-forecasts/occupation-forecasts.component';
+import {OntologyComponent} from './assets/ontology/ontology.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,12 @@ import { CookieLawModule } from 'angular2-cookie-law';
     RegistrationComponent,
     ProfileComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    PlatsbankenComponent,
+    OccupationsComponent,
+    HistoricalJobPostingsComponent,
+    OccupationForecastsComponent,
+    OntologyComponent
   ],
   imports: [
     BrowserModule,
