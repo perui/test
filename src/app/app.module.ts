@@ -18,6 +18,7 @@ import {HomeComponent} from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FooterComponent} from './footer/footer.component';
 import {MenuService} from './_services/menu.service';
+import {ContentService} from './_services/content.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CookieLawModule } from 'angular2-cookie-law';
 
@@ -46,7 +47,8 @@ import { CookieLawModule } from 'angular2-cookie-law';
   ],
   providers: [
     LogedinGuard,
-    MenuService
+    MenuService,
+    ContentService
   ],
   exports: [
     RouterModule

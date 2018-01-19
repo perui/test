@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuService} from '../_services/menu.service';
+import {ContentService} from '../_services/content.service';
+import {Item} from '../_model/item';
+import { Observable } from 'rxjs/Observable'
 
 @Component({
   selector: 'app-showcase',
@@ -8,11 +11,26 @@ import {MenuService} from '../_services/menu.service';
 })
 export class ShowcaseComponent implements OnInit {
 
-  constructor(private menuService: MenuService) {
+  items: Observable<Item[]>;
+
+  constructor(private menuService: MenuService, private contentService: ContentService) {
+    this.items = this.contentService.getShowcases()
+    this.items.subscribe(items=>{
+      items.map(item=>{
+        console.log(item)
+      })
+      
+    })
   }
 
   ngOnInit() {
     this.menuService.activeRoute = 'Showcase';
+    
+  }
+
+  goToUrl(url): void {
+    // window.location.href=url;
+    window.open(url, "_blank");
   }
 
 }
