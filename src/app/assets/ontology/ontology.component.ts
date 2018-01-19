@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {MenuService} from '../../_services/menu.service';
 
 @Component({
   selector: 'app-ontology',
@@ -7,10 +8,11 @@ import {Component, OnInit} from '@angular/core';
 })
 export class OntologyComponent implements OnInit {
 
-  constructor() {
+  constructor(private menuService: MenuService) {
   }
 
   ngOnInit() {
+    this.menuService.activeRoute = 'Assets';
   }
 
 }

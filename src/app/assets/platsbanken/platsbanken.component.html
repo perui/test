@@ -1,10 +1,52 @@
 <div class="row">
   <div class="col-md-10 offset-1">
-    <div class="col-md-4">
-      <app-product-menu [selectedItem]="'platsbanken'"></app-product-menu>
-    </div>
-    <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-4">
+        <app-product-menu [selectedItem]="'platsbanken'"></app-product-menu>
+      </div>
+      <div class="col-md-8">
+        <div class="product-content">
+          <div class="row product-content-subpages">
+            <div class="product-content-subpage">
+              <div class="product-content-subpage-title" style="background-image: url(/assets/images/api-puff.jpg);"><p
+                class="product-content-subpage-title-text">Platsbanken</p></div>
+              <div class="product-content-subpage-text row"><h3 style="text-align:left;">Description</h3>
+                <div class="product-content-left"><p>API Platsbanken contains all current job ads. About 3000 new ads
+                  are sumitted daily by employers, 5 million accesses to the job posting database daily.
 
+                  With the API it is possible to interact with Arbetsförmedlingens job ad database with in custom built
+                  applications.
+
+                  The API is an open interface without contract or registration requirements. Some of the data returned
+                  from the service is of the type of fuzzy matching. This means that the results from a list search
+                  results in hits closely related keywords. Soft matching takes place in the professions and
+                  municipalities.
+
+                  Example of fuzzy matching:
+                  If you are looking for a "bagare" (baker), you also get hits for "Konditor" (confectioner) because
+                  these two occupations are closely related.
+
+                  See the technical description for more methods and requests.</p></div>
+              </div>
+              <div class="product-content-subpage-text row">
+                <div class="product-content-right" style="width: 65%;"><p></p></div>
+              </div>
+              <div class="product-content-subpage-text row">
+                <div class="product-content-right"><h3></h3>
+                  <p>
+
+                  </p></div>
+                <div class="product-content-subpage-text row"><p> Learn more about the Platsbanken API or start use the
+                  API right away</p><a href="http://jobtechdev.se/swagger/" target="_blank">
+                  <div class="btn btn-info">Go to API</div>
+                </a><a href="platsbankentech" target="_blank">
+                  <div class="btn btn-success">Technical description</div>
+                </a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

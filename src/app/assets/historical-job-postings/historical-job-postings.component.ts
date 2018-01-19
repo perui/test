@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {MenuService} from '../../_services/menu.service';
 
 @Component({
   selector: 'app-historical-job-postings',
@@ -7,10 +8,11 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HistoricalJobPostingsComponent implements OnInit {
 
-  constructor() {
+  constructor(private menuService: MenuService) {
   }
 
   ngOnInit() {
+    this.menuService.activeRoute = 'Assets';
   }
 
 }
