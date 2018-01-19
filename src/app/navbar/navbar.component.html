@@ -35,7 +35,14 @@
   </div>
 </nav>
 
-<header [ngClass]="getActiveRoute() | lowercase">
+<div *ngIf="isHomePage()">
+  <div class="jumbotron">
+    <div class="container"><h1 class="tagline">JobTech Developer</h1>
+      <p class="subtitle">Powerful APIs, widgets and datasets for you to develop the missing app</p></div>
+  </div>
+</div>
+
+<header *ngIf="!isHomePage()" [ngClass]="getActiveRoute() | lowercase">
   <h1 class="page-title">{{ getActiveRoute() }}</h1>
 </header>
 

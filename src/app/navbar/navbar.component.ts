@@ -18,6 +18,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  isHomePage() {
+    return this.getActiveRoute() === 'Home';
+  }
+
   getActiveRoute() {
     return this.menuService.activeRoute;
   }
