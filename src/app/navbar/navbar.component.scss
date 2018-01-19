@@ -87,6 +87,29 @@
   }
 }
 
+.jumbotron {
+  margin-top: -85px;
+  margin-bottom: 0px;
+  height: 200px;
+  background-image: url(/assets/images/startpage-header-bg.jpg);
+  background-size: 100%;
+  padding-top: 50px;
+}
+
+.jumbotron .tagline {
+  font-size: 60px;
+  font-weight: 300;
+}
+
+.jumbotron .tagline, .jumbotron .subtitle {
+  text-align: center;
+  color: white;
+}
+
+.jumbotron .subtitle {
+  font-size: 19px;
+}
+
 header {
   margin-top: -85px;
   margin-bottom: 20px;
