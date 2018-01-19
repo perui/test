@@ -1,0 +1,19 @@
+<div class="col-md-12 product-menu">
+  <ul>
+    <li [ngClass]="{'active': isSelected('platsbanken')}">
+      <a href="/assets/platsbanken">&gt; Platsbanken</a>
+    </li>
+    <li [ngClass]="{'active':isSelected('occupations')}">
+      <a href="/assets/occupations">&gt; Occupation</a>
+    </li>
+    <li [ngClass]="{'active':isSelected('historical')}">
+      <a href="/assets/historical-job-postings">&gt; Historical Job Postings</a>
+    </li>
+    <li [ngClass]="{'active':isSelected('forecasts')}">
+      <a href="/assets/occupation-forecasts">&gt; Occupation Forecast</a>
+    </li>
+    <li [ngClass]="{'active':isSelected('ontology')}">
+      <a href="/assets/ontology">&gt; Job market ontology</a>
+    </li>
+  </ul>
+</div>

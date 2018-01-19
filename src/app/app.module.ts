@@ -25,6 +25,7 @@ import {OccupationsComponent} from './assets/occupations/occupations.component';
 import {HistoricalJobPostingsComponent} from './assets/historical-job-postings/historical-job-postings.component';
 import {OccupationForecastsComponent} from './assets/occupation-forecasts/occupation-forecasts.component';
 import {OntologyComponent} from './assets/ontology/ontology.component';
+import {ProductMenuComponent} from './assets/product-menu/product-menu.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {OntologyComponent} from './assets/ontology/ontology.component';
     OccupationsComponent,
     HistoricalJobPostingsComponent,
     OccupationForecastsComponent,
-    OntologyComponent
+    OntologyComponent,
+    ProductMenuComponent
   ],
   imports: [
     BrowserModule,
