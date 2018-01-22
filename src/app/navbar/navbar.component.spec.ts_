@@ -1,8 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {RouterModule} from '@angular/router';
 
 import { NavbarComponent } from './navbar.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
+import {MenuService} from '../_services/menu.service';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -10,7 +12,11 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ]
+      declarations: [ NavbarComponent ],
+      imports: [ 
+        RouterModule,
+        NgbDropdownModule.forRoot() ],
+        providers: [MenuService]
     })
     .compileComponents();
   }));
