@@ -17,7 +17,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMenu" [ngbCollapse]="isCollapsed">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
           <a class="nav-link" [routerLink]="['/assets']" routerLinkActive="active">ASSETS</a>
         </li>
@@ -31,6 +31,21 @@
           <a class="nav-link" [routerLink]="['/news']" routerLinkActive="active">NEWS</a>
         </li>
       </ul>
+      
+      <div>
+        <ul class="nav nav-pills navbar-nav navbar-right">
+          
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/signin']">Sign in</a>
+          </li>
+          <li class="nav-item">
+            <span class="navbar-text or-meny">|</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/signup']">Sign up</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
