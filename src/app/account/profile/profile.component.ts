@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service'
-import {MenuService} from '../_services/menu.service';
+import { UserService } from '../../shared/services/user.service'
+import {MenuService} from '../../shared/services/menu.service';
 
 @Component({
   selector: 'app-profile',

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {MenuService} from '../_services/menu.service';
+import {MenuService} from '../shared/services/menu.service';
 import { NewsComponent } from './news.component';
 
 

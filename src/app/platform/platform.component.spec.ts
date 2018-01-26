@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlatformComponent } from './platform.component';
-import {MenuService} from '../_services/menu.service';
+import {MenuService} from '../shared/services/menu.service';
 
 describe('PlatformComponent', () => {
   let component: PlatformComponent;

@@ -2,8 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShowcaseComponent } from './showcase.component';
 import {AppModule} from '../app.module';
-import {MenuService} from '../_services/menu.service';
-import {ContentService} from '../_services/content.service';
+import {MenuService} from '../shared/services/menu.service';
+import {ContentService} from '../shared/services/content.service';
 
 describe('ShowcaseComponent', () => {
   let component: ShowcaseComponent;

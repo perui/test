@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {MenuService} from '../_services/menu.service';
-import { UserService } from '../_services/user.service'
+import {MenuService} from '../../shared/services/menu.service';
+import { UserService } from '../../shared/services/user.service'
 
 @Component({
   selector: 'app-navbar',

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
-import { UserService } from '../../_services/user.service'
+import { UserService } from '../../shared/services/user.service'
 import { ToastrService } from 'ngx-toastr';
 import { PasswordValidation } from '../password-validation';
 import { Observable } from 'rxjs/Observable';

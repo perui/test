@@ -1,5 +1,5 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {MenuService} from '../_services/menu.service';
+import {MenuService} from '../shared/services/menu.service';
 
 
 @Component({

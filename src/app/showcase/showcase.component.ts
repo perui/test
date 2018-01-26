@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuService} from '../_services/menu.service';
-import {ContentService} from '../_services/content.service';
-import {Item} from '../_model/item';
+import {MenuService} from '../shared/services/menu.service';
+import {ContentService} from '../shared/services/content.service';
+import {Item} from '../shared/model/item';
 import { Observable } from 'rxjs/Observable'
 
 @Component({

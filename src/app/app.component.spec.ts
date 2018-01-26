@@ -4,15 +4,15 @@ import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
-import {NavbarComponent} from './navbar/navbar.component';
+import {NavbarComponent} from './layouts/navbar/navbar.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {CookieLawModule} from 'angular2-cookie-law';
-import {FooterComponent} from './footer/footer.component';
-import {MenuService} from './_services/menu.service';
-import {ContentService} from './_services/content.service';
+import {FooterComponent} from './layouts/footer/footer.component';
+import {MenuService} from './shared/services/menu.service';
+import {ContentService} from './shared/services/content.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
