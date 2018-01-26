@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MenuService} from '../../shared/services/menu.service';
 import { UserService } from '../../shared/services/user.service'
 
@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   isAccountCollapsed = true;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute, 
     private menuService: MenuService,
     private userService: UserService) {
@@ -29,5 +30,13 @@ export class NavbarComponent implements OnInit {
 
   getActiveRoute() {
     return this.menuService.activeRoute;
+  }
+
+  signOutUser(){
+    console.log('signOutUser 1')
+    this.userService.signOut()
+    console.log('signOutUser 2')
+    this.router.navigate(['/']);
+    console.log('signOutUser 3')
   }
 }

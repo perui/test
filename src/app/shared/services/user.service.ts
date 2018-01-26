@@ -4,17 +4,16 @@ import { User } from '../model/user'
 @Injectable()
 export class UserService {
 
-  logedin: Boolean = false;
-
   user: User;
 
   constructor() {
   }
-  isAuthenticated():boolean {
+
+  isAuthenticated(): boolean {
     return this.user != null
   }
 
-  isNotAuthenticated():boolean {
+  isNotAuthenticated(): boolean {
     return !this.isAuthenticated();
   }
 
@@ -22,25 +21,25 @@ export class UserService {
     console.log('sign up called')
     let promise = new Promise((resolve, reject) => {
       let dbUser = MOCK_USER_DATABASE.find(current => current.email === email)
-      if(dbUser){
-        this.logedin = true;
+      if (dbUser) {
         this.user = dbUser;
-        console.log('signin - calling MOCKED backend')       
+        console.log('signin - calling MOCKED backend')
+        resolve(true);
       } else {
-        console.log('signin -  MOCKED backend did not find user')       
+        console.log('signin -  MOCKED backend did not find user')
+        resolve(false);
       }
-      resolve(this.logedin);
-      })
-      
-      // let apiURL = `${this.apiRoot}?term=${term}&media=music&limit=20`;
-      // this.http.get(apiURL)
-      //   .toPromise()
-      //   .then(
-      //     res => { // Success
-      //       console.log(res.json());
-      //       resolve();
-      //     }
-      //   );
+    })
+
+    // let apiURL = `${this.apiRoot}?term=${term}&media=music&limit=20`;
+    // this.http.get(apiURL)
+    //   .toPromise()
+    //   .then(
+    //     res => { // Success
+    //       console.log(res.json());
+    //       resolve();
+    //     }
+    //   );
     return promise;
   }
 
@@ -49,30 +48,35 @@ export class UserService {
     let promise = new Promise((resolve, reject) => {
 
       let dbUser = MOCK_USER_DATABASE.find(current => current.email === email)
-      if(dbUser){
+      if (dbUser) {
         reject('The email is already regiserd')
       } else {
-        this.user = <User>{ 'name':name, 'email': email, 'password':password, 'role':'partner'};
+        this.user = <User>{ 'name': name, 'email': email, 'password': password, 'role': 'partner' };
         MOCK_USER_DATABASE.push(this.user);
+        console.log('signup - added user to MOCKED backend', this.user);
+        resolve();
       }
-      this.logedin = true;;
-      console.log('signup - added user to MOCKED backend', this.user);
-      resolve(this.logedin);
     });
     return promise;
+  }
+
+  signOut() {
+    this.user = null;
   }
 }
 
 
-export const MOCK_USER_DATABASE:User[] = [
-  { 'name':'Kalle',
-    'email':'kalle@jobtechdev.se', 
-    'password':'qwerty',
-    'role':'partner'
+export const MOCK_USER_DATABASE: User[] = [
+  {
+    'name': 'Kalle',
+    'email': 'kalle@jobtechdev.se',
+    'password': 'qwerty',
+    'role': 'partner'
   },
-  { 'name':'Eva',
-    'email':'eva@jobtechdev.se', 
-    'password':'qwerty',
-    'role':'admin'
+  {
+    'name': 'Eva',
+    'email': 'eva@jobtechdev.se',
+    'password': 'qwerty',
+    'role': 'admin'
   },
 ];

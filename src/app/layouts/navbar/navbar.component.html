@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark navbar-default navbar-expand-sm">
+<nav class="navbar navbar-dark bg-dark navbar-default navbar-expand-md">
   <div class="container-fluid" [ngClass]="{'dark-bg' : !isCollapsed}">
     <a class="navbar-brand" [routerLink]="['/']">
       <img src="/assets/images/jobtechlogo.png">
@@ -31,13 +31,12 @@
         <ul class="navbar-nav navbar-right">
 
           <li class="nav-item">
-            <a class="nav-link active" [routerLink]="['/signin']">Sign in</a>
-          </li>
-          <li class="nav-item">
-            <span class="navbar-text or-meny">|</span>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " [routerLink]="['/signup']">Sign up</a>
+            <div class="nav-link auth-links">
+                <a [routerLink]="['/signin']">Sign in</a>
+                <span>or</span>
+                <a [routerLink]="['/signup']">Sign up</a>
+            </div>
+            
           </li>
         </ul>
       </div>
@@ -49,6 +48,7 @@
               <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{userService.user.name}}</a>
               <div class="bg-dark" ngbDropdownMenu aria-labelledby="dropdownAccount">
                 <a class="dropdown-item nav-link" [routerLink]="['/profile']">My profile</a>
+                <a class="dropdown-item nav-link" (click)="signOutUser()">Sign out</a>
               </div>
             </div>
           </li>

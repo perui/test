@@ -20,6 +20,7 @@ import {HistoricalJobPostingsComponent} from './assets/historical-job-postings/h
 const routes: Routes = [
   // { path: '', redirectTo: 'race-list', pathMatch: 'full' },
   {path: '', component: HomeComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'assets', component: AssetsComponent},
   {path: 'assets/platsbanken', component: PlatsbankenComponent},
   {path: 'assets/occupation-forecasts', component: OccupationForecastsComponent},
