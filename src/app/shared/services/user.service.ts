@@ -10,7 +10,6 @@ export class UserService {
 
   constructor() {
   }
-
   isAuthenticated():boolean {
     return this.user != null
   }

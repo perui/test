@@ -13,6 +13,7 @@ import {CookieLawModule} from 'angular2-cookie-law';
 import {FooterComponent} from './layouts/footer/footer.component';
 import {MenuService} from './shared/services/menu.service';
 import {ContentService} from './shared/services/content.service';
+import {UserService} from './shared/services/user.service'
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -30,7 +31,12 @@ describe('AppComponent', () => {
         NgbModule,
         NoopAnimationsModule
       ],
-      providers:[AppModule, MenuService, ContentService]
+      providers:[
+        AppModule, 
+        MenuService, 
+        ContentService,
+        UserService
+      ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
