@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SignInComponent implements OnInit {
 
-  signInForm: FormGroup;
+  form: FormGroup;
 
   constructor(
     private userService: UserService, 
@@ -20,19 +20,19 @@ export class SignInComponent implements OnInit {
     private toastrService: ToastrService) { }
 
   ngOnInit() {
-    this.signInForm = this.fb.group({
+    this.form = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(5)]],
     });
   }
 
   signInWithEmailAndPassword() {
-    if (this.signInForm.invalid) {
+    if (this.form.invalid) {
       alert("Correct your formular");
       return false;
     }
-    console.debug("signInWithEmailAndPassword - email: " + this.signInForm.value.email );
-    this.userService.signin(this.signInForm.value.email, this.signInForm.value.password)
+    console.debug("signInWithEmailAndPassword - email: " + this.form.value.email );
+    this.userService.signin(this.form.value.email, this.form.value.password)
     .then(success=>{
       console.log('signin success '+success);
       if(success){

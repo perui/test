@@ -1,22 +1,16 @@
-<nav class="navbar navbar-dark navbar-default navbar-expand-sm">
+<nav class="navbar navbar-dark bg-dark navbar-default navbar-expand-sm">
   <div class="container-fluid" [ngClass]="{'dark-bg' : !isCollapsed}">
     <a class="navbar-brand" [routerLink]="['/']">
       <img src="/assets/images/jobtechlogo.png">
     </a>
 
-    <button class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarMenu"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            (click)="isCollapsed = !isCollapsed"
-            [attr.aria-expanded]="!isCollapsed"
-            aria-controls="navbarMenu">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-expanded="false" aria-label="Toggle navigation"
+      (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMenu" [ngbCollapse]="isCollapsed">
+
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
           <a class="nav-link" [routerLink]="['/assets']" routerLinkActive="active">ASSETS</a>
@@ -31,18 +25,32 @@
           <a class="nav-link" [routerLink]="['/news']" routerLinkActive="active">NEWS</a>
         </li>
       </ul>
-      
-      <div>
-        <ul class="nav nav-pills navbar-nav navbar-right">
-          
+
+      <div *ngIf="userService.isNotAuthenticated()">
+
+        <ul class="navbar-nav navbar-right">
+
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/signin']">Sign in</a>
+            <a class="nav-link active" [routerLink]="['/signin']">Sign in</a>
           </li>
           <li class="nav-item">
             <span class="navbar-text or-meny">|</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" [routerLink]="['/signup']">Sign up</a>
+            <a class="nav-link " [routerLink]="['/signup']">Sign up</a>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="userService.isAuthenticated()">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item">
+            <div ngbDropdown class="" placement="bottom-right">
+              <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{userService.user.name}}</a>
+              <div class="bg-dark" ngbDropdownMenu aria-labelledby="dropdownAccount">
+                <a class="dropdown-item nav-link" [routerLink]="['/profile']">My profile</a>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -52,12 +60,13 @@
 
 <div *ngIf="isHomePage()">
   <div class="jumbotron">
-    <div class="container"><h1 class="tagline">JobTech Developer</h1>
-      <p class="subtitle">Powerful APIs, widgets and datasets for you to develop the missing app</p></div>
+    <div class="container">
+      <h1 class="tagline">JobTech Developer</h1>
+      <p class="subtitle">Powerful APIs, widgets and datasets for you to develop the missing app</p>
+    </div>
   </div>
 </div>
 
 <header *ngIf="!isHomePage()" [ngClass]="getActiveRoute() | lowercase">
   <h1 class="page-title">{{ getActiveRoute() }}</h1>
 </header>
-

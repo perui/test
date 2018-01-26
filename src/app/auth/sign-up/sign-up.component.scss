@@ -1,0 +1,15 @@
+@import "../../../../node_modules/bootstrap/scss/bootstrap";
+
+.sign-up-card {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+@include media-breakpoint-up(sm) {
+    .sign-up-card {
+        width: 25rem;
+        margin-top: 3rem;
+        margin-bottom: 5rem;
+    }
+}

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {MenuService} from '../_services/menu.service';
+import { UserService } from '../_services/user.service'
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +11,12 @@ import {MenuService} from '../_services/menu.service';
 export class NavbarComponent implements OnInit {
 
   isCollapsed = true;
+  isAccountCollapsed = true;
 
-  constructor(route: ActivatedRoute, private menuService: MenuService) {
+  constructor(
+    private route: ActivatedRoute, 
+    private menuService: MenuService,
+    private userService: UserService) {
     console.log('route:', route);
   }
 
