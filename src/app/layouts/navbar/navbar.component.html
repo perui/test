@@ -1,8 +1,11 @@
+<header class="container-fluid" [ngClass]="currentRoute">
+    <!-- [ngClass]="{'dark-bg' : !isCollapsed}" -->
 <nav class="navbar navbar-dark bg-dark navbar-default navbar-expand-md">
-  <div class="container-fluid" [ngClass]="{'dark-bg' : !isCollapsed}">
+  <!-- <div > -->
     <a class="navbar-brand" [routerLink]="['/']">
       <img src="/assets/images/jobtechlogo.png">
     </a>
+    <span class="navbar-brand nav-page-title">{{title}}</span>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-expanded="false" aria-label="Toggle navigation"
       (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarMenu">
@@ -12,16 +15,16 @@
     <div class="collapse navbar-collapse" id="navbarMenu" [ngbCollapse]="isCollapsed">
 
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item ">
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="['/assets']" routerLinkActive="active">ASSETS</a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="['/platform']" routerLinkActive="active">PLATFORM</a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="['/showcase']" routerLinkActive="active">SHOWCASE</a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="['/news']" routerLinkActive="active">NEWS</a>
         </li>
       </ul>
@@ -55,18 +58,10 @@
         </ul>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </nav>
 
-<div *ngIf="isHomePage()">
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="tagline">JobTech Developer</h1>
-      <p class="subtitle">Powerful APIs, widgets and datasets for you to develop the missing app</p>
-    </div>
-  </div>
-</div>
-
-<header *ngIf="!isHomePage()" [ngClass]="getActiveRoute() | lowercase">
-  <h1 class="page-title">{{ getActiveRoute() }}</h1>
-</header>
+<!-- <header *ngIf="!isHomePage()" [ngClass]="getActiveRoute() | lowercase">-->
+  <h1 class="navbar-dark page-title">{{title}}</h1>
+  
+</header> 

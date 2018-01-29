@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MenuService} from '../../shared/services/menu.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';
+import { MenuService } from '../../shared/services/menu.service';
 import { UserService } from '../../shared/services/user.service'
 
 @Component({
@@ -10,18 +11,36 @@ import { UserService } from '../../shared/services/user.service'
 })
 export class NavbarComponent implements OnInit {
 
+  noTitleRoutes = ['Home','Signin', 'Signup','Signout']
+
   isCollapsed = true;
   isAccountCollapsed = true;
+  currentRoute: string;
+  title;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private menuService: MenuService,
-    private userService: UserService) {
-    console.log('route:', route);
+    private userService: UserService,
+    private location: Location) {
+    // console.log('route:', route);
   }
 
   ngOnInit() {
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        let newRoute;
+        if (this.location.path() != '') {
+          newRoute = this.location.path();
+        } else {
+          newRoute = '/home'
+        }
+        this.onRouteChange(newRoute);
+      }
+    });
+
   }
 
   isHomePage() {
@@ -32,11 +51,32 @@ export class NavbarComponent implements OnInit {
     return this.menuService.activeRoute;
   }
 
-  signOutUser(){
+  signOutUser() {
     console.log('signOutUser 1')
     this.userService.signOut()
     console.log('signOutUser 2')
     this.router.navigate(['/']);
     console.log('signOutUser 3')
+  }
+
+  onRouteChange(newRoute:string) {
+    newRoute = newRoute.replace(/^\/+/g, ''); // remove leading slashes
+    console.log("newRoute: ", newRoute)
+    if(this.currentRoute != newRoute) {
+      this.currentRoute = newRoute;
+      console.log("currentRoute: ", this.currentRoute)
+      this.processTitle();      
+    }    
+  }
+
+  processTitle() {
+    this.title = this.currentRoute.charAt(0).toUpperCase() + this.currentRoute.slice(1)
+      if(this.title == 'Home'){
+        this.title = 'JobTech Developer'
+      }
+      if(this.noTitleRoutes.indexOf(this.title) != -1){
+        this.title = ''
+      }
+      console.log("title: ",this.title)
   }
 }

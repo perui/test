@@ -1,154 +1,161 @@
 @import '~scss/_variables';
+@import "~/../node_modules/bootstrap/scss/bootstrap";
+header {
+    background-image: url('/assets/images/startpage-header-bg.jpg');
+}
+
+.container-fluid {
+    padding: 0 0 0 0;
+    @include media-breakpoint-up(sm) {
+        padding: 0 0 0.5rem 1.5rem;
+    }
+    @include media-breakpoint-up(lg) {
+        padding: 0 2rem 1rem 5rem;
+    }
+}
 
 .navbar-default {
-  background-color: transparent !important;
-  border-color: transparent !important;
-  padding: 0 0 0 100px;
-  margin-top: -2px;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
 
-  @media screen and (max-width: $medium-devices) {
-    padding: 0;
-  }
-
-  .container-fluid {
-    margin-left: -2px !important;
-    margin-right: -2px !important;
-
-    &.dark-bg {
-      background: $black;
-      margin-bottom: 10px;
-    }
-  }
-
-  .navbar-toggler {
+.navbar-toggler {
     border: none !important;
-
     &:hover {
-      background-color: transparent !important;
+        background-color: transparent !important;
     }
-
     .icon-bar {
-      background-color: $white !important;
+        background-color: $white !important;
     }
-  }
+}
 
-  .navbar-nav {
+.navbar-nav {
     margin-top: 15px;
     margin-left: 50px;
     line-height: 60px;
     li {
-      margin-right: 15px;
-      a {
-        background-color: transparent !important;
-        text-transform: uppercase;
-        color: #b1b3b4;
-        font-size: 14px;
-        font-weight: bold;
-        transition: all 0.2s;
-
-        &:hover {
-          background-color: transparent;
-          color: $white;
+        margin-right: 15px;
+        a {
+            background-color: transparent !important;
+            text-transform: uppercase;
+            color: #b1b3b4;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: all 0.2s;
+            &:hover {
+                background-color: transparent;
+                color: $white;
+            }
         }
-      }
     }
     li:last-child {
-      margin-right: 0;
+        margin-right: 0;
     }
-  }
+}
 
-  .navbar-brand {
-    @media screen and (max-width: $small-devices) {
-      display: block;
-
-      img {
-        margin: auto;
-        height: 25px !important;
-      }
-    }
+.navbar-brand {
+    font-size: 1rem;
     img {
-      height: 40px;
+        margin: auto;
+        height: 1.5rem;
     }
-  }
+    @include media-breakpoint-up(md) {
+        display: block;
+        font-size: 1.25rem;
+        img {
+            height: 3rem;
+        }
+    }
+}
 
-  .navbar-collapse {
+.navbar-collapse {
     border: none !important;
-
     &.in {
-      .navbar-nav {
-        margin-left: 0;
-      }
+        .navbar-nav {
+            margin-left: 0;
+        }
     }
-
     &.collapsing {
-      -webkit-transition: none;
-      transition: none;
+        -webkit-transition: none;
+        transition: none;
     }
-  }
 }
 
-.jumbotron {
-  margin-top: -85px;
-  margin-bottom: 0px;
-  height: 200px;
-  background-image: url(/assets/images/startpage-header-bg.jpg);
-  background-size: 100%;
-  padding-top: 50px;
-}
-
-.jumbotron .tagline {
-  font-size: 60px;
-  font-weight: 300;
-}
-
-.jumbotron .tagline, .jumbotron .subtitle {
-  text-align: center;
-  color: white;
-}
-
-.jumbotron .subtitle {
-  font-size: 19px;
-}
-
-header {
-  margin-top: -85px;
-  margin-bottom: 20px;
-  height: 230px;
-  background-size: 100%;
-  padding: 80px 0 0 100px;
-}
-
-header .page-title {
-  text-align: left;
-  color: #fff;
-  font-size: 60px;
-  font-weight: 300;
-}
-
+// .jumbotron {
+//   margin-top: -85px;
+//   margin-bottom: 0px;
+//   height: 200px;
+//   background-image: url(/assets/images/startpage-header-bg.jpg);
+//   background-size: 100%;
+//   padding-top: 50px;
+// }
+// .jumbotron .tagline {
+//   font-size: 60px;
+//   font-weight: 300;
+// }
+// .jumbotron .tagline, .jumbotron .subtitle {
+//   text-align: center;
+//   color: white;
+// }
+// .jumbotron .subtitle {
+//   font-size: 19px;
+// }
+// header {
+// padding: 0 0 0 100px
+//   margin-top: -85px;
+//   margin-bottom: 20px;
+//   height: 230px;
+//   background-size: 100%;
+//   padding: 80px 0 0 100px;
+// }
 .home {
-  background-image: url('/assets/images/startpage-header-bg.jpg')
+    background-image: url('/assets/images/startpage-header-bg.jpg')
 }
 
 .assets {
-  background-image: url('/assets/images/product-header.jpg')
+    background-image: url('/assets/images/product-header.jpg')
 }
 
 .platform {
-  background-image: url('/assets/images/vision-header.jpg')
+    background-image: url('/assets/images/vision-header.jpg')
 }
 
 .showcase {
-  background-image: url('/assets/images/insights-header.jpg')
+    background-image: url('/assets/images/insights-header.jpg')
 }
 
 .news {
-  background-image: url('/assets/images/news-header.jpg')
+    background-image: url('/assets/images/news-header.jpg')
 }
 
-.profile {
-  background-image: url('/assets/images/startpage-header-bg.jpg')
+// .profile {
+//     background-image: url('/assets/images/startpage-header-bg.jpg')
+// }
+
+.auth-links {
+    white-space: nowrap;
 }
 
 .auth-links a:hover {
-  text-decoration: none;
+    text-decoration: none;
+}
+
+.nav-page-title {
+    display: inline-block;
+}
+
+.page-title {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 300;
+    display: none;
+}
+
+@include media-breakpoint-up(md) {
+    .nav-page-title {
+        display: none;
+    }
+    .page-title {
+        display: block;
+    }
 }

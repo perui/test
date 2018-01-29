@@ -1,12 +1,16 @@
 @import '~scss/_variables';
 
-#footer {
-  padding-top: 2%;
-  padding-bottom: 0.75%;
-  background-color: $black;
-  color: white;
-  font-size: 1.465vw;
-}
+// #footer {
+//   padding-top: 2%;
+//   padding-bottom: 0.75%;
+//   background-color: $black;
+//   color: white;
+//   font-size: 1rem;
+// }
+// .row {
+//   margin-right: 0;
+//   margin-left: 0;
+// }
 
 img.social-media {
   max-height: 30px;
@@ -14,10 +18,16 @@ img.social-media {
   margin-right: 10px;
 }
 
-#copyright {
-  padding-top: 2%;
-  padding-bottom: 0.75%;
-  background-color: $almost-black;
-  color: white;
-  font-size: 1.465vw;
+// #copyright {
+//   padding-top: 2%;
+//   padding-bottom: 0.75%;
+//   background-color: $almost-black;
+//   color: white;
+//   font-size: 1rem;
+// }
+
+
+footer {
+  margin-right: 0;
+  margin-left: 0;
 }

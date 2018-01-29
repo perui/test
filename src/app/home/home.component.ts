@@ -12,6 +12,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.menuService.activeRoute = 'Home';
+    this.menuService.activeRoute = 'JobTech Developer';
   }
 }
