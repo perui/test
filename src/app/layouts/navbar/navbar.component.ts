@@ -71,9 +71,9 @@ export class NavbarComponent implements OnInit {
 
   processTitle() {
     this.title = this.currentRoute.charAt(0).toUpperCase() + this.currentRoute.slice(1)
-      if(this.title == 'Home'){
-        this.title = 'JobTech Developer'
-      }
+      // if(this.title == 'Home'){
+      //   this.title = 'JobTech Developer'
+      // }
       if(this.noTitleRoutes.indexOf(this.title) != -1){
         this.title = ''
       }
