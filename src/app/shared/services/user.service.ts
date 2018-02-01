@@ -22,6 +22,10 @@ export class UserService {
     let promise = new Promise((resolve, reject) => {
       let dbUser = MOCK_USER_DATABASE.find(current => current.email === email)
       if (dbUser) {
+        if(dbUser.password !== password){
+          console.log('signin failed - password miss match')
+          resolve(false)
+        }
         this.user = dbUser;
         console.log('signin - calling MOCKED backend')
         resolve(true);

@@ -1,7 +1,15 @@
 @import '~scss/_variables';
 
+
+.container-fluid {
+  max-width: 1200px;
+}
+
 .our-vision {
-  background-color: $white;
+  background-color: #d2c2cc;
+}
+.principles {
+  background-color:#e1ebe3;
 }
 
 .section-header {
