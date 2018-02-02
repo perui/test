@@ -11,7 +11,7 @@ import { UserService } from '../../shared/services/user.service'
 })
 export class NavbarComponent implements OnInit {
 
-  noTitleRoutes = ['Home','Signin', 'Signup','Signout']
+  noTitleRoutes = ['Home', 'Signin', 'Signup', 'Signout']
 
   isCollapsed = true;
   isAccountCollapsed = true;
@@ -59,24 +59,23 @@ export class NavbarComponent implements OnInit {
     console.log('signOutUser 3')
   }
 
-  onRouteChange(newRoute:string) {
+  onRouteChange(newRoute: string) {
     newRoute = newRoute.replace(/^\/+/g, ''); // remove leading slashes
     console.log("newRoute: ", newRoute)
-    if(this.currentRoute != newRoute) {
+    if (this.currentRoute != newRoute) {
       this.currentRoute = newRoute;
       console.log("currentRoute: ", this.currentRoute)
-      this.processTitle();      
-    }    
+      this.processTitle();
+    }
   }
 
   processTitle() {
-    this.title = this.currentRoute.charAt(0).toUpperCase() + this.currentRoute.slice(1)
-      // if(this.title == 'Home'){
-      //   this.title = 'JobTech Developer'
-      // }
-      if(this.noTitleRoutes.indexOf(this.title) != -1){
-        this.title = ''
-      }
-      console.log("title: ",this.title)
+    let route: string = this.currentRoute;
+    let toIndex = route.indexOf('/') !== -1 ? route.indexOf('/') : route.length;
+    this.title = route.charAt(0).toUpperCase() + route.slice(1, toIndex)
+    if (this.noTitleRoutes.indexOf(this.title) != -1) {
+      this.title = ''
+    }
+    console.log("title: ", this.title)
   }
 }
