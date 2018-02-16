@@ -33,6 +33,7 @@ import {ProductMenuComponent} from './assets/product-menu/product-menu.component
 import {LostPasswordComponent} from './account/lost-password/lost-password.component';
 import {SignInComponent} from './account/sign-in/sign-in.component';
 import {SignUpComponent} from './account/sign-up/sign-up.component';
+import { OverviewComponent } from './assets/overview/overview.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {SignUpComponent} from './account/sign-up/sign-up.component';
     ProductMenuComponent,
     LostPasswordComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,

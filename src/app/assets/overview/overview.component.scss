@@ -1,0 +1,64 @@
+@import '~scss/_variables';
+
+.our-products {
+  margin: 40px 0 80px;
+}
+
+.puffs {
+  max-width: 1360px;
+  margin: 50px auto 0;
+
+  @media screen and (max-width: $medium-devices) {
+    max-width: 730px;
+  }
+
+  .puff {
+    width: 110%;
+    max-width: 322px;
+    margin: auto;
+    height: 313px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px 0 $shadow;
+    position: relative;
+    margin-bottom: 20px;
+
+    &:hover {
+      img {
+        transform: scale(1.1)
+      }
+    }
+
+    img {
+      width: 120%;
+      transition: all 0.2s;
+    }
+
+    .puff-text {
+      position: absolute;
+      bottom: 0;
+      background: $white;
+      height: 150px;
+      padding: 20px;
+
+      .puff-title {
+        color: $black;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+      }
+      .puff-description {
+        color: $gray;
+        font-size: 14px;
+      }
+      .puff-type {
+        color: #4a90e2;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 0.3px;
+      }
+    }
+  }
+}
+
+

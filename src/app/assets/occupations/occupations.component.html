@@ -1,10 +1,27 @@
-<div class="row">
-  <div class="col-md-10 offset-1">
-    <div class="col-md-4">
-      <app-product-menu [selectedItem]="'occupations'"></app-product-menu>
-    </div>
-    <div class="col-md-6">
 
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="/assets/images/occupation-mindre.jpg" alt="Card image cap">
+    <div class="card-img-overlay">
+        <h5 class="card-title">Occupation</h5>
+      </div>
+    <div class="card-body">
+      <h5 class="card-title">Description</h5>
+      <p class="card-text">
+          Occupation is a webservice, it contains descriptions of nearly 450 different occupations. The webservice is supposed
+          to be used by anyone who wants to download texts and descriptions of one or more professions from the Profession
+          A-Ö application. See the technical description for more information.
+      </p>
+      
+      <div class="card-body">
+          <p> Learn more about the WS occupation webservice or start use it right away</p>
+          <a href="http://api.arbetsformedlingen.se/af/v0/Occupation/wsoccupation.asmx"
+            target="_blank">
+            <div class="btn btn-info">Go to Webservice</div>
+          </a>
+          <a href="occupationtech" target="_blank">
+            <div class="btn btn-success">Technical description</div>
+          </a>
+        </div>
     </div>
   </div>
-</div>
+
