@@ -24,15 +24,11 @@ import {ProfileComponent} from './account/profile/profile.component';
 import {HomeComponent} from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FooterComponent} from './layouts/footer/footer.component';
-import {PlatsbankenComponent} from './assets/platsbanken/platsbanken.component';
-import {OccupationsComponent} from './assets/occupations/occupations.component';
-import {HistoricalJobPostingsComponent} from './assets/historical-job-postings/historical-job-postings.component';
-import {OccupationForecastsComponent} from './assets/occupation-forecasts/occupation-forecasts.component';
-import {OntologyComponent} from './assets/ontology/ontology.component';
 import {ProductMenuComponent} from './assets/product-menu/product-menu.component';
 import {LostPasswordComponent} from './account/lost-password/lost-password.component';
 import {SignInComponent} from './account/sign-in/sign-in.component';
 import {SignUpComponent} from './account/sign-up/sign-up.component';
+import { DetailsComponent } from './assets/details/details.component';
 
 @NgModule({
   declarations: [
@@ -45,15 +41,11 @@ import {SignUpComponent} from './account/sign-up/sign-up.component';
     ProfileComponent,
     HomeComponent,
     FooterComponent,
-    PlatsbankenComponent,
-    OccupationsComponent,
-    HistoricalJobPostingsComponent,
-    OccupationForecastsComponent,
-    OntologyComponent,
     ProductMenuComponent,
     LostPasswordComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

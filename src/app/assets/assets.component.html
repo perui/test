@@ -1,67 +1,20 @@
-<div class="row">
-  <div class="col-sm-12">
-    <h2 class="section-header text-center">API:s / Widgets / Datasets</h2>
+<div class="container-fluid">
+  <div>
+    <p class="showcase-description text-center">API:s / Widgets / Datasets</p>
+    <!--<p class="showcase-description text-center">Built an application using our assets?
+      <a href="mailto:jobtechdev@arbetsformedlingen.se">Email us</a> and tell us about it!</p>-->
+  </div>
+
+  <div class="card-group" *ngIf="items | async; let items; else loading">
+
+    <div *ngFor="let item of items" class="card mb-4 " [routerLink]="['./', item.name]" routerLinkActive="active">
+      <img class="card-img-top" [src]="item.image" [alt]="item.title">
+      <div class="card-body">
+        <h5 class="card-title">{{item.title}}</h5>
+        <p class="card-text">{{item.shortDescription }}</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="container-fluid our-products">
-  <div class="row puffs">
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <a href="/assets/platsbanken">
-        <div class="puff">
-          <img src="/assets/images/api-puff.jpg">
-          <div class="puff-text">
-            <p class="puff-title">Platsbanken</p>
-            <p class="puff-description">All the current job postings available on Platsbanken</p>
-            <p class="puff-type">API</p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <a href="/assets/occupations">
-        <div class="puff">
-          <img src="/assets/images/occupation-puff.jpg">
-          <div class="puff-text"><p class="puff-title">Occupation</p>
-            <p class="puff-description">Occupational description of 450 different occupations, with forecasts</p>
-            <p class="puff-type">API</p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <a href="/assets/historical-job-postings">
-        <div class="puff">
-          <img src="/assets/images/data-analysis-puff.jpg">
-          <div class="puff-text"><p class="puff-title">Historical Job Postings</p>
-            <p class="puff-description">All job postings from Platsbanken 2006-2016</p>
-            <p class="puff-type">DATASETS</p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <a href="/assets/occupation-forecasts">
-        <div class="puff">
-          <img src="/assets/images/dev-services-puff.jpg">
-          <div class="puff-text"><p class="puff-title">Occupation Forecasts</p>
-            <p class="puff-description">Short and long-term forecasts of labour demand for different occupations</p>
-            <p class="puff-type">API</p>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-sm-6 col-md-4 col-lg-3">
-      <a href="/assets/ontology">
-        <div class="puff">
-          <img src="/assets/images/jobb-rymden.png">
-          <div class="puff-text"><p class="puff-title">Job market ontology</p>
-            <p class="puff-description">Ontology created from job postings.(This is a prototype service, with full
-              functionality)</p>
-            <p class="puff-type">API</p>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</div>
+<ng-template #loading>Laddar ...</ng-template>

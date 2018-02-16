@@ -1,62 +1,51 @@
-@import '~scss/_variables';
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
-.our-products {
-  margin: 40px 0 80px;
-}
+$space-between-cards:1.2em;
+$zoom-to-scale:1.05;
+$zoom-transition-time:200ms;
 
-.puffs {
-  max-width: 1360px;
-  margin: 50px auto 0;
+.card-group .card {
+  margin-right: $space-between-cards;
+  cursor: pointer;
+  min-width: 15rem;
+  max-width: 200px;
 
-  @media screen and (max-width: $medium-devices) {
-    max-width: 730px;
-  }
+  img{
+     /* Do not scale the image */
+    object-position: bottom; /* Center the image within the element */
+    height: 150px;
 
-  .puff {
-    width: 110%;
-    max-width: 322px;
-    margin: auto;
-    height: 313px;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px 0 $shadow;
-    position: relative;
-    margin-bottom: 20px;
 
-    &:hover {
-      img {
-        transform: scale(1.1)
-      }
-    }
-
-    img {
-      width: 120%;
-      transition: all 0.2s;
-    }
-
-    .puff-text {
-      position: absolute;
-      bottom: 0;
-      background: $white;
-      height: 150px;
-      padding: 20px;
-
-      .puff-title {
-        color: $black;
-        font-size: 18px;
-        font-weight: 600;
-        letter-spacing: 0.4px;
-      }
-      .puff-description {
-        color: $gray;
-        font-size: 14px;
-      }
-      .puff-type {
-        color: #4a90e2;
-        font-size: 14px;
-        font-weight: bold;
-        letter-spacing: 0.3px;
-      }
-    }
   }
 }
+
+@include media-breakpoint-up(sm) {
+  .card-group .card {
+    max-width: 15rem;
+  }
+}
+
+.card-group .card {
+  -webkit-transition: all $zoom-transition-time ease-in;
+  -webkit-transform: scale(1);
+  -ms-transition: all $zoom-transition-time ease-in;
+  -ms-transform: scale(1);
+  -moz-transition: all $zoom-transition-time ease-in;
+  -moz-transform: scale(1);
+  transition: all $zoom-transition-time ease-in;
+  transform: scale(1);
+}
+
+.card-group .card:hover {
+  box-shadow: 0px 0px 2em #000000;
+  z-index: 2;
+  -webkit-transition: all $zoom-transition-time ease-in;
+  -webkit-transform: scale($zoom-to-scale);
+  -ms-transition: all $zoom-transition-time ease-in;
+  -ms-transform: scale($zoom-to-scale);
+  -moz-transition: all $zoom-transition-time ease-in;
+  -moz-transform: scale($zoom-to-scale);
+  transition: all $zoom-transition-time ease-in;
+  transform: scale($zoom-to-scale);
+}
+
