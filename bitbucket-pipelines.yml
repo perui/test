@@ -10,12 +10,13 @@ pipelines:
     - step:
         caches:
           - node
+          - nodeGlobal
         script: # Modify the commands below to build your repository.
           #- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.18.1
           #- export PATH=$HOME/.yarn/bin:$PATH
           #- yarn global add @angular/cli
           #- yarn
-          
+
           - npm install -g @angular/cli@1.7.0
           - ng build
           # - ng test --watch=false --browsers ChromeHeadless
@@ -23,3 +24,6 @@ pipelines:
           #- npm install
           #- npm test  cant be run at BitBucket pipeline now,
           # IT WILL HANG AND CONSUME OUR ACCOUNT CLOUD BUILD TIME FOR THE MONTH
+definitions:
+  caches:
+    nodeGlobal: /usr/local/lib/node_modules
