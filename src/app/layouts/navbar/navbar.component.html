@@ -38,29 +38,29 @@
         </li>
       </ul>
 
-      <div *ngIf="userService.isNotAuthenticated()">
+      <div *ngIf="keycloakService.authenticated() == false">
 
         <ul class="navbar-nav navbar-right">
 
           <li class="nav-item">
             <div class="nav-link auth-links">
-                <a [routerLink]="['/signin']">Sign in</a>
+                <a (click)="doLogin()">Login</a>
                 <span>or</span>
-                <a [routerLink]="['/signup']">Sign up</a>
+                <a (click)="doRegister()">Register</a>
             </div>
             
           </li>
         </ul>
       </div>
 
-      <div *ngIf="userService.isAuthenticated()">
+      <div *ngIf="keycloakService.authenticated()">
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-item">
             <div ngbDropdown class="" placement="bottom-right">
-              <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{userService.user.name}}</a>
+              <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{keycloakService.client().userInfo?.name}}</a>
               <div class="bg-dark" ngbDropdownMenu aria-labelledby="dropdownAccount">
                 <a class="dropdown-item nav-link" [routerLink]="['/profile']">My profile</a>
-                <a class="dropdown-item nav-link" (click)="signOutUser()">Sign out</a>
+                <a class="dropdown-item nav-link" (click)="doLogout()">Sign out</a>
               </div>
             </div>
           </li>

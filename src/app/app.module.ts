@@ -11,8 +11,9 @@ import {CookieLawModule} from 'angular2-cookie-law';
 import {MenuService} from './shared/services/menu.service';
 import {ContentService} from './shared/services/content.service';
 import {UserService} from './shared/services/user.service';
+import { KeycloakService } from './shared/services/keycloak/keycloak.service';
 
-import {LogedinGuard} from './shared/guards/logedin.guard';
+import {KeycloakGuard} from './shared/services/keycloak/keycloak.guard';
 
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './layouts/navbar/navbar.component';
@@ -30,9 +31,6 @@ import {HistoricalJobPostingsComponent} from './assets/historical-job-postings/h
 import {OccupationForecastsComponent} from './assets/occupation-forecasts/occupation-forecasts.component';
 import {OntologyComponent} from './assets/ontology/ontology.component';
 import {ProductMenuComponent} from './assets/product-menu/product-menu.component';
-import {LostPasswordComponent} from './account/lost-password/lost-password.component';
-import {SignInComponent} from './account/sign-in/sign-in.component';
-import {SignUpComponent} from './account/sign-up/sign-up.component';
 import { OverviewComponent } from './assets/overview/overview.component';
 
 @NgModule({
@@ -52,9 +50,6 @@ import { OverviewComponent } from './assets/overview/overview.component';
     OccupationForecastsComponent,
     OntologyComponent,
     ProductMenuComponent,
-    LostPasswordComponent,
-    SignInComponent,
-    SignUpComponent,
     OverviewComponent
   ],
   imports: [
@@ -68,10 +63,11 @@ import { OverviewComponent } from './assets/overview/overview.component';
     ToastrModule.forRoot({positionClass: 'toast-top-full-width'}),
   ],
   providers: [
-    LogedinGuard,
+    KeycloakGuard,
     MenuService,
     ContentService,
     UserService,
+    KeycloakService,
   ],
   exports: [
     RouterModule

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
-import { MenuService } from '../../shared/services/menu.service';
-import { UserService } from '../../shared/services/user.service'
+// import { MenuService } from '../../shared/services/menu.service';
+// import { UserService } from '../../shared/services/user.service'
+
+import { KeycloakService } from '../../shared/services/keycloak/keycloak.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,8 +23,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private menuService: MenuService,
-    private userService: UserService,
+    private keycloakService: KeycloakService,
     private location: Location) {
     // console.log('route:', route);
   }
@@ -40,23 +41,30 @@ export class NavbarComponent implements OnInit {
         this.onRouteChange(newRoute);
       }
     });
+    this.keycloakService.client().loadUserInfo();
 
   }
 
-  isHomePage() {
-    return this.getActiveRoute() === 'Home';
+  // isHomePage() {
+  //   return this.getActiveRoute() === 'Home';
+  // }
+
+  // getActiveRoute() {
+  //   return this.menuService.activeRoute;
+  // }
+
+  doLogout() {
+    console.log('doLogout')
+    this.keycloakService.client().logout({redirectUri:this.getHostUrl()})
   }
 
-  getActiveRoute() {
-    return this.menuService.activeRoute;
+  doLogin(){
+    console.log('doLogin')
+    this.keycloakService.client().login();
   }
-
-  signOutUser() {
-    console.log('signOutUser 1')
-    this.userService.signOut()
-    console.log('signOutUser 2')
-    this.router.navigate(['/']);
-    console.log('signOutUser 3')
+  doRegister(){
+    console.log('doRegister')
+    this.keycloakService.client().register();
   }
 
   onRouteChange(newRoute: string) {
@@ -77,5 +85,9 @@ export class NavbarComponent implements OnInit {
       this.title = ''
     }
     console.log("title: ", this.title)
+  }
+
+  getHostUrl(){
+    return window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
   }
 }

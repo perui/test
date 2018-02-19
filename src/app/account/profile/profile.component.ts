@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
-import { UserService } from '../../shared/services/user.service'
-import {MenuService} from '../../shared/services/menu.service';
-import { PasswordValidation } from '../password-validation';
+import { KeycloakService } from '../../shared/services/keycloak/keycloak.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,73 +11,36 @@ import { PasswordValidation } from '../password-validation';
 })
 export class ProfileComponent implements OnInit {
 
-  editProfile:boolean
-  editPassword:boolean
-
-  contactForm: FormGroup;
-  passwordForm: FormGroup;
+  
 
   constructor(
-    public fb: FormBuilder, 
-    private userService: UserService,
+    private idp:KeycloakService,
     private toastrService: ToastrService) { }
 
   ngOnInit() {
     
-    this.contactForm = this.fb.group({
-      name: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]]
-    });
 
-    this.passwordForm =  this.fb.group({
-      password: ["", [Validators.required, Validators.minLength(5)]],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validator: PasswordValidation.MatchPassword // your validation method
-    });
+    this.idp.client().loadUserInfo()
+    .success(userinfo=> console.log("loadUserInfo: ",userinfo))
+    .error(error=>{
+      console.error("loadUserInfo error:",error)
+      this.toastrService.error("Failed to load user info");
+    })
 
+    this.idp.client().loadUserProfile()
+    .success(profile=>console.log("loadUserProfile:",profile))
+    .error(error=>{
+      console.error("loadUserProfile error:",error)
+      this.toastrService.error("Failed to load user profile");
+    })
+    
   }
 
   doEditProfile() {
-    this.contactForm.setValue({
-      name: this.userService.user.name,
-      email: this.userService.user.email
-    });
-    this.editProfile = true;
-
+    this.idp.client().accountManagement()
+    .success(()=>console.log("accountManagement ok"))
+    .error(error=>console.log("accountManagement error",error))
   }
 
-  saveEditProfile() {
-    if(this.contactForm.invalid){
-      alert("Not valid");
-      return false;
-    }
-    console.log("Saved contact form")
-    this.userService.user.name = this.contactForm.value.name;
-    this.userService.user.email = this.contactForm.value.email;
-
-    this.editProfile = false;
-  }
-
-  abortEditProfile() {
-    this.editProfile = false;
-  }
-
-  doChangePassword(){
-    this.editPassword = true;
-  }
-
-  abortChangePassword(){
-    this.editPassword = false;
-  }
-
-  saveNewPassword(){
-    if(this.passwordForm.invalid){
-      alert("Not valid");
-      return false;
-    }
-    console.log("Saved passwordForm")
-    this.userService.user.password = this.passwordForm.value.password;
-  }
 
 }

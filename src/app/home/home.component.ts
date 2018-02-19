@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuService} from '../shared/services/menu.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +7,9 @@ import {MenuService} from '../shared/services/menu.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private menuService: MenuService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.menuService.activeRoute = 'JobTech Developer';
   }
 }

@@ -1,16 +1,13 @@
 import {RouterModule, Routes} from '@angular/router';
 import {AssetsComponent} from './assets/assets.component';
-import {SignInComponent} from './account/sign-in/sign-in.component';
-import {SignUpComponent} from './account/sign-up/sign-up.component';
-import {LostPasswordComponent} from './account/lost-password/lost-password.component';
 import {HomeComponent} from './home/home.component';
 import {NewsComponent} from './news/news.component';
-import {LogedinGuard} from './shared/guards/logedin.guard';
 import {PlatformComponent} from './platform/platform.component';
 import {ProfileComponent} from './account/profile/profile.component';
 import {ShowcaseComponent} from './showcase/showcase.component';
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
+import {KeycloakGuard} from './shared/services/keycloak/keycloak.guard';
 import {OverviewComponent} from './assets/overview/overview.component';
 import {PlatsbankenComponent} from './assets/platsbanken/platsbanken.component';
 import {OntologyComponent} from './assets/ontology/ontology.component';
@@ -39,10 +36,7 @@ const routes: Routes = [
   },  
   {path: 'news', component: NewsComponent},
   {path: 'platform', component: PlatformComponent},
-  {path: 'profile', component: ProfileComponent, canActivate: [LogedinGuard]},
-  {path: 'signin', component: SignInComponent},
-  {path: 'signup', component: SignUpComponent},
-  {path: 'lost-password', component: LostPasswordComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [KeycloakGuard]},
   {path: 'showcase', component: ShowcaseComponent},
   {path: '**', component: HomeComponent}
 ];
