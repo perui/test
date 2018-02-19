@@ -1,10 +1,10 @@
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import '~scss/styles';
 
 $space-between-cards:1.2em;
 $zoom-to-scale:1.05;
 $zoom-transition-time:200ms;
 
-.card-group .card {    
+.card-group .card {
     margin-right: $space-between-cards;
     cursor: pointer;
     min-width: 15rem;
@@ -18,13 +18,13 @@ $zoom-transition-time:200ms;
 
 .card-group .card {
     -webkit-transition: all $zoom-transition-time ease-in;
-    -webkit-transform: scale(1); 
+    -webkit-transform: scale(1);
     -ms-transition: all $zoom-transition-time ease-in;
-    -ms-transform: scale(1); 
+    -ms-transform: scale(1);
     -moz-transition: all $zoom-transition-time ease-in;
     -moz-transform: scale(1);
     transition: all $zoom-transition-time ease-in;
-    transform: scale(1);   
+    transform: scale(1);
 }
 
 .card-group .card:hover {
@@ -33,7 +33,7 @@ $zoom-transition-time:200ms;
     -webkit-transition: all $zoom-transition-time ease-in;
     -webkit-transform: scale($zoom-to-scale);
     -ms-transition: all $zoom-transition-time ease-in;
-    -ms-transform: scale($zoom-to-scale);   
+    -ms-transform: scale($zoom-to-scale);
     -moz-transition: all $zoom-transition-time ease-in;
     -moz-transform: scale($zoom-to-scale);
     transition: all $zoom-transition-time ease-in;
