@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
-// import { MenuService } from '../../shared/services/menu.service';
-// import { UserService } from '../../shared/services/user.service'
 
 import { KeycloakService } from '../../shared/services/keycloak/keycloak.service';
 

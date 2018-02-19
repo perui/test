@@ -10,7 +10,6 @@ import {CookieLawModule} from 'angular2-cookie-law';
 
 import {MenuService} from './shared/services/menu.service';
 import {ContentService} from './shared/services/content.service';
-import {UserService} from './shared/services/user.service';
 import { KeycloakService } from './shared/services/keycloak/keycloak.service';
 
 import {KeycloakGuard} from './shared/services/keycloak/keycloak.guard';
@@ -66,7 +65,6 @@ import { OverviewComponent } from './assets/overview/overview.component';
     KeycloakGuard,
     MenuService,
     ContentService,
-    UserService,
     KeycloakService,
   ],
   exports: [

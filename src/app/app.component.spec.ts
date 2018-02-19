@@ -13,7 +13,7 @@ import {CookieLawModule} from 'angular2-cookie-law';
 import {FooterComponent} from './layouts/footer/footer.component';
 import {MenuService} from './shared/services/menu.service';
 import {ContentService} from './shared/services/content.service';
-import {UserService} from './shared/services/user.service'
+import { KeycloakService } from './shared/services/keycloak/keycloak.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -34,8 +34,8 @@ describe('AppComponent', () => {
       providers:[
         AppModule, 
         MenuService, 
-        ContentService,
-        UserService
+        ContentService,  
+        KeycloakService,     
       ]
     }).compileComponents();
   }));
