@@ -1,11 +1,10 @@
+
 <header class="container-fluid" [ngClass]="currentRoute">
-    <!-- [ngClass]="{'dark-bg' : !isCollapsed}" -->
+
 <nav class="navbar navbar-dark bg-dark navbar-default navbar-expand-md">
-  <!-- <div > -->
     <a class="navbar-brand" [routerLink]="['/']">
       <img src="/assets/images/jobtechlogo.png">
     </a>
-    <span class="navbar-brand nav-page-title">{{title}}</span>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-expanded="false" aria-label="Toggle navigation"
       (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarMenu">
@@ -15,7 +14,7 @@
     <div class="collapse navbar-collapse" id="navbarMenu" [ngbCollapse]="isCollapsed">
 
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown" ngbDropdown routerLinkActive="active">
+        <li class="nav-item dropdown nowrap" ngbDropdown routerLinkActive="active">
           <a class="nav-link dropdown-toggle" id="dropdownAssets"  ngbDropdownToggle>ASSETS</a>
           <div class="dropdown-menu text-light bg-dark" ngbDropdownMenu aria-labelledby="dropdownAssets">
               <a class="dropdown-item" [routerLink]="['/assets/overview']">Overview</a>
@@ -43,7 +42,7 @@
         <ul class="navbar-nav navbar-right">
 
           <li class="nav-item">
-            <div class="nav-link auth-links">
+            <div class="nav-link nowrap">
                 <a (click)="doLogin()">Login</a>
                 <span>or</span>
                 <a (click)="doRegister()">Register</a>
@@ -67,11 +66,7 @@
         </ul>
       </div>
     </div>
-  <!-- </div> -->
-</nav>
-
-<!-- <header *ngIf="!isHomePage()" [ngClass]="getActiveRoute() | lowercase">-->
+  </nav>
   <h1 class="navbar-dark page-title">{{title}}</h1>
-
 
 </header>

@@ -41,7 +41,6 @@ header {
             background-color: transparent !important;
             text-transform: uppercase;
             color: #b1b3b4;
-            font-size: 0.95rem;
             font-weight: bold;
             transition: all 0.2s;
             &:hover {
@@ -83,33 +82,6 @@ header {
     }
 }
 
-// .jumbotron {
-//   margin-top: -85px;
-//   margin-bottom: 0px;
-//   height: 200px;
-//   background-image: url(/assets/images/startpage-header-bg.jpg);
-//   background-size: 100%;
-//   padding-top: 50px;
-// }
-// .jumbotron .tagline {
-//   font-size: 60px;
-//   font-weight: 300;
-// }
-// .jumbotron .tagline, .jumbotron .subtitle {
-//   text-align: center;
-//   color: white;
-// }
-// .jumbotron .subtitle {
-//   font-size: 19px;
-// }
-// header {
-// padding: 0 0 0 100px
-//   margin-top: -85px;
-//   margin-bottom: 20px;
-//   height: 230px;
-//   background-size: 100%;
-//   padding: 80px 0 0 100px;
-// }
 .home {
     background-image: url('/assets/images/startpage-header-bg.jpg')
 }
@@ -130,11 +102,7 @@ header {
     background-image: url('/assets/images/news-header.jpg')
 }
 
-// .profile {
-//     background-image: url('/assets/images/startpage-header-bg.jpg')
-// }
-
-.auth-links {
+.nowrap {
     white-space: nowrap;
 }
 
