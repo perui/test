@@ -26,5 +26,10 @@ pipelines:
           - ng build --base-href /
           - docker build .
 
+definitions:
+  caches:
+    node-global: /usr/local/lib/node_modules
+    yarn: $HOME/.cache/yarn
+
 options:
   docker: true
