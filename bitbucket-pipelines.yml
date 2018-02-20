@@ -18,6 +18,7 @@ pipelines:
           - export PATH=$HOME/.yarn/bin:$PATH
           - yarn global add @angular/cli@1.7.0
           - yarn
+          - npm rebuild node-sass --force
           - ng test --watch false --browsers ChromeHeadless
     - step:
         name: Build Docker Image
