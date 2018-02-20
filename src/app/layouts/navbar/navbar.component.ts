@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private keycloakService: KeycloakService,
+    protected keycloakService: KeycloakService,
     private location: Location) {
     // console.log('route:', route);
   }
@@ -68,7 +68,7 @@ export class NavbarComponent implements OnInit {
   onRouteChange(newRoute: string) {
     newRoute = newRoute.replace(/^\/+/g, ''); // remove leading slashes
     console.log("newRoute: ", newRoute)
-    if (this.currentRoute != newRoute) {
+    if (this.currentRoute !== newRoute) {
       this.currentRoute = newRoute;
       console.log("currentRoute: ", this.currentRoute)
       this.processTitle();
@@ -79,7 +79,7 @@ export class NavbarComponent implements OnInit {
     let route: string = this.currentRoute;
     let toIndex = route.indexOf('/') !== -1 ? route.indexOf('/') : route.length;
     this.title = route.charAt(0).toUpperCase() + route.slice(1, toIndex)
-    if (this.noTitleRoutes.indexOf(this.title) != -1) {
+    if (this.noTitleRoutes.indexOf(this.title) !== -1) {
       this.title = ''
     }
     console.log("title: ", this.title)
