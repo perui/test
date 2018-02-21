@@ -22,6 +22,8 @@ pipelines:
           - ng test --watch false --browser PhantomJS --single-run
     - step:
         name: Build Docker Image
+        caches:
+          - yarn
         script:
           # - ng build --target=production --base-href /
           - ng build --base-href /
