@@ -1,19 +1,18 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing'
-import { AppComponent } from './app.component';
-import { AppModule } from './app.module';
+import {async, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {AppComponent} from './app.component';
+import {AppModule} from './app.module';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 import {NavbarComponent} from './layouts/navbar/navbar.component';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule } from '@angular/common';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {CommonModule} from '@angular/common';
 
 import {CookieLawModule} from 'angular2-cookie-law';
 import {FooterComponent} from './layouts/footer/footer.component';
 import {MenuService} from './shared/services/menu.service';
 import {ContentService} from './shared/services/content.service';
-import { KeycloakService } from './shared/services/keycloak/keycloak.service';
+import {KeycloakService} from './shared/services/keycloak/keycloak.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -21,21 +20,21 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         NavbarComponent,
-        FooterComponent 
+        FooterComponent
       ],
-      imports: [ 
-        CommonModule, 
-        RouterTestingModule, 
+      imports: [
+        CommonModule,
+        RouterTestingModule,
         NgbDropdownModule.forRoot(),
         CookieLawModule,
         NgbModule,
         NoopAnimationsModule
       ],
-      providers:[
-        AppModule, 
-        MenuService, 
-        ContentService,  
-        KeycloakService,     
+      providers: [
+        AppModule,
+        MenuService,
+        ContentService,
+        KeycloakService,
       ]
     }).compileComponents();
   }));
