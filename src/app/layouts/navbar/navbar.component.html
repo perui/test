@@ -1,13 +1,13 @@
-
 <header class="container-fluid" [ngClass]="currentRoute">
 
-<nav class="navbar navbar-dark bg-dark navbar-default navbar-expand-md">
+  <nav class="navbar navbar-dark bg-dark navbar-default navbar-expand-md">
     <a class="navbar-brand" [routerLink]="['/']">
       <img src="/assets/images/jobtechlogo.png">
     </a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-expanded="false" aria-label="Toggle navigation"
-      (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarMenu">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-expanded="false"
+            aria-label="Toggle navigation"
+            (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -15,9 +15,9 @@
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown nowrap" ngbDropdown routerLinkActive="active">
-          <a class="nav-link dropdown-toggle" id="dropdownAssets"  ngbDropdownToggle>ASSETS</a>
+          <a class="nav-link dropdown-toggle" id="dropdownAssets" ngbDropdownToggle>ASSETS</a>
           <div class="dropdown-menu text-light bg-dark" ngbDropdownMenu aria-labelledby="dropdownAssets">
-              <a class="dropdown-item" [routerLink]="['/assets/overview']">Overview</a>
+            <a class="dropdown-item" [routerLink]="['/assets/overview']">Overview</a>
             <a class="dropdown-item" [routerLink]="['/assets/platsbanken']">Platsbanken</a>
             <a class="dropdown-item" [routerLink]="['/assets/occupation-forecasts']">Occupation Forecasts</a>
             <a class="dropdown-item" [routerLink]="['/assets/occupations']">Occupations</a>
@@ -27,7 +27,7 @@
         </li>
 
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['/platform']" >PLATFORM</a>
+          <a class="nav-link" [routerLink]="['/platform']">PLATFORM</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/showcase']">SHOWCASE</a>
@@ -43,9 +43,9 @@
 
           <li class="nav-item">
             <div class="nav-link nowrap">
-                <a (click)="doLogin()">Login</a>
-                <span>or</span>
-                <a (click)="doRegister()">Register</a>
+              <a (click)="doLogin()">Login</a>
+              <span>or</span>
+              <a (click)="doRegister()">Register</a>
             </div>
 
           </li>
@@ -56,7 +56,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-item">
             <div ngbDropdown class="" placement="bottom-right">
-              <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{keycloakService.client().userInfo?.name}}</a>
+              <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{ keycloakService.client().userInfo?.name}}</a>
               <div class="bg-dark" ngbDropdownMenu aria-labelledby="dropdownAccount">
                 <a class="dropdown-item nav-link" [routerLink]="['/profile']">My profile</a>
                 <a class="dropdown-item nav-link" (click)="doLogout()">Sign out</a>
@@ -67,6 +67,6 @@
       </div>
     </div>
   </nav>
-  <h1 class="navbar-dark page-title">{{title}}</h1>
+  <h1 class="navbar-dark page-title">{{ title }}</h1>
 
 </header>

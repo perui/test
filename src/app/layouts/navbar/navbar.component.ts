@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { KeycloakService } from '../../shared/services/keycloak/keycloak.service';
@@ -11,10 +11,9 @@ import { KeycloakService } from '../../shared/services/keycloak/keycloak.service
 })
 export class NavbarComponent implements OnInit {
 
-  noTitleRoutes = ['Home', 'Signin', 'Signup', 'Signout']
+  noTitleRoutes = ['Home'];
 
   isCollapsed = true;
-  isAccountCollapsed = true;
   currentRoute: string;
   title;
 
@@ -23,69 +22,63 @@ export class NavbarComponent implements OnInit {
     private route: ActivatedRoute,
     protected keycloakService: KeycloakService,
     private location: Location) {
-    // console.log('route:', route);
+  }
+
+
+  static getHostUrl() {
+    return window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
   }
 
   ngOnInit() {
 
     this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        let newRoute;
-        if (this.location.path() != '') {
-          newRoute = this.location.path();
-        } else {
-          newRoute = '/home'
-        }
-        this.onRouteChange(newRoute);
+      if (!(event instanceof NavigationEnd)) {
+        return;
       }
+      let newRoute;
+      if (this.location.path() !== '') {
+        newRoute = this.location.path();
+      } else {
+        newRoute = '/home';
+      }
+      this.onRouteChange(newRoute);
     });
     this.keycloakService.client().loadUserInfo();
 
   }
 
-  // isHomePage() {
-  //   return this.getActiveRoute() === 'Home';
-  // }
-
-  // getActiveRoute() {
-  //   return this.menuService.activeRoute;
-  // }
-
   doLogout() {
-    console.log('doLogout')
-    this.keycloakService.client().logout({redirectUri:this.getHostUrl()})
+    console.log('doLogout');
+    this.keycloakService.client().logout({redirectUri: NavbarComponent.getHostUrl()});
   }
 
-  doLogin(){
-    console.log('doLogin')
+  doLogin() {
+    console.log('doLogin');
     this.keycloakService.client().login();
   }
-  doRegister(){
-    console.log('doRegister')
+  doRegister() {
+    console.log('doRegister');
     this.keycloakService.client().register();
   }
 
   onRouteChange(newRoute: string) {
     newRoute = newRoute.replace(/^\/+/g, ''); // remove leading slashes
-    console.log("newRoute: ", newRoute)
+    console.log('newRoute: ', newRoute);
     if (this.currentRoute !== newRoute) {
       this.currentRoute = newRoute;
-      console.log("currentRoute: ", this.currentRoute)
+      console.log('currentRoute: ', this.currentRoute);
       this.processTitle();
     }
   }
 
   processTitle() {
-    let route: string = this.currentRoute;
-    let toIndex = route.indexOf('/') !== -1 ? route.indexOf('/') : route.length;
-    this.title = route.charAt(0).toUpperCase() + route.slice(1, toIndex)
+    const route: string = this.currentRoute;
+    const toIndex = route.indexOf('/') !== -1 ? route.indexOf('/') : route.length;
+    this.title = route.charAt(0).toUpperCase() + route.slice(1, toIndex);
     if (this.noTitleRoutes.indexOf(this.title) !== -1) {
-      this.title = ''
+      this.title = '';
     }
-    console.log("title: ", this.title)
+    console.log('title: ', this.title);
   }
 
-  getHostUrl(){
-    return window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
-  }
 }
