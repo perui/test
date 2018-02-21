@@ -19,7 +19,7 @@ pipelines:
           - yarn global add @angular/cli@1.7.0
           - ng set --global packageManager=yarn
           - yarn install
-          - yarn run test --watch false --browsers ChromeHeadless
+          - ng test --watch false --browsers ChromeHeadless
     - step:
         name: Build Docker Image
         script:
