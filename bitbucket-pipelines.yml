@@ -7,7 +7,7 @@ pipelines:
   default:
     - step:
         name: Build and Test
-        image: afekosystem:ng-builder
+        image: afekosystem/ng-builder
         caches:
           - node
           - node-global
