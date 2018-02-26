@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 import {ToastrModule } from 'ngx-toastr';
@@ -11,6 +11,7 @@ import {CookieLawModule} from 'angular2-cookie-law';
 import {MenuService} from './shared/services/menu.service';
 import {ContentService} from './shared/services/content.service';
 import { KeycloakService } from './shared/services/keycloak/keycloak.service';
+import { JobServiceRegistrationService } from './shared/services/job-service-registration.service';
 
 import {KeycloakGuard} from './shared/services/keycloak/keycloak.guard';
 
@@ -31,6 +32,9 @@ import {OccupationForecastsComponent} from './assets/occupation-forecasts/occupa
 import {OntologyComponent} from './assets/ontology/ontology.component';
 import {ProductMenuComponent} from './assets/product-menu/product-menu.component';
 import { OverviewComponent } from './assets/overview/overview.component';
+import { JobServiceListComponent } from './account/job-service-list/job-service-list.component';
+import { JobServiceDetailsComponent } from './account/job-service-details/job-service-details.component';
+import { JobServiceEditorComponent } from './account/job-service-editor/job-service-editor.component';
 
 @NgModule({
   declarations: [
@@ -49,11 +53,13 @@ import { OverviewComponent } from './assets/overview/overview.component';
     OccupationForecastsComponent,
     OntologyComponent,
     ProductMenuComponent,
-    OverviewComponent
+    OverviewComponent,
+    JobServiceListComponent,
+    JobServiceDetailsComponent,
+    JobServiceEditorComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     ReactiveFormsModule,
     NoopAnimationsModule,
     AppRoutingModule,
@@ -66,6 +72,7 @@ import { OverviewComponent } from './assets/overview/overview.component';
     MenuService,
     ContentService,
     KeycloakService,
+    JobServiceRegistrationService,
   ],
   exports: [
     RouterModule

@@ -31,4 +31,5 @@ KeycloakService.init(environment.keycloak, {onLoad: 'check-sso'})
     })
     .catch((e: any) => {
         console.log('Error in bootstrap: ' + JSON.stringify(e));
+        throw e;
     });

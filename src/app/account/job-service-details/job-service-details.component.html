@@ -1,0 +1,42 @@
+<div class="container mt-2 mb-2" *ngIf="registration | async; let registration; else loading">
+
+
+ <div class="card">
+  <div class="card-header">
+    Your registered service
+  </div>
+   <div class="card-body">
+    <h5 class="card-title">{{ registration.title }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ registration.category }}</h6>
+
+    <p class="card-text">{{ registration.description }}</p>
+     <p class="card-text"><a [href]="registration.url" class="card-link">{{ registration.url }}</a></p>
+
+     <div class="row">
+       <div class="col-2">Industry</div>
+       <div class="col">{{ registration.industry }}</div>
+     </div>
+     <div class="row">
+       <div class="col-2">Professions</div>
+       <div class="col">{{ registration.professions }}</div>
+     </div>
+     <div class="row">
+       <div class="col-2">Competences</div>
+       <div class="col">{{ registration.competences }}</div>
+     </div>
+     <div class="row">
+       <div class="col-2">Published</div>
+       <div class="col"><i [class]="registration.published ? 'fa fa-eye' : 'fa fa-eye-slash'"></i> {{ registration.competences ? 'Yes': 'No'}}</div>
+     </div>
+   </div>
+   <div class="card-footer">
+     <a [routerLink]="['..']" class="card-link">Back to list</a>
+     <a [routerLink]="['edit']" class="card-link"><i class="fa fa-cog"></i> Edit</a>
+  </div>
+ </div>
+
+</div>
+
+
+<ng-template #loading>Laddar ...</ng-template>
+
