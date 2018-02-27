@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,uCAAyC;EACvC,WAAW,EAAE,iBAAiB;EAAE,WAAW;;AAG7C,qBAAuB;EACrB,WAAW,EAAE,iBAAiB;EAAE,SAAS",
+"sources": ["job-service-editor.component.scss"],
 "names": [],
 "file": "job-service-editor.component.css"
 }

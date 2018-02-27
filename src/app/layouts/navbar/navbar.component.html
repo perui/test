@@ -59,6 +59,7 @@
               <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{ keycloakService.client().userInfo?.name}}</a>
               <div class="bg-dark" ngbDropdownMenu aria-labelledby="dropdownAccount">
                 <a class="dropdown-item nav-link" [routerLink]="['/profile']">My profile</a>
+                <a class="dropdown-item nav-link" [routerLink]="['/service']">My services</a>
                 <a class="dropdown-item nav-link" (click)="doLogout()">Sign out</a>
               </div>
             </div>

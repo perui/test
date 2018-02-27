@@ -1,12 +1,13 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import { ReactiveFormsModule} from '@angular/forms';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {ToastrModule } from 'ngx-toastr';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CookieLawModule} from 'angular2-cookie-law';
+import { TagInputModule } from 'ngx-chips';
 
 import {MenuService} from './shared/services/menu.service';
 import {ContentService} from './shared/services/content.service';
@@ -60,12 +61,14 @@ import { JobServiceEditorComponent } from './account/job-service-editor/job-serv
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule.forRoot(),
     CookieLawModule,
     ToastrModule.forRoot({positionClass: 'toast-top-full-width'}),
+    TagInputModule
   ],
   providers: [
     KeycloakGuard,

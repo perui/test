@@ -74,23 +74,25 @@ export const MOCK_DATABASE: Registration[] = [
   {
     id: 'monster-id',
     title: 'Monster',
-    category: 'job-sites',
     description: 'En av Sveriges största aktörer',
-    industry: 'IT',
-    professions: 'Java',
-    competences: 'Bästa',
-    published: true,
-    url: 'http://www.monster.se'
+    category: 'job-site',
+    industry: ['All'],
+    professions: ['Software Development', 'Project Management', 'IT Management'],
+    competences: ['IT'],
+    published: false,
+    url: 'https://www.monster.se',
+    logo: 'https://media.newjobs.com/global/img/header-m.png'
   },
   {
     id: 'idg-id',
     title: 'IDG-Job',
-    category: 'job-sites',
     description: 'En av Sveriges bästa aktörer',
-    industry: 'IT',
-    professions: 'Java',
-    competences: 'Bästa',
+    category: 'job-site',
+    industry: ['IT'],
+    professions: ['Software Development'],
+    competences: ['Java', '.Net'],
     published: true,
-    url: 'https://csjobb.idg.se/'
+    url: 'https://csjobb.idg.se',
+    logo: 'https://csjobb.idg.se/assets/dist/images/logo.png'
   }
 ];

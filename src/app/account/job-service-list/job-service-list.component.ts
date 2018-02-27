@@ -36,4 +36,13 @@ export class JobServiceListComponent implements OnInit {
   onEdit(id) {
     this.router.navigate(['/service', id, 'edit']);
   }
+
+  doEncodeURI(url) {
+    return encodeURI(url);
+  }
+
+  togglePublish(registration: Registration){
+    registration.published = !registration.published;
+    // save
+  }
 }

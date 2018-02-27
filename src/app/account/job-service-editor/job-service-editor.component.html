@@ -2,81 +2,102 @@
   <div class="card">
 
     <div class="card-body">
+
+
       <h5 class="card-title">{{isNew ? "Create a new service": "Edit your service"}}</h5>
-      <form [formGroup]="serviceForm" (ngSubmit)="onSave()" novalidate>
+
+      <form (ngSubmit)="onSave(theForm)" #theForm="ngForm" novalidate>
         <div class="row ">
           <div class="col-12 col-md-6">
 
             <div class="form-group">
               <label for="inputTitle">Title</label>
               <input type="text" class="form-control" id="inputTitle" aria-describedby="titleHelp"
-                     placeholder="Enter title"
-                     formControlName="title">
-              <small id="titleHelp" class="form-text text-muted">Enter a title</small>
+                     placeholder="Enter title" #title="ngModel" [(ngModel)]="service.title"
+                     name="title" required>
+              <small id="titleHelp" [hidden]="title.valid || title.pristine"
+                     class="alert alert-danger form-text text-muted">Enter a title
+              </small>
             </div>
 
             <div class="form-group">
               <label for="inputDescription">Description</label>
-              <textarea class="form-control" id="inputDescription" aria-describedby="descriptionHelp"
-                        placeholder="Enter description" formControlName="description" rows="3"></textarea>
-              <small id="descriptionHelp" class="form-text text-muted">Enter the service description</small>
+              <textarea class="form-control" id="inputDescription" name="description" aria-describedby="descriptionHelp"
+                        placeholder="Enter description" [(ngModel)]="service.description" rows="3"
+
+                        required #description="ngModel"></textarea>
+              <small id="descriptionHelp" [hidden]="description.valid || description.pristine"
+                     class="alert alert-danger form-text text-muted">Enter the service description
+              </small>
             </div>
 
             <div class="form-group">
               <label for="urlInput">Link</label>
-              <input type="text" class="form-control" id="urlInput" aria-describedby="urlHelp" placeholder="Enter url"
-                     formControlName="url">
-              <small id="urlHelp" class="form-text text-muted">Enter what url the service is targeting</small>
+              <input type="text" class="form-control" id="urlInput" name="url" aria-describedby="urlHelp"
+                     placeholder="Enter url"
+                     [(ngModel)]="service.url" #url="ngModel" required>
+              <small id="urlHelp" [hidden]="url.valid || url.pristine"
+                     class="alert alert-danger form-text text-muted">Enter what url the service is targeting
+              </small>
+            </div>
+
+            <div class="form-group">
+              <label for="logoInput">Logo</label>
+              <input type="text" class="form-control" id="logoInput" name="logo" aria-describedby="logoHelp"
+                     placeholder="Enter logo"
+                     [(ngModel)]="service.logo" #logo="ngModel" required>
+              <small id="logoHelp" [hidden]="logo.valid || logo.pristine"
+                     class="alert alert-danger form-text text-muted">Enter a logo url to the service</small>
+
+              <img [src]="service.logo" title="logo" alt="logo">
             </div>
 
           </div>
           <div class="col-12 col-md-6">
 
-            <div class="form-group">
-              <label for="inputCategory">Category</label>
-              <select class="form-control" formControlName="category" id="inputCategory">
-                <option [value]="null">Select Category</option>
-                <option *ngFor="let option of categories" [value]="option">{{option}}</option>
-              </select>
-              <small id="categoryHelp" class="form-text text-muted">Select a category</small>
-            </div>
 
             <div class="form-group">
-              <label for="industryInput">Industry</label>
-              <input type="text" class="form-control" id="industryInput" aria-describedby="industryHelp"
-                     placeholder="Enter industry" formControlName="industry">
-              <small id="industryHelp" class="form-text text-muted">Enter what industry the service is targeting</small>
+              <label for="inputCategory">Category</label>
+              <select class="form-control custom-select" [ngModel]="service.category || ''" (ngModelChange)="service.category=$event" id="inputCategory" name="category" required>
+                <option value="" disabled default>Select Category</option>
+                <option *ngFor="let option of categories" [value]="option.value">{{option.label}}</option>
+              </select>
             </div>
+
 
             <div class="form-group">
               <label for="professionsInput">Professions</label>
-              <input type="text" class="form-control" id="professionsInput" aria-describedby="professionsHelp"
-                     placeholder="Enter professions" formControlName="professions">
-              <small id="professionsHelp" class="form-text text-muted">Enter what professions the service is targeting
-              </small>
+
+              <tag-input class="form-control" [(ngModel)]="service.professions" #professions="ngModel"
+                         id="professionsInput" name="professions" theme='bootstrap' required></tag-input>
             </div>
 
             <div class="form-group">
               <label for="competencesInput">Competences</label>
-              <input type="text" class="form-control" id="competencesInput" aria-describedby="competencesHelp"
-                     placeholder="Enter competences" formControlName="competences">
-              <small id="competencesHelp" class="form-text text-muted">Enter what competences the service is targeting
-              </small>
+
+              <tag-input class="form-control" [(ngModel)]="service.competences" #competences="ngModel"
+                         id="competencesInput" name="competences" theme='bootstrap' required></tag-input>
             </div>
 
             <div class="form-group form-check">
-              <input class="form-check-input" type="checkbox" id="publishedCheck" formControlName="published">
+              <input class="form-check-input" type="checkbox" id="publishedCheck" name="published"
+                     [(ngModel)]="service.published">
               <label class="form-check-label" for="publishedCheck">
                 Is this service ready to publish to JobStore?
               </label>
             </div>
 
             <div class="form-group">
-              <a [routerLink]="['..']" class="card-link mr-2">Back to list</a>
-              <button type="button" class="btn btn-secondary mr-2" (click)="onDelete()" *ngIf="isNew === false"><i
+              <button type="button" class="btn btn-secondary" (click)="onBackToList()"><i class="fa fa-hand-o-left"></i>
+                Back to list
+              </button>
+
+              <button type="button" class="btn btn-secondary ml-1" (click)="onDelete()" *ngIf="isNew === false"><i
                 class="fa fa-eraser"></i> Delete
               </button>
-              <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> Save</button>
+              <button type="submit" [disabled]="!theForm.form.valid"
+                      class="btn btn-primary pull-right"><i class="fa fa-save"></i> Save
+              </button>
             </div>
           </div>
 

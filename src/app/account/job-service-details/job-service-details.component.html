@@ -30,8 +30,15 @@
      </div>
    </div>
    <div class="card-footer">
-     <a [routerLink]="['..']" class="card-link">Back to list</a>
-     <a [routerLink]="['edit']" class="card-link"><i class="fa fa-cog"></i> Edit</a>
+
+     <button type="button" class="btn btn-secondary" (click)="onBackToList()"><i class="fa fa-hand-o-left"></i> Back to list
+     </button>
+
+     <button type="button" class="btn btn-secondary ml-1" (click)="onDelete()"><i class="fa fa-eraser"></i> Delete
+     </button>
+
+     <button type="button" class="btn btn-primary ml-4" (click)="onEdit()"><i class="fa fa-wrench"></i> Edit
+     </button>
   </div>
  </div>
 

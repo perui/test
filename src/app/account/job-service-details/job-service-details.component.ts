@@ -3,6 +3,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {JobServiceRegistrationService} from '../../shared/services/job-service-registration.service';
 import {Registration} from '../../shared/model/registration';
 import {Observable} from 'rxjs/Observable';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-job-service-details',
@@ -17,6 +18,7 @@ export class JobServiceDetailsComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
+              private toastrService: ToastrService,
               protected jobServicesService: JobServiceRegistrationService) {
   }
 
@@ -41,4 +43,26 @@ export class JobServiceDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  onEdit() {
+    this.router.navigate(['/service', this.registrationId, 'edit']);
+  }
+
+  onBackToList() {
+    this.router.navigate(['/service']);
+  }
+
+  onDelete() {
+    if (confirm('Do you really want to delete this service?')) {
+      this.jobServicesService.remove(this.registrationId).subscribe(
+        () => {
+          this.toastrService.success('Removed service');
+          this.router.navigate(['/service']);
+        },
+        (error) => {
+          this.toastrService.error('Failed to remove the service');
+          console.error('Failed to remove the service', error);
+        }
+      );
+    }
+  }
 }
