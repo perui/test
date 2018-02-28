@@ -3,8 +3,8 @@
 
     <div class="card-body">
 
-
       <h5 class="card-title">{{isNew ? "Create a new service": "Edit your service"}}</h5>
+
 
       <form (ngSubmit)="onSave(theForm)" #theForm="ngForm" novalidate>
         <div class="row ">
@@ -33,9 +33,17 @@
 
             <div class="form-group">
               <label for="urlInput">Link</label>
-              <input type="text" class="form-control" id="urlInput" name="url" aria-describedby="urlHelp"
-                     placeholder="Enter url"
-                     [(ngModel)]="service.url" #url="ngModel" required>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text" id="btnGroupFavicon">
+                    <img [src]="'https://www.google.com/s2/favicons?domain_url='+doEncodeURI(service.url)" alt="logo">
+                  </div>
+                </div>
+                <input type="text" class="form-control" id="urlInput" name="url" aria-describedby="urlHelp"
+                       placeholder="Enter url"
+                       [(ngModel)]="service.url" #url="ngModel" required>
+              </div>
+
               <small id="urlHelp" [hidden]="url.valid || url.pristine"
                      class="alert alert-danger form-text text-muted">Enter what url the service is targeting
               </small>
@@ -69,14 +77,18 @@
               <label for="professionsInput">Professions</label>
 
               <tag-input class="form-control" [(ngModel)]="service.professions" #professions="ngModel"
-                         id="professionsInput" name="professions" theme='bootstrap' required></tag-input>
+                         id="professionsInput" name="professions" required>
+                <tag-input-dropdown [autocompleteObservable]="autocompleteFromOntology"></tag-input-dropdown>
+              </tag-input>
             </div>
 
             <div class="form-group">
               <label for="competencesInput">Competences</label>
 
               <tag-input class="form-control" [(ngModel)]="service.competences" #competences="ngModel"
-                         id="competencesInput" name="competences" theme='bootstrap' required></tag-input>
+                         id="competencesInput" name="competences" required>
+                <tag-input-dropdown [autocompleteObservable]="autocompleteFromOntology"></tag-input-dropdown>
+              </tag-input>
             </div>
 
             <div class="form-group form-check">
@@ -95,7 +107,10 @@
               <button type="button" class="btn btn-secondary ml-1" (click)="onDelete()" *ngIf="isNew === false"><i
                 class="fa fa-eraser"></i> Delete
               </button>
-              <button type="submit" [disabled]="!theForm.form.valid"
+              <button type="button" class="btn btn-secondary ml-1" (click)="onReset()" ><i
+                class="fa fa-undo"></i> Reset
+              </button>
+              <button type="submit" [disabled]="theForm.form.invalid || !theForm.dirty"
                       class="btn btn-primary pull-right"><i class="fa fa-save"></i> Save
               </button>
             </div>

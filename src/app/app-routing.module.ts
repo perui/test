@@ -15,7 +15,6 @@ import {OccupationForecastsComponent} from './assets/occupation-forecasts/occupa
 import {OccupationsComponent} from './assets/occupations/occupations.component';
 import {HistoricalJobPostingsComponent} from './assets/historical-job-postings/historical-job-postings.component';
 import { JobServiceListComponent } from './account/job-service-list/job-service-list.component';
-import { JobServiceDetailsComponent } from './account/job-service-details/job-service-details.component';
 import { JobServiceEditorComponent } from './account/job-service-editor/job-service-editor.component';
 
 export const routes: Routes = [
@@ -42,9 +41,7 @@ export const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [KeycloakGuard]},
   {path: 'service', component: JobServiceListComponent, canActivate: [KeycloakGuard]},
   {path: 'service/add', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
-  {path: 'service/:id', component: JobServiceDetailsComponent, canActivate: [KeycloakGuard]},
-  {path: 'service/:id/edit', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
-  {path: 'service/add', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
+  {path: 'service/:id', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
   {path: 'showcase', component: ShowcaseComponent},
   {path: '**', component: HomeComponent}
 ];

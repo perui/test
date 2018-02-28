@@ -29,12 +29,8 @@ export class JobServiceListComponent implements OnInit {
     this.router.navigate(['/service/add']);
   }
 
-  onView(id) {
-    this.router.navigate(['/service', id]);
-  }
-
   onEdit(id) {
-    this.router.navigate(['/service', id, 'edit']);
+    this.router.navigate(['/service', id]);
   }
 
   doEncodeURI(url) {
@@ -42,7 +38,10 @@ export class JobServiceListComponent implements OnInit {
   }
 
   togglePublish(registration: Registration){
-    registration.published = !registration.published;
-    // save
+    if (registration.published) {
+      this.jobServicesService.unpublish(registration);
+    } else {
+      this.jobServicesService.publish(registration);
+    }
   }
 }

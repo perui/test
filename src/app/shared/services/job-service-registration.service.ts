@@ -55,6 +55,18 @@ export class JobServiceRegistrationService {
     console.log('removed - registration ' + registrationId);
     return Observable.of(true);
   }
+
+  publish(registration): Observable<any> {
+    console.log('publish service ' + registration.title);
+    registration.published = true;
+    return Observable.of(true);
+  }
+
+  unpublish(registration): Observable<any> {
+    console.log('publish service ' + registration.title);
+    registration.published = false;
+    return Observable.of(true);
+  }
 }
 
 function generateUUID() { // Public Domain/MIT

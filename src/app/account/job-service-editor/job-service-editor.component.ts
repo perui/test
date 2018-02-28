@@ -1,25 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators, FormArray} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {Registration} from '../../shared/model/registration';
 import {JobServiceRegistrationService} from '../../shared/services/job-service-registration.service';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/map';
-// import { debounceTime } from 'rxjs/operators';
+import {OntologyService} from '../../shared/services/ontology.service';
 import {ToastrService} from 'ngx-toastr';
-
-
-// const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
-//   'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
-//   'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
-//   'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
-//   'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-//   'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
-//   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
-//   'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-
+import {Observable} from 'rxjs/Observable';
+// import 'rxjs/add/operator/debounceTime';
+// import 'rxjs/add/operator/distinctUntilChanged';
+// import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-job-service-editor',
@@ -42,19 +31,8 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
               private router: Router,
               private route: ActivatedRoute,
               private toastrService: ToastrService,
-              protected jobServicesService: JobServiceRegistrationService) {
-
-    // this.serviceForm = formBuilder.group({
-    //   id: [null, ],
-    //   title: ['', Validators.required],
-    //   description: ['', Validators.required],
-    //   category: this.formBuilder.array([]),
-    //   industry: this.formBuilder.array([]),
-    //   professions: this.formBuilder.array([]),
-    //   competences: this.formBuilder.array([]),
-    //   url: ['', Validators.required],
-    //   published: ['', Validators.required]
-    // });
+              protected jobServicesService: JobServiceRegistrationService,
+              protected ontologyService: OntologyService) {
   }
 
   ngOnInit() {
@@ -128,12 +106,20 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
     }
   }
 
+  onReset() {
+    this.service = Object.create(this.originalService);
+  }
+
   onBackToList() {
     this.router.navigate(['/service']);
   }
 
-
-  arrayToString(text:string[]){
-    return text.join(', ');
+  doEncodeURI(url) {
+    return encodeURI(url);
   }
+
+  autocompleteFromOntology = (text: string): Observable<any> => {
+    return this.ontologyService.query(text);
+  }
+
 }
