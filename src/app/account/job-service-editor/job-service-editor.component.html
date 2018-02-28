@@ -1,5 +1,5 @@
 <div class="container mt-2 mb-2">
-  <div class="card">
+  <div class="card" *ngIf="service; else loading">
 
     <div class="card-body">
 
@@ -55,7 +55,8 @@
                      placeholder="Enter logo"
                      [(ngModel)]="service.logo" #logo="ngModel" required>
               <small id="logoHelp" [hidden]="logo.valid || logo.pristine"
-                     class="alert alert-danger form-text text-muted">Enter a logo url to the service</small>
+                     class="alert alert-danger form-text text-muted">Enter a logo url to the service
+              </small>
 
               <img [src]="service.logo" title="logo" alt="logo">
             </div>
@@ -66,7 +67,8 @@
 
             <div class="form-group">
               <label for="inputCategory">Category</label>
-              <select class="form-control custom-select" [ngModel]="service.category || ''" (ngModelChange)="service.category=$event" id="inputCategory" name="category" required>
+              <select class="form-control custom-select" [ngModel]="service.category || ''"
+                      (ngModelChange)="service.category=$event" id="inputCategory" name="category" required>
                 <option value="" disabled default>Select Category</option>
                 <option *ngFor="let option of categories" [value]="option.value">{{option.label}}</option>
               </select>
@@ -77,8 +79,8 @@
               <label for="professionsInput">Professions</label>
 
               <tag-input class="form-control" [(ngModel)]="service.professions" #professions="ngModel"
-                         id="professionsInput" name="professions" required>
-                <tag-input-dropdown [autocompleteObservable]="autocompleteFromOntology"></tag-input-dropdown>
+                         id="professionsInput" name="professions">
+                <tag-input-dropdown [autocompleteObservable]="autocompleteForProfessions"></tag-input-dropdown>
               </tag-input>
             </div>
 
@@ -86,8 +88,8 @@
               <label for="competencesInput">Competences</label>
 
               <tag-input class="form-control" [(ngModel)]="service.competences" #competences="ngModel"
-                         id="competencesInput" name="competences" required>
-                <tag-input-dropdown [autocompleteObservable]="autocompleteFromOntology"></tag-input-dropdown>
+                         id="competencesInput" name="competences">
+                <tag-input-dropdown [autocompleteObservable]="autocompleteForCompetences"></tag-input-dropdown>
               </tag-input>
             </div>
 
@@ -107,7 +109,7 @@
               <button type="button" class="btn btn-secondary ml-1" (click)="onDelete()" *ngIf="isNew === false"><i
                 class="fa fa-eraser"></i> Delete
               </button>
-              <button type="button" class="btn btn-secondary ml-1" (click)="onReset()" ><i
+              <button type="button" class="btn btn-secondary ml-1" (click)="onReset()"><i
                 class="fa fa-undo"></i> Reset
               </button>
               <button type="submit" [disabled]="theForm.form.invalid || !theForm.dirty"
@@ -121,3 +123,5 @@
     </div>
   </div>
 </div>
+
+<ng-template #loading>Laddar ...</ng-template>

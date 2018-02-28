@@ -1,10 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
-import { ReactiveFormsModule} from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import {JobServiceRegistrationService} from '../../shared/services/job-service-registration.service';
 import { JobServiceEditorComponent } from './job-service-editor.component';
 import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs/Observable';
+import {OntologyService} from '../../shared/services/ontology.service';
+import {TagInputModule} from 'ngx-chips';
 
 
 class MockJobServiceRegistrationService {
@@ -13,9 +15,8 @@ class MockJobServiceRegistrationService {
   }
 }
 
-class MockToastrService {
-}
-
+class MockToastrService { }
+class MockOntologyService { }
 
 describe('JobServiceEditorComponent', () => {
   let component: JobServiceEditorComponent;
@@ -23,11 +24,12 @@ describe('JobServiceEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, ReactiveFormsModule ],
+      imports: [ RouterTestingModule, FormsModule, TagInputModule ],
       declarations: [ JobServiceEditorComponent ],
       providers: [
         {provide: JobServiceRegistrationService, useClass: MockJobServiceRegistrationService},
         {provide: ToastrService, useClass: MockToastrService},
+        {provide: OntologyService, useClass: MockOntologyService},
       ]
     })
     .compileComponents();

@@ -39,11 +39,11 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
 
     this.subscription = this.route.params.subscribe(params => {
       this.registrationId = params['id'];
-      console.log('Got registrationId: ' + this.registrationId + ' from route');
       if (this.registrationId) {
+        // console.log('Got registrationId: ' + this.registrationId + ' from route');
         this.registration = this.jobServicesService.get(this.registrationId);
         this.registration.subscribe(reg => {
-          console.log('got registration:', reg);
+          // console.log('got registration:', reg);
           this.isNew = false;
           this.originalService = reg;
           this.service = Object.create(reg);
@@ -118,8 +118,20 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
     return encodeURI(url);
   }
 
-  autocompleteFromOntology = (text: string): Observable<any> => {
-    return this.ontologyService.query(text);
+  autocompleteForProfessions = (text: string): Observable<any> => {
+    return this.ontologyService.professions(text);
+  }
+
+  autocompleteForCompetences = (text: string): Observable<any> => {
+    const result = this.ontologyService.competences(text);
+    // result.subscribe(
+    //   data => { console.log('Got data: ', data},
+    //   err => console.error('Got err: ', err),
+    //   () => console.log('done loading autocompleteForCompetences')
+    // )
+    return result;
   }
 
 }
+
+

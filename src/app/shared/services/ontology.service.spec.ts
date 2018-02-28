@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { OntologyService } from './ontology.service';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('OntologyService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [OntologyService]
+      providers: [OntologyService],
+      imports: [HttpClientModule]
     });
   });
 
