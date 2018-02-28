@@ -14,18 +14,9 @@
     <div class="collapse navbar-collapse" id="navbarMenu" [ngbCollapse]="isCollapsed">
 
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown nowrap" ngbDropdown routerLinkActive="active">
-          <a class="nav-link dropdown-toggle" id="dropdownAssets" ngbDropdownToggle>ASSETS</a>
-          <div class="dropdown-menu text-light bg-dark" ngbDropdownMenu aria-labelledby="dropdownAssets">
-            <a class="dropdown-item" [routerLink]="['/assets/overview']">Overview</a>
-            <a class="dropdown-item" [routerLink]="['/assets/platsbanken']">Platsbanken</a>
-            <a class="dropdown-item" [routerLink]="['/assets/occupation-forecasts']">Occupation Forecasts</a>
-            <a class="dropdown-item" [routerLink]="['/assets/occupations']">Occupations</a>
-            <a class="dropdown-item" [routerLink]="['/assets/historical-job-postings']">Job market ontology</a>
-            <a class="dropdown-item" [routerLink]="['/assets/ontology']">Ontology</a>
-          </div>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/assets']">ASSETS</a>
         </li>
-
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/platform']">PLATFORM</a>
         </li>

@@ -28,15 +28,10 @@ import {ProfileComponent} from './account/profile/profile.component';
 import {HomeComponent} from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FooterComponent} from './layouts/footer/footer.component';
-import {PlatsbankenComponent} from './assets/platsbanken/platsbanken.component';
-import {OccupationsComponent} from './assets/occupations/occupations.component';
-import {HistoricalJobPostingsComponent} from './assets/historical-job-postings/historical-job-postings.component';
-import {OccupationForecastsComponent} from './assets/occupation-forecasts/occupation-forecasts.component';
-import {OntologyComponent} from './assets/ontology/ontology.component';
 import {ProductMenuComponent} from './assets/product-menu/product-menu.component';
-import {OverviewComponent} from './assets/overview/overview.component';
-import {JobServiceListComponent} from './account/job-service-list/job-service-list.component';
+import { DetailsComponent } from './assets/details/details.component';
 import {JobServiceEditorComponent} from './account/job-service-editor/job-service-editor.component';
+import {JobServiceListComponent} from './account/job-service-list/job-service-list.component';
 
 @NgModule({
   declarations: [
@@ -49,13 +44,8 @@ import {JobServiceEditorComponent} from './account/job-service-editor/job-servic
     ProfileComponent,
     HomeComponent,
     FooterComponent,
-    PlatsbankenComponent,
-    OccupationsComponent,
-    HistoricalJobPostingsComponent,
-    OccupationForecastsComponent,
-    OntologyComponent,
     ProductMenuComponent,
-    OverviewComponent,
+    DetailsComponent,
     JobServiceListComponent,
     JobServiceEditorComponent
   ],

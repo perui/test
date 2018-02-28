@@ -1,21 +1,20 @@
-<div class="row">
-  <div class="col-sm-12">
-    <h2 class="section-header text-center">API:s / Widgets / Datasets</h2>
+<div class="container-fluid">
+  <div>
+    <p class="showcase-description text-center">API:s / Widgets / Datasets</p>
+    <!--<p class="showcase-description text-center">Built an application using our assets?
+      <a href="mailto:jobtechdev@arbetsformedlingen.se">Email us</a> and tell us about it!</p>-->
   </div>
-</div>
 
-<div class="row">
-    <div class="col-md-10 offset-1">
-      <div class="row">
-        <div class="col-md-4">
-          <app-product-menu [selectedItem]="'platsbanken'"></app-product-menu>
-        </div>
-        <div class="col-md-8">
+  <div class="card-group" *ngIf="items | async; let items; else loading">
 
-<router-outlet></router-outlet>
-
-
+    <div *ngFor="let item of items" class="card mb-4 " [routerLink]="['./', item.name]" routerLinkActive="active">
+      <img class="card-img-top" [src]="item.image" [alt]="item.title">
+      <div class="card-body">
+        <h5 class="card-title">{{item.title}}</h5>
+        <p class="card-text">{{item.shortDescription }}</p>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #loading>Laddar ...</ng-template>
