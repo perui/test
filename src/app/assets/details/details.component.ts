@@ -1,10 +1,7 @@
-import {Component, OnInit,OnDestroy} from '@angular/core';
-import {MenuService} from '../../shared/services/menu.service';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ContentService} from '../../shared/services/content.service';
-import {Itemm} from '../../shared/model/item';
 import {ActivatedRoute, Router} from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 
 
 @Component({
@@ -14,26 +11,20 @@ import { Observable } from 'rxjs/Observable';
 })
 
 export class DetailsComponent implements OnInit, OnDestroy {
-  item: {};
-  id: number;
+
+  item: Observable<any>;
+  name: string;
   private sub: any;
 
   constructor(private route: ActivatedRoute, private contentService: ContentService) {
 
     this.sub = this.route.params.subscribe(params => {
-      this.id = params['id']; // (+) converts string 'id' to a number
-
-      this.item=this.contentService.getAssetByName('name',this.id)
-
+      this.name = params['id'];
+      this.item = this.contentService.getAssetByName(this.name);
     });
-
-
-
   }
   ngOnInit() {
-
   }
-
 
   ngOnDestroy() {
     this.sub.unsubscribe();

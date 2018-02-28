@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="item | async; let item; else loading">
   <div class="col"></div>
   <div class="col-9 col-sm-8 col-md-7 col-lg-7 asset">
     <div *ngIf="item.hasOwnProperty('headimage'); else use_puff_img">
@@ -46,3 +46,4 @@
 
 </div>
 
+<ng-template #loading>Laddar ...</ng-template>

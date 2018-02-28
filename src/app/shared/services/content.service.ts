@@ -11,13 +11,15 @@ export class ContentService {
   constructor() { }
 
 
-  getAssetByName( name, value) {
-    for (var i = 0; i < ASSETS.length; i++) {
-      if (ASSETS[i][name] === value) {
-        return ASSETS[i];
-      }
-    }
-    return null;
+  getAssetByName( name ): Observable<any> {
+
+    return Observable.of(ASSETS.find(current => current.name === name));
+    // for (var i = 0; i < ASSETS.length; i++) {
+    //   if (ASSETS[i][name] === value) {
+    //     return ASSETS[i];
+    //   }
+    // }
+    // return null;
   }
 
 

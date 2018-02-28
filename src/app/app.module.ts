@@ -28,8 +28,7 @@ import {ProfileComponent} from './account/profile/profile.component';
 import {HomeComponent} from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FooterComponent} from './layouts/footer/footer.component';
-import {ProductMenuComponent} from './assets/product-menu/product-menu.component';
-import { DetailsComponent } from './assets/details/details.component';
+import {DetailsComponent} from './assets/details/details.component';
 import {JobServiceEditorComponent} from './account/job-service-editor/job-service-editor.component';
 import {JobServiceListComponent} from './account/job-service-list/job-service-list.component';
 
@@ -44,7 +43,6 @@ import {JobServiceListComponent} from './account/job-service-list/job-service-li
     ProfileComponent,
     HomeComponent,
     FooterComponent,
-    ProductMenuComponent,
     DetailsComponent,
     JobServiceListComponent,
     JobServiceEditorComponent
