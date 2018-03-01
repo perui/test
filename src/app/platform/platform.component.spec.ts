@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlatformComponent } from './platform.component';
-import {MenuService} from '../shared/services/menu.service';
 
 describe('PlatformComponent', () => {
   let component: PlatformComponent;
@@ -10,7 +9,6 @@ describe('PlatformComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PlatformComponent ],
-      providers:[MenuService]
     })
     .compileComponents();
   }));

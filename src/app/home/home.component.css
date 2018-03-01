@@ -5,9 +5,9 @@ Error: File to import not found or unreadable: ~scss/_variables.
 1: @import '~scss/_variables';
 2: 
 3: 
-4: .container-fluid {
-5:   max-width: 1200px;
-6: }
+4: .our-vision {
+5:   background-color: #d2c2cc;
+6:   padding: 0;
 
 Backtrace:
 home.component.scss:1
@@ -51,4 +51,4 @@ home.component.scss:1
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: File to import not found or unreadable: ~scss/_variables.\A         on line 1 of home.component.scss\A \A 1: @import '~scss/_variables';\A 2: \A 3: \A 4: .container-fluid {\A 5:   max-width: 1200px;\A 6: }"; }
+  content: "Error: File to import not found or unreadable: ~scss/_variables.\A         on line 1 of home.component.scss\A \A 1: @import '~scss/_variables';\A 2: \A 3: \A 4: .our-vision {\A 5:   background-color: #d2c2cc;\A 6:   padding: 0;"; }

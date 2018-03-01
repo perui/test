@@ -1,49 +1,39 @@
-<div class="row" *ngIf="item | async; let item; else loading">
-  <div class="col"></div>
-  <div class="col-9 col-sm-8 col-md-7 col-lg-7 asset">
-    <div *ngIf="item.hasOwnProperty('headimage'); else use_puff_img">
-      <div class="jumbotron" [ngStyle]="{'background-image':'url('+item.headimage+')'}">
-        <h2>{{item.title}}</h2>
+<div class="container" *ngIf="item | async; let item; else loading">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/assets']">Assets</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{item.title}}</li>
+    </ol>
+  </nav>
+
+  <div class="card">
+
+    <div class="jumbotron" [ngStyle]="{'background-image':'url('+(item.headimage ? item.headimage : item.image)+')'}">
+      <h2>{{item.title}}</h2>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <div *ngFor="let item of item.texts">
+            <h4>{{item.header}}</h4>
+            <p>{{item.description}}</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-3" *ngIf="item.files?.length > 0">
+          <h5>Downloads</h5>
+          <div *ngFor="let item of item.files">
+            <a href="{{item.url}}" target="_blank">{{item.name}} </a>
+          </div>
+        </div>
       </div>
-
-
     </div>
-    <ng-template #use_puff_img>
-      <div class="jumbotron" [ngStyle]="{'background-image':'url('+item.image+')'}">
-        <h2>{{item.title}}</h2>
-      </div>
-    </ng-template>
-
-<div class="row">
-  <div class="col">
-    <div class="container" *ngFor="let item of item.texts">
-      <h4>{{item.header}}</h4>
-      <p>{{item.description}}</p>
-    </div>
-  </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 box" *ngIf="item.files?.length > 0">
-    <table class="table table-sm">
-      <thead>
-      <tr>
-        <th><h5>Downloads</h5></th>
-      </tr>
-      </thead>
-      <tbody>
-<tr *ngFor="let item of item.files">
-        <th> <a href="{{item.url}}" target="_blank">{{item.name}} </a></th>
-</tr>
-      </tbody>
-    </table>
-    </div>
-</div>
-    <span class="container" *ngFor="let item of item.externallinks">
-      <a  href="{{item.link}}" target="_blank">
-        <div class="btn btn-info">{{item.name}}</div>
+    <div class="card-footer">
+      <a *ngFor="let item of item.externallinks" class="card-link btn btn-info" href="{{item.link}}" target="_blank">
+        {{item.name}}
       </a>
-    </span>
-  </div>
-  <div class="col"></div>
+    </div>
 
-</div>
-
-<ng-template #loading>Laddar ...</ng-template>
+    <ng-template #loading>Laddar ...</ng-template>

@@ -10,7 +10,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CookieLawModule} from 'angular2-cookie-law';
 import {TagInputModule} from 'ngx-chips';  // https://www.npmjs.com/package/ngx-chips
 
-import {MenuService} from './shared/services/menu.service';
 import {ContentService} from './shared/services/content.service';
 import {KeycloakService} from './shared/services/keycloak/keycloak.service';
 import {JobServiceRegistrationService} from './shared/services/job-service-registration.service';
@@ -61,7 +60,6 @@ import {JobServiceListComponent} from './account/job-service-list/job-service-li
   ],
   providers: [
     KeycloakGuard,
-    MenuService,
     ContentService,
     KeycloakService,
     JobServiceRegistrationService,

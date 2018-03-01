@@ -1,31 +1,27 @@
 @import '~scss/_variables';
 
 
-.container-fluid {
-  max-width: 1200px;
-}
-
 .our-vision {
   background-color: #d2c2cc;
-  padding-right: 1rem;
+  padding: 0;
 }
+
 .principles {
   background-color:#e1ebe3;
+  padding: 0;
 }
 
 .section-header {
   color: $almost-black;
 }
 
-// .home-row {
-//   padding-top: 1vw;
-//   padding-bottom: 1vw;
-// }
+.subtitle {
+  font-size: larger;
+  //font-weight: bold;
+}
 
-.jumbotron {
-  margin-top: 0;
-  margin-bottom: 0;
-  border-radius: 0;
+.contact {
+  background-color: #0967b2;
 }
 
 .image-cell {

@@ -10,7 +10,6 @@ import {CommonModule} from '@angular/common';
 
 import {CookieLawModule} from 'angular2-cookie-law';
 import {FooterComponent} from './layouts/footer/footer.component';
-import {MenuService} from './shared/services/menu.service';
 import {ContentService} from './shared/services/content.service';
 import {KeycloakService} from './shared/services/keycloak/keycloak.service';
 
@@ -32,7 +31,6 @@ describe('AppComponent', () => {
       ],
       providers: [
         AppModule,
-        MenuService,
         ContentService,
         KeycloakService,
       ]
