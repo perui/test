@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShowcaseComponent } from './showcase.component';
 import {AppModule} from '../app.module';
-import {MenuService} from '../shared/services/menu.service';
 import {ContentService} from '../shared/services/content.service';
 
 describe('ShowcaseComponent', () => {
@@ -12,7 +11,7 @@ describe('ShowcaseComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ShowcaseComponent ],
-      providers:[AppModule,MenuService,ContentService]
+      providers:[AppModule,ContentService]
     })
     .compileComponents();
   }));

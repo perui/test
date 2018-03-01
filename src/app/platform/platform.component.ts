@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuService} from '../shared/services/menu.service';
 
 @Component({
   selector: 'app-platform',
@@ -8,11 +7,10 @@ import {MenuService} from '../shared/services/menu.service';
 })
 export class PlatformComponent implements OnInit {
 
-  constructor(private menuService: MenuService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.menuService.activeRoute = 'Platform';
   }
 
 }
