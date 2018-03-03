@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
 
 
   constructor(
-    private idp: KeycloakService,
+    public idp: KeycloakService,
     private toastrService: ToastrService) { }
 
   ngOnInit() {

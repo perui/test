@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    protected keycloakService: KeycloakService,
+    public keycloakService: KeycloakService,
     private location: Location) {
   }
 

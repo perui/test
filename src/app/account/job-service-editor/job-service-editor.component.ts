@@ -23,7 +23,7 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
   private registrationId;
   protected isNew = true;
 
-  protected service: Registration;
+  public service: Registration;
   protected originalService: Registration;
   protected title: string;
 

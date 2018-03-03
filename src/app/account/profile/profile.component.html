@@ -19,8 +19,8 @@
         </div>
         <div class="card-body">
             <!-- <div>profile:{{idp.client().userInfo | json}}</div> -->
-          <div>Name: {{ idp.client().userInfo?.name }}</div>
-          <div>Email: {{ idp.client().userInfo?.email }}</div>
+          <div>Name: {{ idp.client().userInfo['name'] }}</div>
+          <div>Email: {{ idp.client().userInfo['email'] }}</div>
         </div>
       </div>
     </div>
