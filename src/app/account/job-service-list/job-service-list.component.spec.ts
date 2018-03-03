@@ -5,7 +5,7 @@ import {JobServiceRegistrationService} from '../../shared/services/job-service-r
 import {Observable} from 'rxjs/Observable';
 
 class MockJobServiceRegistrationService {
-  list(){
+  list() {
     return Observable.of('');
   }
 }
@@ -22,7 +22,7 @@ describe('JobServicesListComponent', () => {
       // imports: [    RouterTestingModule.withRoutes(routes)],
       imports: [ RouterTestingModule ],
       declarations: [ JobServiceListComponent ],
-      providers: [{provide: JobServiceRegistrationService, useClass: MockJobServiceRegistrationService},]
+      providers: [{provide: JobServiceRegistrationService, useClass: MockJobServiceRegistrationService}, ]
     })
     .compileComponents();
 

@@ -11,35 +11,35 @@ import { KeycloakService } from '../../shared/services/keycloak/keycloak.service
 })
 export class ProfileComponent implements OnInit {
 
-  
+
 
   constructor(
-    private idp:KeycloakService,
+    private idp: KeycloakService,
     private toastrService: ToastrService) { }
 
   ngOnInit() {
-    
+
 
     this.idp.client().loadUserInfo()
-    .success(userinfo=> console.log("loadUserInfo: ",userinfo))
-    .error(error=>{
-      console.error("loadUserInfo error:",error)
-      this.toastrService.error("Failed to load user info");
-    })
+    .success(userinfo => console.log('loadUserInfo: ', userinfo))
+    .error(error => {
+      console.error('loadUserInfo error:', error);
+      this.toastrService.error('Failed to load user info');
+    });
 
     this.idp.client().loadUserProfile()
-    .success(profile=>console.log("loadUserProfile:",profile))
-    .error(error=>{
-      console.error("loadUserProfile error:",error)
-      this.toastrService.error("Failed to load user profile");
-    })
-    
+    .success(profile => console.log('loadUserProfile:', profile))
+    .error(error => {
+      console.error('loadUserProfile error:', error);
+      this.toastrService.error('Failed to load user profile');
+    });
+
   }
 
   doEditProfile() {
     this.idp.client().accountManagement()
-    .success(()=>console.log("accountManagement ok"))
-    .error(error=>console.log("accountManagement error",error))
+    .success(() => console.log('accountManagement ok'))
+    .error(error => console.log('accountManagement error', error));
   }
 
 

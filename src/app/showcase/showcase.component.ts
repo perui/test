@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ContentService} from '../shared/services/content.service';
 import {Item} from '../shared/model/item';
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-showcase',
@@ -21,7 +21,7 @@ export class ShowcaseComponent implements OnInit {
 
   goToUrl(url): void {
     // window.location.href=url;
-    window.open(url, "_blank");
+    window.open(url, '_blank');
   }
 
 }

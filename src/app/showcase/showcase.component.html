@@ -10,8 +10,8 @@
     <div *ngFor="let item of items" class="card mb-4" (click)="goToUrl(item.link)">
       <img class="card-img-top" [src]="item.image" [alt]="item.title">
       <div class="card-body">
-        <h5 class="card-title">{{item.title}}</h5>
-        <p class="card-text">{{item.details}}</p>
+        <h5 class="card-title">{{ item.title }}</h5>
+        <p class="card-text">{{ item.details }}</p>
       </div>
     </div>
   </div>

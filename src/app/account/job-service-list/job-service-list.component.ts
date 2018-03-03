@@ -37,7 +37,7 @@ export class JobServiceListComponent implements OnInit {
     return encodeURI(url);
   }
 
-  togglePublish(registration: Registration){
+  togglePublish(registration: Registration) {
     if (registration.published) {
       this.jobServicesService.unpublish(registration);
     } else {

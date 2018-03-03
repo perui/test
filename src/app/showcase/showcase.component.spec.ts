@@ -11,7 +11,7 @@ describe('ShowcaseComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ShowcaseComponent ],
-      providers:[AppModule,ContentService]
+      providers: [AppModule, ContentService]
     })
     .compileComponents();
   }));

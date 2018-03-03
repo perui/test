@@ -5,7 +5,7 @@ import { DetailsComponent } from './details.component';
 import {ContentService} from '../../shared/services/content.service';
 
 class MockContentService {
-  getAssetByName( name, value){}
+  getAssetByName( name, value) {}
 }
 
 describe('DetailsComponent', () => {
@@ -16,7 +16,7 @@ describe('DetailsComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [ DetailsComponent ],
-      providers: [{provide: ContentService, useClass: MockContentService},]
+      providers: [{provide: ContentService, useClass: MockContentService}, ]
     })
       .compileComponents();
   }));

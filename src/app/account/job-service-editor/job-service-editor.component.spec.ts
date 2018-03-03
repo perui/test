@@ -10,7 +10,7 @@ import {TagInputModule} from 'ngx-chips';
 
 
 class MockJobServiceRegistrationService {
-  get(){
+  get() {
     return Observable.of('');
   }
 }

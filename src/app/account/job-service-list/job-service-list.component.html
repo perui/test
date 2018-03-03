@@ -38,7 +38,7 @@
             <td>{{ registration.category }}</td>
             <td>{{ registration.competences }}</td>
             <td >
-              <i [class]="registration.published ? 'fa fa-toggle-on' : 'fa fa-toggle-off'" (click)="togglePublish(registration)"> {{registration.published?'Yes':'No'}}</i>
+              <i [class]="registration.published ? 'fa fa-toggle-on' : 'fa fa-toggle-off'" (click)="togglePublish(registration)"> {{ registration.published?'Yes':'No' }}</i>
 
             </td>
             <td>

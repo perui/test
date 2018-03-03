@@ -2,9 +2,7 @@
   <div class="card" *ngIf="service; else loading">
 
     <div class="card-body">
-
       <h5 class="card-title">{{isNew ? "Create a new service": "Edit your service"}}</h5>
-
 
       <form (ngSubmit)="onSave(theForm)" #theForm="ngForm" novalidate>
         <div class="row ">
@@ -63,8 +61,6 @@
 
           </div>
           <div class="col-12 col-md-6">
-
-
             <div class="form-group">
               <label for="inputCategory">Category</label>
               <select class="form-control custom-select" [ngModel]="service.category || ''"
@@ -73,7 +69,6 @@
                 <option *ngFor="let option of categories" [value]="option.value">{{option.label}}</option>
               </select>
             </div>
-
 
             <div class="form-group">
               <label for="professionsInput">Professions</label>

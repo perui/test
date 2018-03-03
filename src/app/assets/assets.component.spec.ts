@@ -10,7 +10,7 @@ describe('AssetsComponent', () => {
 
   class MockContentService {
     getAssets() {}
-  };
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
