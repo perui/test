@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {Itemm} from '../model/item';
 import {Item} from '../model/item';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
 
 @Injectable()
 

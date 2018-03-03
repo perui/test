@@ -20,9 +20,6 @@ import {Http, Request, XHRBackend, ConnectionBackend, RequestOptions, RequestOpt
 
 import {KeycloakService} from './keycloak.service';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/operator/concatMap';
-import 'rxjs/add/operator/map';
 
 
 /**

@@ -4,7 +4,7 @@ import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
-
+import './rxjs-extensions';
 import {ToastrModule} from 'ngx-toastr';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CookieLawModule} from 'angular2-cookie-law';

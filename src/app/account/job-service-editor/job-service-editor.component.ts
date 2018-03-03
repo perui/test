@@ -6,9 +6,6 @@ import {JobServiceRegistrationService} from '../../shared/services/job-service-r
 import {OntologyService} from '../../shared/services/ontology.service';
 import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs/Observable';
-// import 'rxjs/add/operator/debounceTime';
-// import 'rxjs/add/operator/distinctUntilChanged';
-// import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-job-service-editor',
