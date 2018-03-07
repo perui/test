@@ -14,6 +14,7 @@ import {ContentService} from './shared/services/content.service';
 import {KeycloakService} from './shared/services/keycloak/keycloak.service';
 import {JobServiceRegistrationService} from './shared/services/job-service-registration.service';
 import {OntologyService} from './shared/services/ontology.service';
+import {UserService} from './shared/services/user.service';
 
 import {KeycloakGuard} from './shared/services/keycloak/keycloak.guard';
 
@@ -64,6 +65,7 @@ import {JobServiceListComponent} from './account/job-service-list/job-service-li
     KeycloakService,
     JobServiceRegistrationService,
     OntologyService,
+    UserService
   ],
   exports: [
     RouterModule

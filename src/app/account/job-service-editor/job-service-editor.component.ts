@@ -23,6 +23,9 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
   public service: Registration;
   protected originalService: Registration;
   protected title: string;
+  public industries: string[] = [];
+  public professions: string[] = [];
+  public competences: string[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -40,11 +43,17 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
         // console.log('Got registrationId: ' + this.registrationId + ' from route');
         this.registration = this.jobServicesService.get(this.registrationId);
         this.registration.subscribe(reg => {
-          // console.log('got registration:', reg);
           this.isNew = false;
           this.originalService = reg;
-          this.service = Object.create(reg);
+          this.service = new Registration();
+          Object.assign(this.service, reg);
+          console.log('got registration:', reg, this.service);
+          this.industries = this.stringToArray(reg.industries);
+          this.professions = this.stringToArray(reg.professions);
+          this.competences = this.stringToArray(reg.competences);
         });
+      } else {
+        this.service = new Registration();
       }
     });
 
@@ -73,7 +82,14 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
 
 
   onSave(theForm) {
-    if (!theForm.form.invalid) {
+    if (theForm.form.valid) {
+
+      this.service.industries = this.arrayToString(this.industries);
+      this.service.professions = this.arrayToString(this.professions);
+      this.service.competences = this.arrayToString(this.competences);
+
+      console.log('onSave ', this.service);
+
       if (this.isNew) {
         this.jobServicesService.add(this.service)
           .subscribe(
@@ -105,6 +121,9 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
 
   onReset() {
     this.service = Object.create(this.originalService);
+    this.industries = this.stringToArray(this.originalService.industries);
+    this.professions = this.stringToArray(this.originalService.professions);
+    this.competences = this.stringToArray(this.originalService.competences);
   }
 
   onBackToList() {
@@ -121,14 +140,23 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
 
   autocompleteForCompetences = (text: string): Observable<any> => {
     const result = this.ontologyService.competences(text);
-    // result.subscribe(
-    //   data => { console.log('Got data: ', data},
-    //   err => console.error('Got err: ', err),
-    //   () => console.log('done loading autocompleteForCompetences')
-    // )
     return result;
   }
 
+
+  private arrayToString(arr: any[]): string {
+    if (arr == null || arr.length === 0) {
+      return 'All';
+    }
+    return arr.map((value: any) => value.value ? value.value : value).join(',');
+  }
+
+  private stringToArray(text: string): any[] {
+    if (text == null || text.trim().length === 0) {
+      return [{'value': 'all', 'display': 'All'}];
+    }
+    return text.split(',');
+  }
 }
 
 

@@ -10,6 +10,8 @@ export const environment = {
     url: 'http://localhost:8080/auth',
     realm: 'jobtechdev',
     clientId: 'job-tech-dev'
-  }
+  },
+
+  serviceProviderUrl: 'http://localhost:8082'
 
 };

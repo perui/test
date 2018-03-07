@@ -3,12 +3,15 @@ import {RouterTestingModule} from '@angular/router/testing';
 import { JobServiceListComponent } from './job-service-list.component';
 import {JobServiceRegistrationService} from '../../shared/services/job-service-registration.service';
 import {Observable} from 'rxjs/Observable';
+import {ToastrService} from 'ngx-toastr';
 
 class MockJobServiceRegistrationService {
   list() {
     return Observable.of('');
   }
 }
+
+class MockToastrService { }
 
 describe('JobServicesListComponent', () => {
   let component: JobServiceListComponent;
@@ -19,10 +22,11 @@ describe('JobServicesListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      // imports: [    RouterTestingModule.withRoutes(routes)],
       imports: [ RouterTestingModule ],
       declarations: [ JobServiceListComponent ],
-      providers: [{provide: JobServiceRegistrationService, useClass: MockJobServiceRegistrationService}, ]
+      providers: [
+        {provide: JobServiceRegistrationService, useClass: MockJobServiceRegistrationService},
+        {provide: ToastrService, useClass: MockToastrService},]
     })
     .compileComponents();
 

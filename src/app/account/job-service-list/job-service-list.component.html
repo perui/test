@@ -16,7 +16,7 @@
           <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col">Title</th>
+            <th scope="col">Name</th>
             <th scope="col">Category</th>
             <th scope="col">Competences</th>
             <th scope="col" title="If the service is published public on Job store">Published</th>
@@ -34,7 +34,7 @@
           <tbody>
           <tr *ngFor="let registration of registrations">
             <td><img [src]="'https://www.google.com/s2/favicons?domain_url='+doEncodeURI(registration.url)" alt="logo"></td>
-            <th scope="row">{{ registration.title }}</th>
+            <th scope="row">{{ registration.name }}</th>
             <td>{{ registration.category }}</td>
             <td>{{ registration.competences }}</td>
             <td >

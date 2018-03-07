@@ -3,6 +3,7 @@ import {JobServiceRegistrationService} from '../../shared/services/job-service-r
 import {Registration} from '../../shared/model/registration';
 import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-job-services-list',
@@ -13,16 +14,16 @@ export class JobServiceListComponent implements OnInit {
 
   public myRegistrations: Observable<Registration[]>;
 
-  constructor(private router: Router,
-              protected jobServicesService: JobServiceRegistrationService) { }
+  constructor(
+    private router: Router,
+    private toastrService: ToastrService,
+    protected jobServicesService: JobServiceRegistrationService) {
+  }
 
 
   ngOnInit() {
     this.myRegistrations = this.jobServicesService.list();
 
-    this.myRegistrations.subscribe(list => {
-      console.log('got myRegistrations:', list);
-    });
   }
 
   onAddNew() {
@@ -39,9 +40,19 @@ export class JobServiceListComponent implements OnInit {
 
   togglePublish(registration: Registration) {
     if (registration.published) {
-      this.jobServicesService.unpublish(registration);
+      this.jobServicesService.unpublish(registration)
+        .subscribe(body => this.toastrService.info('registration was unpublish successful'),
+            error => {
+              this.toastrService.error('Failed to unpublish registration');
+              console.error('Failed to unpublish registration', error);
+            });
     } else {
-      this.jobServicesService.publish(registration);
+      this.jobServicesService.publish(registration)
+        .subscribe(body => this.toastrService.info('registration was publish successful'),
+          error => {
+            this.toastrService.error('Failed to publish registration');
+            console.error('Failed to publish registration', error);
+          });
     }
   }
 }

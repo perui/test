@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs/Observable';
 import {OntologyService} from '../../shared/services/ontology.service';
 import {TagInputModule} from 'ngx-chips';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 class MockJobServiceRegistrationService {
@@ -24,7 +25,7 @@ describe('JobServiceEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, FormsModule, TagInputModule ],
+      imports: [ RouterTestingModule, FormsModule, TagInputModule, BrowserAnimationsModule ],
       declarations: [ JobServiceEditorComponent ],
       providers: [
         {provide: JobServiceRegistrationService, useClass: MockJobServiceRegistrationService},

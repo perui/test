@@ -1,12 +1,17 @@
 export class Registration {
-  id: string;
-  title: string;
+  id: number;
+  name: string;
   description: string;
+  created: string;
+  createdBy: string;
+  updated: string;
+  updatedBy: string;
   category: string;
-  industry: string[];
-  professions: string[];
-  competences: string[];
+  industries: string;
+  professions: string;
+  competences: string;
   published: boolean;
-  url: string;
-  logo: string;
+  banned: boolean;
+  homepage: string;
+  logoUrl: string;
 }
