@@ -5,7 +5,6 @@ import {environment} from '../../../environments/environment';
 import {KeycloakService} from './keycloak/keycloak.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserService} from './user.service';
-import {HttpResponse} from '@angular/common/http/src/response';
 
 @Injectable()
 export class JobServiceRegistrationService {
@@ -28,42 +27,16 @@ export class JobServiceRegistrationService {
 
     const userId = this.idp.client().tokenParsed.sub;
     const url = `${environment.serviceProviderUrl}/service/provider/v1/${userId}/services`;
-    const token = this.idp.client().token;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-    };
 
-
-    return  this.http.get<Registration[]>(url, httpOptions);
+    return  this.http.get<Registration[]>(url, this.createHeader());
   }
 
   get(registrationId: string): Observable<Registration> {
     console.log('list called');
 
     const url = `${environment.serviceProviderUrl}/service/v1/${registrationId}`;
-    const token = this.idp.client().token;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-    };
 
-
-    return this.http.get<Registration>(url, httpOptions);
-
-    //
-    // const registration = MOCK_DATABASE.find(current => current.id === id);
-    // if (registration) {
-    //   console.log('found - registration ' + id);
-    //   return Observable.of(registration);
-    // } else {
-    //   console.log('signin -  MOCKED backend did not find user');
-    //   return Observable.throw('Could not find registration id ' + id);
-    // }
+    return this.http.get<Registration>(url, this.createHeader());
   }
 
   add(registration: Registration): Observable<any> {
@@ -74,15 +47,7 @@ export class JobServiceRegistrationService {
     }
 
     const url = `${environment.serviceProviderUrl}/service/v1/create`;
-    const token = this.idp.client().token;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-    };
-
-    return this.http.post(url, registration, httpOptions);
+    return this.http.post(url, registration, this.createHeader());
   }
 
   update(registration: Registration): Observable<any> {
@@ -93,59 +58,44 @@ export class JobServiceRegistrationService {
     }
 
     const url = `${environment.serviceProviderUrl}/service/v1/update`;
-    const token = this.idp.client().token;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-    };
-
-    return this.http.put(url, registration, httpOptions);
+    return this.http.put(url, registration, this.createHeader());
   }
 
   remove(registrationId): Observable<any> {
     const url = `${environment.serviceProviderUrl}/service/v1/${registrationId}`;
-    const token = this.idp.client().token;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-    };
 
-
-    return this.http.delete(url, httpOptions);
+    return this.http.delete(url, this.createHeader());
   }
 
   publish(registration: Registration): Observable<any> {
     console.log('publish service ' + registration.name);
     registration.published = true;
     const url = `${environment.serviceProviderUrl}/service/v1/publish/${registration.id}`;
-    const token = this.idp.client().token;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-    };
 
-    return this.http.put(url, registration, httpOptions);
+    return this.http.put(url, registration, this.createHeader());
   }
 
   unpublish(registration: Registration): Observable<any> {
     console.log('unpublish service ' + registration.name);
     registration.published = false;
     const url = `${environment.serviceProviderUrl}/service/v1/unpublish/${registration.id}`;
-    const token = this.idp.client().token;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-    };
 
-    return this.http.put(url, registration, httpOptions);
+    return this.http.put(url, registration, this.createHeader());
   }
 
+  getCategories(): Observable<any> {
+    console.log('getCategories called');
+    const url = `${environment.serviceProviderUrl}/service/category/v1/names`;
+
+    return this.http.get(url, this.createHeader());
+  }
+
+  private createHeader() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer ${this.idp.client().token}`
+      })
+    };
+  }
 }

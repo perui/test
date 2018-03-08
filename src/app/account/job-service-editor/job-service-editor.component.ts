@@ -14,7 +14,7 @@ import {Observable} from 'rxjs/Observable';
 })
 export class JobServiceEditorComponent implements OnInit, OnDestroy {
 
-  public categories = [{value: 'job-site', label: 'Job site'}];
+  public categories;
   private registration: Observable<Registration>;
   private subscription: any;
   private registrationId;
@@ -35,7 +35,34 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
               protected ontologyService: OntologyService) {
   }
 
+
+  private static arrayToString(arr: any[]): string {
+    if (arr == null || arr.length === 0) {
+      return 'All';
+    }
+    return arr.map((value: any) => value.value ? value.value : value).join(',');
+  }
+
+  private static stringToArray(text: string): any[] {
+    if (text == null || text.trim().length === 0) {
+      return [{'value': 'all', 'display': 'All'}];
+    }
+    return text.split(',');
+  }
+
+
+  public doEncodeURI(url) {
+    return encodeURI(url);
+  }
+
+
   ngOnInit() {
+
+    this.categories = this.jobServicesService.getCategories();
+    this.categories.subscribe(
+      result => console.log('categories: ', result),
+      error => console.log('categories error: ', error),
+      () => console.log('categories loaded'));
 
     this.subscription = this.route.params.subscribe(params => {
       this.registrationId = params['id'];
@@ -47,14 +74,14 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
           this.originalService = reg;
           this.service = new Registration();
           Object.assign(this.service, reg);
-          console.log('got registration:', reg, this.service);
-          this.industries = this.stringToArray(reg.industries);
-          this.professions = this.stringToArray(reg.professions);
-          this.competences = this.stringToArray(reg.competences);
+          console.log('got registration:', this.service);
         });
       } else {
         this.service = new Registration();
       }
+      this.industries = JobServiceEditorComponent.stringToArray(this.service.industries);
+      this.professions = JobServiceEditorComponent.stringToArray(this.service.professions);
+      this.competences = JobServiceEditorComponent.stringToArray(this.service.competences);
     });
 
   }
@@ -84,9 +111,9 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
   onSave(theForm) {
     if (theForm.form.valid) {
 
-      this.service.industries = this.arrayToString(this.industries);
-      this.service.professions = this.arrayToString(this.professions);
-      this.service.competences = this.arrayToString(this.competences);
+      this.service.industries = JobServiceEditorComponent.arrayToString(this.industries);
+      this.service.professions = JobServiceEditorComponent.arrayToString(this.professions);
+      this.service.competences = JobServiceEditorComponent.arrayToString(this.competences);
 
       console.log('onSave ', this.service);
 
@@ -121,17 +148,13 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
 
   onReset() {
     this.service = Object.create(this.originalService);
-    this.industries = this.stringToArray(this.originalService.industries);
-    this.professions = this.stringToArray(this.originalService.professions);
-    this.competences = this.stringToArray(this.originalService.competences);
+    this.industries = JobServiceEditorComponent.stringToArray(this.originalService.industries);
+    this.professions = JobServiceEditorComponent.stringToArray(this.originalService.professions);
+    this.competences = JobServiceEditorComponent.stringToArray(this.originalService.competences);
   }
 
   onBackToList() {
     this.router.navigate(['/service']);
-  }
-
-  doEncodeURI(url) {
-    return encodeURI(url);
   }
 
   autocompleteForProfessions = (text: string): Observable<any> => {
@@ -139,23 +162,7 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
   }
 
   autocompleteForCompetences = (text: string): Observable<any> => {
-    const result = this.ontologyService.competences(text);
-    return result;
-  }
-
-
-  private arrayToString(arr: any[]): string {
-    if (arr == null || arr.length === 0) {
-      return 'All';
-    }
-    return arr.map((value: any) => value.value ? value.value : value).join(',');
-  }
-
-  private stringToArray(text: string): any[] {
-    if (text == null || text.trim().length === 0) {
-      return [{'value': 'all', 'display': 'All'}];
-    }
-    return text.split(',');
+    return this.ontologyService.competences(text);
   }
 }
 

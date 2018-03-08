@@ -33,9 +33,9 @@
           </tfoot>
           <tbody>
           <tr *ngFor="let registration of registrations">
-            <td><img [src]="'https://www.google.com/s2/favicons?domain_url='+doEncodeURI(registration.url)" alt="logo"></td>
+            <td><img [src]="'https://www.google.com/s2/favicons?domain_url='+doEncodeURI(registration.homepage)" alt="logo"></td>
             <th scope="row">{{ registration.name }}</th>
-            <td>{{ registration.category }}</td>
+            <td class="category">{{ registration.category }}</td>
             <td>{{ registration.competences }}</td>
             <td >
               <i [class]="registration.published ? 'fa fa-toggle-on' : 'fa fa-toggle-off'" (click)="togglePublish(registration)"> {{ registration.published?'Yes':'No' }}</i>

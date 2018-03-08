@@ -63,10 +63,10 @@
           <div class="col-12 col-md-6">
             <div class="form-group">
               <label for="inputCategory">Category</label>
-              <select class="form-control custom-select" [ngModel]="service.category || ''"
+              <select class="form-control custom-select" [ngModel]="service.category"
                       (ngModelChange)="service.category=$event" id="inputCategory" name="category" required>
                 <option value="" disabled default>Select Category</option>
-                <option *ngFor="let option of categories" [value]="option.value">{{option.label}}</option>
+                <option *ngFor="let option of categories | async" [value]="option">{{option}}</option>
               </select>
             </div>
 
