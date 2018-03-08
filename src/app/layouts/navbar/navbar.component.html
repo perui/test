@@ -47,7 +47,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-item">
             <div ngbDropdown class="" placement="bottom-right">
-              <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{ keycloakService.client().userInfo?.name}}</a>
+              <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{ keycloakService.client().tokenParsed['name']}}</a>
               <div class="bg-dark" ngbDropdownMenu aria-labelledby="dropdownAccount">
                 <a class="dropdown-item nav-link" [routerLink]="['/profile']">My profile</a>
                 <a class="dropdown-item nav-link" [routerLink]="['/service']">My services</a>

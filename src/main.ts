@@ -7,29 +7,16 @@ import {environment} from './environments/environment';
 import {KeycloakService} from './app/shared/services/keycloak/keycloak.service';
 
 if (environment.production) {
-    enableProdMode();
+  enableProdMode();
 }
 
-// const configOptions = {
-//     url: environment.idp_url,
-//     realm: 'master',
-//     clientId: 'job-tech-dev'
-// };
-
-// You can also use a keycloak.json file generated from the Keycloak admin console.
-// Just download the file and copy to your /assets directory.  Then uncomment
-// below and use the url instead of the configOptions above.
-// const configOptions:string = 'http://localhost:4200/assets/keycloak.json';
-
-// debugger
 KeycloakService.init(environment.keycloak, {onLoad: 'check-sso'})
-    .then(() => {
+  .then(() => {
+    platformBrowserDynamic().bootstrapModule(AppModule)
+      .catch(err => console.error('Failed to start application, ', err));
 
-        platformBrowserDynamic().bootstrapModule(AppModule)
-            .catch(err => console.log(err));
-
-    })
-    .catch((e: any) => {
-        console.log('Error in bootstrap: ' + JSON.stringify(e));
-        throw e;
-    });
+  })
+  .catch((e: any) => {
+    console.error('Error in bootstrap: ' + JSON.stringify(e));
+    throw e;
+  });

@@ -14,6 +14,10 @@ class MockJobServiceRegistrationService {
   get() {
     return Observable.of('');
   }
+
+  getCategories(): Observable<any> {
+    return Observable.of('');
+  }
 }
 
 class MockToastrService { }

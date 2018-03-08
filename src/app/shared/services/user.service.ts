@@ -1,42 +1,38 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 import {KeycloakService} from './keycloak/keycloak.service';
+
 
 @Injectable()
 export class UserService {
 
   constructor(public idp: KeycloakService) {
 
-    // this.idp.client().onAuthLogout = () => {
-    //   console.log('UserService onAuthLogout');
-    // };
-    //
-    // this.idp.client().onAuthSuccess = () => {
-    //   console.log('UserService onAuthSuccess');
-    // };
-    //
-    // this.idp.client().onAuthRefreshSuccess = () => {
-    //   console.log('UserService onAuthRefreshSuccess');
-    // };
-    //
-    // this.idp.client().onAuthRefreshError = () => {
-    //   console.log('UserService onAuthRefreshError');
-    // };
-    //
-    // this.idp.client().onReady = (authenticated: boolean) => {
-    //   console.log('UserService onReady authenticated', authenticated);
-    // };
-    //
-    // this.idp.client().onTokenExpired = () => {
-    //   console.log('UserService onTokenExpired');
-    // };
+    Observable.interval(30000)
+      .subscribe(i => {
+        if (this.idp.authenticated()) {
+          this.idp.client().updateToken(30)
+            .error( () => console.log('Failed to refresh the token, or the session has expired')
+          );
+        }
+      });
 
-  }
+    this.idp.client().onAuthSuccess = () => {
+      console.log('onAuthSuccess');
+    };
+    this.idp.client().onAuthRefreshSuccess = () => {
+      console.log('onAuthRefreshSuccess');
+    };
+    this.idp.client().onAuthRefreshError = () => {
+      console.log('onAuthRefreshError');
+    };
+    this.idp.client().onReady = (authenticated) => {
+      console.log('onReady ', authenticated);
+    };
+    this.idp.client().onTokenExpired = () => {
+      console.log('onTokenExpired');
+    };
 
-  public getUserJWT(): string {
-    const token = this.idp.client().token;
-    const tokenParsed = this.idp.client().tokenParsed;
-    return tokenParsed.sub;
   }
 
 }

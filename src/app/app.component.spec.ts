@@ -12,8 +12,13 @@ import {CookieLawModule} from 'angular2-cookie-law';
 import {FooterComponent} from './layouts/footer/footer.component';
 import {ContentService} from './shared/services/content.service';
 import {KeycloakService} from './shared/services/keycloak/keycloak.service';
+import {UserService} from './shared/services/user.service';
 
 describe('AppComponent', () => {
+
+  class MockUserService { }
+  class MockKeycloakService { }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -32,7 +37,8 @@ describe('AppComponent', () => {
       providers: [
         AppModule,
         ContentService,
-        KeycloakService,
+        {provide: UserService, useClass: MockUserService},
+        {provide: KeycloakService, useClass: MockKeycloakService},
       ]
     }).compileComponents();
   }));

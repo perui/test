@@ -59,10 +59,6 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.categories = this.jobServicesService.getCategories();
-    this.categories.subscribe(
-      result => console.log('categories: ', result),
-      error => console.log('categories error: ', error),
-      () => console.log('categories loaded'));
 
     this.subscription = this.route.params.subscribe(params => {
       this.registrationId = params['id'];
@@ -74,14 +70,17 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
           this.originalService = reg;
           this.service = new Registration();
           Object.assign(this.service, reg);
-          console.log('got registration:', this.service);
+          this.industries = JobServiceEditorComponent.stringToArray(this.service.industries);
+          this.professions = JobServiceEditorComponent.stringToArray(this.service.professions);
+          this.competences = JobServiceEditorComponent.stringToArray(this.service.competences);
+          // console.log('got registration:', this.service);
         });
       } else {
         this.service = new Registration();
+        this.industries = JobServiceEditorComponent.stringToArray(this.service.industries);
+        this.professions = JobServiceEditorComponent.stringToArray(this.service.professions);
+        this.competences = JobServiceEditorComponent.stringToArray(this.service.competences);
       }
-      this.industries = JobServiceEditorComponent.stringToArray(this.service.industries);
-      this.professions = JobServiceEditorComponent.stringToArray(this.service.professions);
-      this.competences = JobServiceEditorComponent.stringToArray(this.service.competences);
     });
 
   }
@@ -94,7 +93,7 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
 
   onDelete() {
     if (confirm('Do you really want to delete this service?')) {
-      this.jobServicesService.remove(this.registrationId).subscribe(
+      const sub = this.jobServicesService.remove(this.registrationId).subscribe(
         () => {
           this.toastrService.success('Removed service');
           this.router.navigate(['/service']);
@@ -102,7 +101,8 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
         (error) => {
           this.toastrService.error('Failed to remove the service');
           console.error('Failed to remove the service', error);
-        }
+        },
+        () => sub.unsubscribe()
       );
     }
   }
@@ -118,7 +118,7 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
       console.log('onSave ', this.service);
 
       if (this.isNew) {
-        this.jobServicesService.add(this.service)
+        const sub = this.jobServicesService.add(this.service)
           .subscribe(
             () => {
               this.toastrService.success('The service was successfully registered');
@@ -127,9 +127,10 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
             (error) => {
               this.toastrService.error('Failed to register the service');
               console.error('Failed to register the service', error);
-            });
+            },
+            () => sub.unsubscribe());
       } else {
-        this.jobServicesService.update(this.service)
+        const sub = this.jobServicesService.update(this.service)
           .subscribe(
             () => {
               this.toastrService.success('Changes was saved successful');
@@ -138,7 +139,8 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
             (error) => {
               this.toastrService.error('Failed to save the changes');
               console.error('Failed to save the changes', error);
-            });
+            },
+            () => sub.unsubscribe());
       }
     } else {
       this.toastrService.error('Can not save or update the service, the form contains errors');

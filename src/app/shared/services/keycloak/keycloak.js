@@ -329,7 +329,6 @@
             req.open('GET', url, true);
             req.setRequestHeader('Accept', 'application/json');
             req.setRequestHeader('Authorization', 'bearer ' + kc.token);
-            // req.setRequestHeader('Access-Control-Allow-Origin', '*');
 
             var promise = createPromise();
 
@@ -355,7 +354,6 @@
             req.open('GET', url, true);
             req.setRequestHeader('Accept', 'application/json');
             req.setRequestHeader('Authorization', 'bearer ' + kc.token);
-            // req.setRequestHeader('Access-Control-Allow-Origin', '*');
 
             var promise = createPromise();
 
@@ -424,7 +422,6 @@
                         var req = new XMLHttpRequest();
                         req.open('POST', url, true);
                         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                        // req.setRequestHeader('Access-Control-Allow-Origin', '*');
                         req.withCredentials = true;
 
                         if (kc.clientId && kc.clientSecret) {
@@ -533,7 +530,6 @@
                 var req = new XMLHttpRequest();
                 req.open('POST', url, true);
                 req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                // req.setRequestHeader('Access-Control-Allow-Origin', '*');
 
                 if (kc.clientId && kc.clientSecret) {
                     req.setRequestHeader('Authorization', 'Basic ' + btoa(kc.clientId + ':' + kc.clientSecret));
@@ -542,6 +538,7 @@
                 }
 
                 params += '&redirect_uri=' + oauth.redirectUri;
+
                 req.withCredentials = true;
 
                 req.onreadystatechange = function() {
@@ -596,7 +593,6 @@
                 var req = new XMLHttpRequest();
                 req.open('GET', configUrl, true);
                 req.setRequestHeader('Accept', 'application/json');
-                // req.setRequestHeader('Access-Control-Allow-Origin', '*');
 
                 req.onreadystatechange = function () {
                     if (req.readyState == 4) {
