@@ -10,7 +10,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-if(environment.useKeycloak) {
+if (environment.useKeycloak) {
   KeycloakService.init(environment.keycloak, {onLoad: 'check-sso'})
     .then(() => {
       platformBrowserDynamic().bootstrapModule(AppModule)
@@ -23,5 +23,5 @@ if(environment.useKeycloak) {
     });
 } else {
 
-  platformBrowserDynamic().bootstrapModule(AppModule)
+  platformBrowserDynamic().bootstrapModule(AppModule);
 }
