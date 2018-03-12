@@ -15,7 +15,7 @@ pipelines:
           - npm install
           - ng test --watch false --browser PhantomJS --single-run
           # - ng build --target=production --base-href /
-          - ng build -e prod --aot true --base-href /
+          - ng build --environment=prod --base-href /
         artifacts:
           -  dist/**
     - step:
