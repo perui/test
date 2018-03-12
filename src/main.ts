@@ -10,13 +10,18 @@ if (environment.production) {
   enableProdMode();
 }
 
-KeycloakService.init(environment.keycloak, {onLoad: 'check-sso'})
-  .then(() => {
-    platformBrowserDynamic().bootstrapModule(AppModule)
-      .catch(err => console.error('Failed to start application, ', err));
+if(environment.useKeycloak) {
+  KeycloakService.init(environment.keycloak, {onLoad: 'check-sso'})
+    .then(() => {
+      platformBrowserDynamic().bootstrapModule(AppModule)
+        .catch(err => console.error('Failed to start application, ', err));
 
-  })
-  .catch((e: any) => {
-    console.error('Error in bootstrap: ' + JSON.stringify(e));
-    throw e;
-  });
+    })
+    .catch((e: any) => {
+      console.error('Error in bootstrap: ' + JSON.stringify(e));
+      throw e;
+    });
+} else {
+
+  platformBrowserDynamic().bootstrapModule(AppModule)
+}

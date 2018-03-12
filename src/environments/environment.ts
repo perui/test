@@ -12,6 +12,7 @@ export const environment = {
     clientId: 'job-tech-dev'
   },
 
-  serviceProviderUrl: 'http://localhost:8082'
+  serviceProviderUrl: 'http://localhost:8082',
+  useKeycloak: true
 
 };

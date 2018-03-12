@@ -3,6 +3,7 @@ import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {Location} from '@angular/common';
 
 import {KeycloakService} from '../../shared/services/keycloak/keycloak.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +18,8 @@ export class NavbarComponent implements OnInit {
   currentRoute: string;
   title;
 
+  public useKeycloak;
+
   constructor(private router: Router,
               private route: ActivatedRoute,
               public keycloakService: KeycloakService,
@@ -29,6 +32,8 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.useKeycloak = environment.useKeycloak;
 
     this.router.events.subscribe(
       (event) => {

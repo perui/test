@@ -28,7 +28,7 @@
         </li>
       </ul>
 
-      <div *ngIf="keycloakService.authenticated() == false">
+      <div *ngIf="useKeycloak && keycloakService.authenticated() == false">
 
         <ul class="navbar-nav navbar-right">
 
@@ -43,7 +43,7 @@
         </ul>
       </div>
 
-      <div *ngIf="keycloakService.authenticated()">
+      <div *ngIf="useKeycloak && keycloakService.authenticated()">
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-item">
             <div ngbDropdown class="" placement="bottom-right">
