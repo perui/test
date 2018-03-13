@@ -36,31 +36,31 @@ export const SHOWCASES = [
   { 'title': 'Data Universe',
     'details': 'Data Universe makes your data accessible and understandable by enabling dynamic exploration and visualization in a Virtual Reality space.',
     'link': 'https://data-universe.github.io/',
-    'image': 'assets/images/data-universe-puff.png',
+    'image': 'assets/images/data-universe-puff_x238.png',
     'type': 'DATA-UNIVERSE'
   },
   { 'title': 'Historical Data Analysis',
     'details': 'Make smarter decisions with past data on job trends in various industry sectors',
     'link': 'http://historik.azurewebsites.net',
-    'image': 'assets/images/history-analysis-puff.jpg',
+    'image': 'assets/images/history-analysis-puff_x239.jpg',
     'type': 'APPLICATION'
   },
   { 'title': 'Job Postings',
     'details': 'Add Job postings list to your site in minutes.',
     'link': 'https://github.com/jobtechdev/vacancieswidget',
-    'image': 'assets/images/widget.png',
+    'image': 'assets/images/widget_x239.png',
     'type': 'VACANCIES WIDGET'
   },
   { 'title': 'Post job ads',
     'details': 'A SDK written in Ruby to validate and send job ads, developed by justarrived.se',
     'link': 'https://github.com/buren/arbetsformedlingen',
-    'image': 'assets/images/justarrived.png',
+    'image': 'assets/images/justarrived_x239.png',
     'type': 'POST JOB ADS'
   },
   { 'title': 'Kompetensutforskaren',
     'details': 'An example of how to use our Ontology API ',
     'link': 'http://pilot.arbetsformedlingen.se/kompetensutforskaren/#!/',
-    'image': 'assets/images/ontologi.png',
+    'image': 'assets/images/ontologi_x239.png',
     'type': 'KOMPETENSUTFORSKAREN'
   },
 ];
@@ -80,7 +80,7 @@ export const ASSETS = [
         'description': 'The first version of the Job market ontology consists of a limited set of competences. Here you can explore them and see how they relates to each other. \n\nThe state of the ontology is beta and it is changing to continuously get improved everyday.'
       }
     ],
-    'image': 'assets/images/jobb-rymden.png',
+    'image': 'assets/images/jobb-rymden_x238.png',
     'headimage': 'assets/images/asset-header-ontologi.png',
     'externallinks': [
       {
@@ -108,7 +108,7 @@ export const ASSETS = [
         'description': 'test'
       }
     ],
-    'image': 'assets/images/dev-services-puff.jpg',
+    'image': 'assets/images/dev-services-puff_x239.jpg',
     'headimage': 'assets/images/services-head.jpg',
     'files': [
 
@@ -128,7 +128,8 @@ export const ASSETS = [
         'description': 'test'
       }
     ],
-    'image': 'assets/images/api-puff.jpg',
+    'image': 'assets/images/api-puff_x239.jpg',
+    'headimage': 'assets/images/api-puff.jpg',
     'externallinks': [
       {
         'name': 'Go to API',
@@ -164,7 +165,7 @@ export const ASSETS = [
         'description': 'test'
       }
     ],
-    'image': 'assets/images/occupation-puff.jpg',
+    'image': 'assets/images/occupation-puff_x239.jpg',
     'headimage': 'assets/images/occupation-head.jpg',
     'externallinks': [
       {
@@ -192,7 +193,8 @@ export const ASSETS = [
         'description': 'We provide a microservice for basic statistics and queries on the dataset. A notebook with examples can be found.\n\n Examples \n\n Data format \n Each line in a file contains a job listing in a JSON format '
       }
     ],
-    'image': 'assets/images/data-analysis-puff.jpg',
+    'image': 'assets/images/data-analysis-puff_x239.jpg',
+    'headimage': 'assets/images/data-analysis-puff.jpg',
     'externallinks': [
       {
         'name': 'Go to API',
