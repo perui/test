@@ -8,5 +8,7 @@ export const environment = {
   },
 
   serviceProviderUrl: 'http://localhost:8082',
-  useKeycloak: false
+  useKeycloak: false,
+
+  googleAnalytics: 'UA-114390036-1'
 };

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import {Router, NavigationEnd} from '@angular/router';
 import {UserService} from './shared/services/user.service';
+declare let ga: Function;
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,14 @@ import {UserService} from './shared/services/user.service';
 export class AppComponent {
   title = 'app';
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              public router: Router) {
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        ga('set', 'page', event.urlAfterRedirects);
+        ga('send', 'pageview');
+      }
+    });
   }
 }
