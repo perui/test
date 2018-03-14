@@ -3,6 +3,11 @@ import {NavigationEnd, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 
 
+import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {MenuService} from '../shared/services/menu.service';
+import {Itemm} from '../shared/model/item';
+
+
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
