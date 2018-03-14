@@ -10,3 +10,8 @@ export class Itemm {
   shortDescription: string;
 
 }
+export class News {
+  title: string;
+  Description: string;
+
+}
