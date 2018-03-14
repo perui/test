@@ -3,11 +3,10 @@
 
 .container-fluid {
   max-width: 1200px;
-
 }
 
 .our-vision {
-  background-color: #e1ebe3;
+  background-color: #d2c2cc;
   padding-right: 1rem;
 }
 .principles {
@@ -24,35 +23,9 @@
 // }
 
 .jumbotron {
-  margin-top: -85px;
-  margin-bottom: 0px;
-  height: 200px;
+  margin-top: 0;
+  margin-bottom: 0;
   border-radius: 0;
-  background-image: url("../../assets/images/startpage-header-bg.jpg");
-
-}
-.work-in-progress {
-  max-width: 1200px;
-  background-color: #0967b2;
-  // line-height: 62px;
-  text-align: center;
-  padding: 15px 20px;
-  border-radius: 0px;
-
-  p {
-    font-size: 18px;
-    color: $white;
-    margin: 0;
-
-    @media screen and (max-width: $medium-devices) {
-      font-size: 14px;
-    }
-
-    a {
-      color: $white !important;
-      font-weight: bold;
-    }
-  }
 }
 
 .image-cell {
