@@ -1,12 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Itemm} from '../model/item';
 import {Item} from '../model/item';
-<<<<<<< HEAD
-import { Observable } from 'rxjs/Observable';
-=======
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
->>>>>>> master
+
 
 @Injectable()
 
@@ -38,36 +35,7 @@ export class ContentService {
 }
 
 export const SHOWCASES = [
-<<<<<<< HEAD
-  { 'title': 'Data Universe',
-    'details': 'Data Universe makes your data accessible and understandable by enabling dynamic exploration and visualization in a Virtual Reality space.',
-    'link': 'https://data-universe.github.io/',
-    'image': 'assets/images/data-universe-puff_x238.png',
-    'type': 'DATA-UNIVERSE'
-  },
-  { 'title': 'Historical Data Analysis',
-    'details': 'Make smarter decisions with past data on job trends in various industry sectors',
-    'link': 'http://historik.azurewebsites.net',
-    'image': 'assets/images/history-analysis-puff_x239.jpg',
-    'type': 'APPLICATION'
-  },
-  { 'title': 'Job Postings',
-    'details': 'Add Job postings list to your site in minutes.',
-    'link': 'https://github.com/jobtechdev/vacancieswidget',
-    'image': 'assets/images/widget_x239.png',
-    'type': 'VACANCIES WIDGET'
-  },
-  { 'title': 'Post job ads',
-    'details': 'A SDK written in Ruby to validate and send job ads, developed by justarrived.se',
-    'link': 'https://github.com/buren/arbetsformedlingen',
-    'image': 'assets/images/justarrived_x239.png',
-    'type': 'POST JOB ADS'
-  },
-  { 'title': 'Kompetensutforskaren',
-    'details': 'An example of how to use our Ontology API ',
-    'link': 'http://pilot.arbetsformedlingen.se/kompetensutforskaren/#!/',
-    'image': 'assets/images/ontologi_x239.png',
-=======
+
   {
     'title': 'Data Universe',
     'details': 'Data Universe makes your data accessible and understandable by enabling dynamic exploration and visualization in a Virtual Reality space.',
@@ -101,7 +69,6 @@ export const SHOWCASES = [
     'details': 'An example of how to use our Ontology API ',
     'link': 'http://pilot.arbetsformedlingen.se/kompetensutforskaren/#!/',
     'image': 'assets/images/ontologi.png',
->>>>>>> master
     'type': 'KOMPETENSUTFORSKAREN'
   },
 ];
@@ -121,20 +88,17 @@ export const ASSETS = [
         'description': 'The first version of the Job market ontology consists of a limited set of competences. Here you can explore them and see how they relates to each other. \n\nThe state of the ontology is beta and it is changing to continuously get improved everyday.'
       }
     ],
-<<<<<<< HEAD
+
     'image': 'assets/images/jobb-rymden_x238.png',
-=======
-    'image': 'assets/images/jobb-rymden.png',
->>>>>>> master
+
+
     'headimage': 'assets/images/asset-header-ontologi.png',
     'externallinks': [
       {
         'name': 'Go to API',
-<<<<<<< HEAD
-        'link': 'http://pilot.arbetsformedlingen.se/ontology/v1/?url=swagger.json',
-=======
+
         'link': 'http://ontologi.arbetsformedlingen.se/ontology/v1/?url=swagger.json',
->>>>>>> master
+
       },
       {
         'name': 'Read more',
@@ -150,19 +114,7 @@ export const ASSETS = [
     'texts': [
       {
         'header': 'Description',
-<<<<<<< HEAD
-        'description': '',
-      },
-      {
-        'header': 'test',
-        'description': 'test'
-      }
-    ],
-    'image': 'assets/images/dev-services-puff_x239.jpg',
-    'headimage': 'assets/images/services-head.jpg',
-    'files': [
 
-=======
         'description': 'API Occupation Forecasts (API Vägledning) contains 5 and 10 years forecasts for different occupations. Forecasts are made from in-depth interviews with employers. \n\nLong-term forecasts of five and ten years were made in February 2016 \n\nYou can retrieve long-term job forecasts in XML and JSON format through the API, while the short-term forecasts can be downloaded in CSV format at Short-time forecasts \n\nWith API Occupation Forecasts (API Vägledning) it is possible to integrate the Employment Agencys long - term forecasts into in custom built applications. \n \nThe API is an open interface without contract or registration requirements.\n\nYou´ll find the API Url and methods in the Technical description.',
       },
       {
@@ -181,7 +133,7 @@ export const ASSETS = [
         'name': 'Short-time forecasts',
         'url': 'https://www.arbetsformedlingen.se/download/18.40fa4e7b159ff02933133dfe/1499250831440/kortsiktiga-prognoser.csv'
       },
->>>>>>> master
+
     ]
   },
   {
@@ -191,26 +143,7 @@ export const ASSETS = [
     'texts': [
       {
         'header': 'Description',
-<<<<<<< HEAD
-        'description': 'API Platsbanken contains all current job ads. About 3000 new ads are sumitted daily by employers, 5 million accesses to the job posting database daily.With the API it is possible to interact with Arbetsförmedlingens job ad database with in custom built applications. The API is an open interface without contract or registration requirements. Some of the data returned from the service is of the type of fuzzy matching.This means that the results from a list search results in hits closely related keywords. Soft matching takes place in the professions and municipalities. Example of fuzzy matching: If you are looking for a "bagare" (baker), you also get hits for "Konditor" (confectioner) because these two occupations are closely related. See the technical description for more methods and requests',
-      },
-      {
-        'header': 'test',
-        'description': 'test'
-      }
-    ],
-    'image': 'assets/images/api-puff_x239.jpg',
-    'headimage': 'assets/images/api-puff.jpg',
-    'externallinks': [
-      {
-        'name': 'Go to API',
-        'link': 'http://pilot.arbetsformedlingen.se/ontology/v1/?url=swagger.json',
-      },
-      {
-        'name': 'Read more',
-        'link': 'http://ontologi.arbetsformedlingen.se/ontologi/#!/',
-      }
-=======
+
         'description': 'API Platsbanken contains all current job ads. About 3000 new ads are submitted daily by employers, \n5 million accesses to the job posting database daily. \n \nWith the API it is possible to interact with Arbetsförmedlingens job ad database with in custom built applications. \n\nThe API is an open interface without contract or registration requirements. Some of the data returned from the service is of the type of fuzzy matching. \nThis means that the results from a list search results in hits closely related keywords. Soft matching takes place in the professions and municipalities.\n \nExample of fuzzy matching: \nIf you are looking for a "bagare" (baker), you also get hits for "Konditor" (confectioner) because these two occupations are closely related.\n \nSee the technical description for more methods and requests.\n\n\nLearn more about the Platsbanken API or start use the APi right away',
 
       },
@@ -219,14 +152,14 @@ export const ASSETS = [
         'description': ''
       }
     ],
-    'image': 'assets/images/api-puff.jpg',
+    'image': 'assets/images/api-puff_x239.jpg',
     'externallinks': [
       {
         'name': 'Go to API',
         'link': 'http://jobtechdev.se/swagger/',
       },
 
->>>>>>> master
+
     ],
     'files': [
       {
@@ -246,29 +179,7 @@ export const ASSETS = [
     'texts': [
       {
         'header': 'Description',
-<<<<<<< HEAD
-        'description': 'Occupation is a webservice, it contains descriptions of nearly 450 different occupations. The webservice is supposed to be used by anyone who wants to download texts and descriptions of one or more professions from the Profession A-Ö application.See the technical description for more information.',
-      },
-      {
-        'header': 'test',
-        'description': 'test'
-      }
-    ],
-    'image': 'assets/images/occupation-puff_x239.jpg',
-    'headimage': 'assets/images/occupation-head.jpg',
-    'externallinks': [
-      {
-        'name': 'Go to API',
-        'link': 'http://pilot.arbetsformedlingen.se/ontology/v1/?url=swagger.json',
-      },
-      {
-        'name': 'Read more',
-        'link': 'http://ontologi.arbetsformedlingen.se/ontologi/#!/',
-      }
-    ],
-    'files': []
-=======
-        'description': 'Occupation is a webservice, it contains descriptions of nearly 450 different occupations.\nThe webservice is supposed to be used by anyone who wants to download texts and descriptions of one or more professions from the Profession A-Ö application.\n\nSee the technical description for more information.',
+        'description': 'Occupation is a webservice, it contains descriptions of nearly 450 different occupations.\n\nThe webservice is supposed to be used by anyone who wants to download texts and descriptions of one or more professions from the Profession A-Ö application.\n\nSee the technical description for more information.',
       },
       {
         'header': '',
@@ -294,7 +205,7 @@ export const ASSETS = [
         'url': 'https://www.arbetsformedlingen.se/download/18.1974235114fa922d37751b2/1441803774120/Licens+f%C3%B6r+anv%C3%A4ndning+av+Arbetsf%C3%B6rmedlingens+%C3%B6ppna+data.pdf',
       },
     ]
->>>>>>> master
+
   },
   {
     'name': 'historical-job-postings',
@@ -303,30 +214,7 @@ export const ASSETS = [
     'texts': [
       {
         'header': 'Description',
-<<<<<<< HEAD
-        'description': 'This dataset consists of 4.2M job postings (7.7M job positions) published on Platsbanken from the year 2006 up to and including 2016. Texts have been anonymized with sentences including names, telephone numbers and email adresses removed.\nEach listing contains metadata on location, dates, employer name, job type and any additional job details.\nFor a visual overview of this dataset, please see the ',
-      },
-      {
-        'header': 'API with basic statistics',
-        'description': 'We provide a microservice for basic statistics and queries on the dataset. A notebook with examples can be found.\n\n Examples \n\n Data format \n Each line in a file contains a job listing in a JSON format '
-      }
-    ],
-    'image': 'assets/images/data-analysis-puff_x239.jpg',
-    'headimage': 'assets/images/data-analysis-puff.jpg',
-    'externallinks': [
-      {
-        'name': 'Go to API',
-        'link': 'http://pilot.arbetsformedlingen.se/ontology/v1/?url=swagger.json',
-      },
-      {
-        'name': 'Read more',
-        'link': 'http://ontologi.arbetsformedlingen.se/ontologi/#!/',
-      }
-    ],
-    'files': [
-      {
-        'name': '2006-2018',
-=======
+
         'description': 'This dataset consists of 4.2M job postings (7.7M job positions) published on Platsbanken from the year 2006 up to and including 2017. Texts have been anonymized with sentences including names, telephone numbers and email addresses removed.\nEach listing contains metadata on location, dates, employer name, job type and any additional job details.\nFor a visual overview of this dataset, please see the <a href="http://historik.azurewebsites.net/" target="_blank">dashboard example</a>. ',
       },
       {
@@ -334,7 +222,7 @@ export const ASSETS = [
         'description': 'We provide a microservice for basic statistics and queries on the dataset.\n\nExamples\nA notebook with examples can be found <a href="https://github.com/simonbe/afhistorik/blob/master/notebooks/API_description.ipynb" target="_blank">here</a>\n\nData format \nEach line in a file contains a job listing in a JSON format '
       }
     ],
-    'image': 'assets/images/data-analysis-puff.jpg',
+    'image': 'assets/images/data-analysis-puff_x239.jpg',
     'externallinks': [
       {
         'name': 'Go to API',
@@ -344,7 +232,7 @@ export const ASSETS = [
     'files': [
       {
         'name': '2006-2017',
->>>>>>> master
+
         'url': 'https://simonbe.blob.core.windows.net/afhistorik/pb2006_2017.zip',
       },
       {
@@ -395,14 +283,13 @@ export const ASSETS = [
         'name': '2017',
         'url': 'https://simonbe.blob.core.windows.net/afhistorik/2017.zip'
       },
-<<<<<<< HEAD
+
       {
         'name': '2018',
         'url': 'https://simonbe.blob.core.windows.net/afhistorik/2018.zip'
       }
 
-=======
->>>>>>> master
+
     ]
   }
 ];
