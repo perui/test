@@ -31,9 +31,11 @@
       </div>
     </div>
     <div class="card-footer">
-      <a *ngFor="let item of item.externallinks" class="card-link btn btn-info" href="{{item.link}}" target="_blank">
+      <div class="links">
+      <a *ngFor="let item of item.externallinks" class="btn btn-info card-link" href="{{item.link}}" target="_blank">
         {{item.name}}
       </a>
+      </div>
     </div>
   </div>
 </div>
