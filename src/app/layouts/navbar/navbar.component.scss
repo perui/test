@@ -119,6 +119,12 @@ header {
   font-weight: 300;
   display: none;
 }
+.page-text {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: normal;
+  }
+
 
 @include media-breakpoint-up(md) {
   .nav-page-title {

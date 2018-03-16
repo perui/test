@@ -60,5 +60,9 @@
     </div>
   </nav>
   <h1 class="navbar-dark page-title">{{ title }}</h1>
+  <div *ngIf="this.currentRoute == 'home'">
+    <h1 class="navbar-dark page-title" align="middle"> JobTechdev</h1>
+    <h4 class="navbar-dark page-text" align="middle"> Powerful APIs, widgets and datasets for you to develop the missing app</h4>
+  </div>
 
 </header>

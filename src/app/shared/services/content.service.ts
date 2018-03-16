@@ -284,13 +284,7 @@ export const ASSETS = [
         'url': 'https://simonbe.blob.core.windows.net/afhistorik/2017.zip'
       },
 
-      {
-        'name': '2018',
-        'url': 'https://simonbe.blob.core.windows.net/afhistorik/2018.zip'
-      }
-
-
-    ]
+          ]
   }
 ];
 

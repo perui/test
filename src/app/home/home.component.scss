@@ -1,5 +1,12 @@
 @import '~scss/_variables';
+.jumbotron {
+  margin-top: -85px;
+  margin-bottom: 0px;
+  height: 200px;
+  border-radius: 0;
+  background-image: url("../../assets/images/startpage-header-bg.jpg");
 
+}
 
 
 .our-vision {
@@ -8,6 +15,7 @@
 
   .container-fluid {
     max-width: 1200px;
+
 
   }
 
@@ -28,20 +36,15 @@
 
   .subtitle {
     font-size: larger;
+
+
     //font-weight: bold;
   }
 
   .contact {
     background-color: #0967b2;
 
-    .jumbotron {
-      margin-top: -85px;
-      margin-bottom: 0px;
-      height: 200px;
-      border-radius: 0;
-      background-image: url("../../assets/images/startpage-header-bg.jpg");
 
-    }
     .work-in-progress {
       max-width: 1200px;
       background-color: #0967b2;
@@ -49,6 +52,7 @@
       text-align: center;
       padding: 15px 20px;
       border-radius: 0px;
+
 
       p {
         font-size: 18px;
