@@ -22,7 +22,6 @@ export class NavbarComponent implements OnInit {
   public useKeycloak;
 
   constructor(private router: Router,
-              private route: ActivatedRoute,
               public keycloakService: KeycloakService,
               private location: Location) {
   }
@@ -84,7 +83,6 @@ export class NavbarComponent implements OnInit {
     if (this.noTitleRoutes.indexOf(this.title) !== -1) {
       this.title = '';
     }
-    console.log(this.currentRoute);
     // console.log('title: ', this.title);
   }
 
