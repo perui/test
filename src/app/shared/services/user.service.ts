@@ -9,7 +9,7 @@ export class UserService {
 
   constructor(public idp: KeycloakService) {
 
-    if(environment.useKeycloak) {
+    if (environment.useKeycloak) {
       Observable.interval(30000)
         .subscribe(i => {
           if (this.idp.authenticated()) {
@@ -35,6 +35,12 @@ export class UserService {
         console.log('onTokenExpired');
       };
     }
+  }
+
+
+  getMyOrganisation() {
+
+
   }
 
 }

@@ -11,6 +11,7 @@ import {NgModule} from '@angular/core';
 import {KeycloakGuard} from './shared/services/keycloak/keycloak.guard';
 import { JobServiceListComponent } from './account/job-service-list/job-service-list.component';
 import { JobServiceEditorComponent } from './account/job-service-editor/job-service-editor.component';
+import {OrganisationComponent} from './account/organisation/organisation.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: 'race-list', pathMatch: 'full' },
@@ -20,11 +21,13 @@ export const routes: Routes = [
   {path: 'assets/:id', component: DetailsComponent},
   {path: 'news', component: NewsComponent},
   {path: 'platform', component: PlatformComponent},
+  {path: 'showcase', component: ShowcaseComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [KeycloakGuard]},
+  {path: 'service/:id', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
   {path: 'service', component: JobServiceListComponent, canActivate: [KeycloakGuard]},
   {path: 'service/add', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
-  {path: 'service/:id', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
-  {path: 'showcase', component: ShowcaseComponent},
+  {path: 'organisation', component: OrganisationComponent, canActivate: [KeycloakGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [KeycloakGuard]},
   {path: '**', component: HomeComponent}
 ];
 
