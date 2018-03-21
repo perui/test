@@ -17,11 +17,11 @@ export class NavbarComponent implements OnInit {
   isCollapsed = true;
   currentRoute: string;
   title;
+  route: string;
 
   public useKeycloak;
 
   constructor(private router: Router,
-              private route: ActivatedRoute,
               public keycloakService: KeycloakService,
               private location: Location) {
   }

@@ -3,6 +3,7 @@ import {NavigationEnd, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 
 
+
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',

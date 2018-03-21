@@ -7,8 +7,13 @@ export const environment = {
   production: false,
 
   keycloak: {
+
     url: 'http://localhost:8080/auth',
     realm: 'jobtechdev',
+
+    url: "http://192.168.99.100:8080/auth",
+    realm: 'master',
+
     clientId: 'job-tech-dev'
   },
 
