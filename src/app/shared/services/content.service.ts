@@ -218,7 +218,7 @@ export const ASSETS = [
         'description': 'We provide a microservice for basic statistics and queries on the dataset.\n\nExamples\nA notebook with examples can be found <a href="https://github.com/simonbe/afhistorik/blob/master/notebooks/API_description.ipynb" target="_blank">here</a>\n\nData format \nEach line in a file contains a job listing in a JSON format '
       }
     ],
-    'image': 'assets/images/data-analysis-puff_x239.jpg',
+    'image': 'assets/images/data-analysis-puff.jpg',
     'externallinks': [
       {
         'name': 'Go to API',
