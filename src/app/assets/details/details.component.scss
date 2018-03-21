@@ -1,8 +1,10 @@
 @import "../../../../node_modules/bootstrap/scss/bootstrap";
-
+.card{
+  border-radius: 10px;
+}
 .jumbotron{
   background-color: #fff;
-
+  border-radius: 5px 5px 0px 0px;
   background-repeat:no-repeat;
 
   background-size: cover;
