@@ -1,0 +1,156 @@
+<div class="container card">
+  <div *ngIf="organisationAsync; else loading">
+
+    <div *ngIf="hasAnOrganisation">
+      Japp you are joined to an organisation
+
+
+      <div *ngIf="!editMode">
+        View mood is on
+        <h2>{{myOrganisation.name}}</h2>
+        <h3>{{myOrganisation.email}}</h3>
+        <button class="btn btn-primary" (click)="enterEditMode()">Edit</button>
+
+        <p>New join requests:</p>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let member of myOrganisation.joinRequestQueue">{{member.name}}
+            <button class="btn btn-success" (click)="acceptMemberRequest(member)">Accept</button>
+            <button class="btn btn-danger"(click)="rejectemberRequest(member)">Reject</button>
+          </li>
+        </ul>
+
+        Members:
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let member of myOrganisation.members">{{member.name}}
+            <a class="link-delete" href="#" (click)="removeMember(member)">Remove</a>
+          </li>
+        </ul>
+      </div>
+
+
+
+      <div *ngIf="editMode">
+        Edit mood is on
+<!--{{edit | json}}-->
+        <form #theForm="ngForm" novalidate>
+          <div class="form-group">
+            <label for="nameInput">Name</label>
+            <input type="text" class="form-control" id="editOrgNameInput" name="name" aria-describedby="nameHelp"
+                   placeholder="Organisation name"
+                   [(ngModel)]="edit.name"
+                   required>
+            <small id="editOrgNameHelp" hidden="true"
+                   class="alert alert-danger form-text text-muted">Enter a logo url to the service
+            </small>
+          </div>
+          <div class="form-group">
+            <label for="contactInput">Contact email</label>
+            <input type="email" class="form-control" id="editOrgContactInput" name="contact"
+                   aria-describedby="contactHelp"
+                   placeholder="Contact email"
+                   [(ngModel)]="edit.email"
+                   email
+                   required>
+            <small id="editOrgContactHelp" hidden="true"
+                   class="alert alert-danger form-text text-muted">Enter a logo url to the service
+            </small>
+          </div>
+          <button class="btn" (click)="cancel()">Save</button>
+          <button class="btn btn-primary" (click)="save()">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="!hasAnOrganisation">
+      Nope you are not joined to an organisation
+      <div class="container" style="background-color: darkgray;">
+        <div class="row">
+          <div class="col">
+            <!--<form>-->
+            <h4>New Organisation</h4>
+            <button type="button" class="btn btn-primary" (click)="toggleCreateOrgCollapsed()"
+                    [attr.aria-expanded]="!isCreateOrgCollapsed" aria-controls="collapseCreateNew">
+              Create
+            </button>
+          </div>
+          <div class="col">
+            <h4>Join a Organisation</h4>
+            <button type="button" class="btn btn-secondary" (click)="toggleJoinCollapsed()"
+                    [attr.aria-expanded]="!isJoinCollapsed" aria-controls="collapseJoin">
+              Create
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div id="collapseCreateNew" [ngbCollapse]="isCreateOrgCollapsed">
+              <div class="card-body">
+                <form #theForm="ngForm" novalidate>
+                  <div class="form-group">
+                    <label for="nameInput">Name</label>
+                    <input type="text" class="form-control" id="nameInput" name="name" aria-describedby="nameHelp"
+                           placeholder="Organisation name"
+                           [(ngModel)]="edit.name"
+                           required>
+                    <small id="nameHelp" hidden="true"
+                           class="alert alert-danger form-text text-muted">Enter a logo url to the service
+                    </small>
+                  </div>
+                  <div class="form-group">
+                    <label for="contactInput">Contact email</label>
+                    <input type="email" class="form-control" id="contactInput" name="contact"
+                           aria-describedby="contactHelp"
+                           placeholder="Contact email"
+                           [(ngModel)]="edit.email"
+                           email
+                           required>
+                    <small id="contactHelp" hidden="true"
+                           class="alert alert-danger form-text text-muted">Enter a logo url to the service
+                    </small>
+                  </div>
+                  <button (click)="createNewOrganisation()">Save new organisation</button>
+
+                </form>
+              </div>
+            </div>
+            <div style="background-color: darkgray;">
+
+              <div id="collapseJoin" [ngbCollapse]="isJoinCollapsed">
+                <form>
+                  <h4>Join a Organisation</h4>
+                  <div class="form-group">
+                    <label for="reqOrgNameInput">Organisation name</label>
+                    <input type="text" class="form-control" id="reqOrgNameInput" name="reqOrgNameInput"
+                           aria-describedby="reqOrgNameHelp"
+                           placeholder="Organisation name"
+                           [(ngModel)]="joinRequestOrganisationName"
+                           [ngbTypeahead]="typeaheadOrganisations"
+                           #modelElement="ngModel"
+                           required>
+                    <small id="reqOrgNameHelp" hidden="true"
+                           class="alert alert-danger form-text text-muted">Enter a logo url to the service
+                    </small>
+                    <!--<pre>Validity: {{ modelElement.valid }}</pre>-->
+                  </div>
+                  <div class="form-group">
+                    <label for="reqMemNameInput">Your name</label>
+                    <input type="text" class="form-control" id="reqMemNameInput" name="reqMemNameInput"
+                           aria-describedby="reqMemNameHelp"
+                           placeholder="Your name"
+                           [(ngModel)]="joinRequestMemberName" required>
+                    <small id="reqMemNameHelp" hidden="true"
+                           class="alert alert-danger form-text text-muted">Enter a logo url to the service
+                    </small>
+                  </div>
+                  <button (click)="sendJoinRequest()">Join one</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>Laddar ...</ng-template>

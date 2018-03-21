@@ -31,6 +31,8 @@ import {FooterComponent} from './layouts/footer/footer.component';
 import {DetailsComponent} from './assets/details/details.component';
 import {JobServiceEditorComponent} from './account/job-service-editor/job-service-editor.component';
 import {JobServiceListComponent} from './account/job-service-list/job-service-list.component';
+import { OrganisationComponent } from './account/organisation/organisation.component';
+import {OrganisationService} from './shared/services/organisation.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import {JobServiceListComponent} from './account/job-service-list/job-service-li
     FooterComponent,
     DetailsComponent,
     JobServiceListComponent,
-    JobServiceEditorComponent
+    JobServiceEditorComponent,
+    OrganisationComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import {JobServiceListComponent} from './account/job-service-list/job-service-li
     KeycloakService,
     JobServiceRegistrationService,
     OntologyService,
-    UserService
+    UserService,
+    OrganisationService
   ],
   exports: [
     RouterModule
