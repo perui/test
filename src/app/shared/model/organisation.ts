@@ -4,6 +4,6 @@ export class Organisation {
     name: string;
     email: string;
 
-    members: User[];
+    users: User[];
     joinRequestQueue: User[];
 }

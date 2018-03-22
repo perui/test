@@ -3,12 +3,17 @@ import {Observable} from 'rxjs/Observable';
 import {KeycloakService} from './keycloak/keycloak.service';
 import {Organisation} from '../model/organisation';
 import {User} from '../model/user';
+import {environment} from '../../../environments/environment';
+import {Registration} from '../model/registration';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 
 @Injectable()
 export class OrganisationService {
 
-  constructor(public idp: KeycloakService) {
+  constructor(
+    public idp: KeycloakService,
+    private http: HttpClient) {
   }
 
   public getMyOrganisation(): Observable<Organisation> {
@@ -23,8 +28,18 @@ export class OrganisationService {
     return null;
   }
 
-  public create(organisation: Organisation): number {
-    return null;
+  public create(organisation: Organisation): Observable<any>  {
+    const url = `${environment.serviceProviderUrl}/organisation/v1/create`;
+    return this.http.post(url, organisation, this.createHeader());
+  }
+
+  add(registration: Registration): Observable<any> {
+    if (registration.id != null) {
+      return Observable.throw('The registration is already saved ' + registration.id);
+    }
+
+    const url = `${environment.serviceProviderUrl}/service/v1/create`;
+    return this.http.post(url, registration, this.createHeader());
   }
 
   public update(organisation: Organisation) {
@@ -45,6 +60,16 @@ export class OrganisationService {
 
   findNameOrganisations(name): Observable<string[]> {
     return Observable.of(['Monster', 'CS Job']);
+  }
+
+
+  private createHeader() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer ${this.idp.client().token}`
+      })
+    };
   }
 }
 

@@ -35,7 +35,7 @@
 
           <p>Members:</p>
           <ul class="list-group">
-            <li class="list-group-item" *ngFor="let member of myOrganisation.members">{{member.name}}
+            <li class="list-group-item" *ngFor="let member of myOrganisation.users">{{member.name}}
               <a class="link-delete memberDecideButtons" href="#" (click)="removeMember(member)">Remove</a>
             </li>
           </ul>
@@ -113,7 +113,7 @@
               <small id="contactHelp" hidden="true" class="alert alert-danger form-text text-muted">Enter a logo url to the service
                       </small>
             </div>
-            <button class="btn btn-success" (click)="createNewOrganisation()">Create new organisation</button>
+            <button class="btn btn-success" (click)="createNewOrganisation(); c('Close click')">Create new organisation</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -144,7 +144,7 @@
               <small id="reqMemNameHelp" hidden="true" class="alert alert-danger form-text text-muted">Enter a logo url to the service
                       </small>
             </div>
-            <button class="btn btn-success" (click)="sendJoinRequest()">Join one</button>
+            <button class="btn btn-success" (click)="sendJoinRequest(); c('Close click')">Join one</button>
           </form>
         </div>
         <div class="modal-footer">
