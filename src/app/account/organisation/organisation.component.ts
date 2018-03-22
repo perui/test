@@ -9,6 +9,7 @@ import {User} from '../../shared/model/user';
 import {of} from 'rxjs/observable/of';
 import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
 import {KeycloakService} from '../../shared/services/keycloak/keycloak.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-organisation',
@@ -29,8 +30,11 @@ export class OrganisationComponent implements OnInit {
   public isCreateOrgCollapsed = true;
   public isJoinCollapsed = true;
 
+  closeResult: string;
+
   constructor(private orgService: OrganisationService,
-              private keycloakService: KeycloakService) { }
+              private keycloakService: KeycloakService,
+              private modalService: NgbModal) { }
 
   ngOnInit() {
     this.loadMyOrganisation();
@@ -50,10 +54,11 @@ export class OrganisationComponent implements OnInit {
     //   // sub.unsubscribe();
     // });
 
+    //dummy data for dev.
     this.myOrganisation = new Organisation();
     this.myOrganisation.name = 'Monsters';
     this.myOrganisation.email = 'info@monsters.se';
-    this.myOrganisation.joinRequestQueue = <User[]>[{name: 'Pär E'}];
+    this.myOrganisation.joinRequestQueue = <User[]>[{name: 'Pär E'}, {name: 'David Druid'}, {name: 'Rickard Riddare'}];
     this.myOrganisation.members = <User[]>[{name: 'Olle'}, {name: 'Eva'}];
     this.hasAnOrganisation = true;
     this.organisationAsync = Observable.of(this.myOrganisation);
@@ -107,6 +112,24 @@ export class OrganisationComponent implements OnInit {
   public toggleJoinCollapsed() {
     this.isJoinCollapsed = !this.isJoinCollapsed;
     this.isCreateOrgCollapsed = true;
+  }
+
+  public open(content) {
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
   typeaheadOrganisations = (text$: Observable<string>) =>
