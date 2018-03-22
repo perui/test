@@ -31,6 +31,8 @@ export class OrganisationComponent implements OnInit {
   public isCreateOrgCollapsed = true;
   public isJoinCollapsed = true;
 
+  public members: Observable<User[]>;
+  public pendingMembers: Observable<User[]>;
   closeResult: string;
 
   constructor(private orgService: OrganisationService,
@@ -50,20 +52,28 @@ export class OrganisationComponent implements OnInit {
       console.log('organisationAsync ', org);
       this.hasAnOrganisation = org != null;
       this.myOrganisation = org;
+
+      if (org != null) {
+        this.members = this.orgService.findOrganisationMembers(org, true);
+        this.pendingMembers = this.orgService.findOrganisationMembers(org, false);
+      }
     }, error => {
       console.log('Can not load organisation: ', error);
     }, () => {
+      console.log('getMyOrganisation done');
       // sub.unsubscribe();
     });
 
-    //dummy data for dev.
+
+
+    // dummy data for dev.
     // this.myOrganisation = new Organisation();
     // this.myOrganisation.name = 'Monsters';
     // this.myOrganisation.email = 'info@monsters.se';
     // this.myOrganisation.joinRequestQueue = <User[]>[{name: 'Pär E'}, {name: 'David Druid'}, {name: 'Rickard Riddare'}];
     // this.myOrganisation.members = <User[]>[{name: 'Olle'}, {name: 'Eva'}];
     // this.hasAnOrganisation = true;
-    this.organisationAsync = Observable.of(this.myOrganisation);
+    // this.organisationAsync = Observable.of(this.myOrganisation);
   }
 
   protected enterEditMode() {
@@ -76,7 +86,23 @@ export class OrganisationComponent implements OnInit {
   }
 
   protected save() {
-    this.exitEditMode();
+    this.orgService.update(this.edit).subscribe(
+      saved => {
+        console.log('Organisation was saved: ', saved);
+        this.myOrganisation = saved;
+        this.hasAnOrganisation = saved != null;
+        if (saved != null) {
+          this.members = this.orgService.findOrganisationMembers(saved, true);
+          this.pendingMembers = this.orgService.findOrganisationMembers(saved, false);
+        }
+        this.exitEditMode();
+      },
+      error => {
+        console.log('Organisation failed to be saved: ', error);
+        this.toastrService.error('Failed to create the organisation');
+      }
+
+    );
   }
 
   protected cancel() {
@@ -92,6 +118,10 @@ export class OrganisationComponent implements OnInit {
          console.log('Organisation was added: ', saved);
          this.myOrganisation = saved;
          this.hasAnOrganisation = saved != null;
+         if (saved != null) {
+           this.members = this.orgService.findOrganisationMembers(saved, true);
+           this.pendingMembers = this.orgService.findOrganisationMembers(saved, false);
+         }
          this.exitEditMode();
        },
       error => {

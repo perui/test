@@ -2,11 +2,9 @@
   <div *ngIf="organisationAsync; else loading">
     <!-- If user are apart on an organisation -->
     <div *ngIf="hasAnOrganisation">
-      Japp you are joined to an organisation
       <div class="container-fluid card orgInfoCard">
         <!-- STRUCTURE THIS IN A GRID!!! -->
         <div *ngIf="!editMode">
-          View mood is on
           <div class="row">
             <div class="col">
               <h2>{{myOrganisation.name}}</h2>
@@ -20,29 +18,30 @@
           <button class="btn btn-primary orgEditBtn" (click)="enterEditMode()">Edit</button>
           <div class="row">
             <div class="col">
-              <p>New join requests:</p>
+              <p>Pending join requests:</p>
               <ul class="list-group">
-                <li class="list-group-item" *ngFor="let member of myOrganisation.joinRequestQueue">
+                <li class="list-group-item" *ngFor="let member of pendingMembers | async">
                   <p class="memberReqName">{{member.name}}</p>
                   <div class="memberDecideButtons">
                     <button class="btn btn-success" (click)="acceptMemberRequest(member)">Accept</button>
                     <button class="btn btn-danger" (click)="rejectemberRequest(member)">Reject</button>
                   </div>
                 </li>
+                <li class="list-group-item" *ngIf="(pendingMembers | async | json) == '[]'">No pending request</li>
               </ul>
             </div>
           </div>
 
           <p>Members:</p>
           <ul class="list-group">
-            <li class="list-group-item" *ngFor="let member of myOrganisation.users">{{member.name}}
+            <li class="list-group-item" *ngFor="let member of members | async">{{member.name}}
               <a class="link-delete memberDecideButtons" href="#" (click)="removeMember(member)">Remove</a>
             </li>
+            <li class="list-group-item" *ngIf="(members | async | json) == '[]'">No members is attached</li>
           </ul>
         </div>
         <!--Edit organisation view -->
         <div *ngIf="editMode">
-          Edit mood is on
           <!--{{edit | json}}-->
           <form #theForm="ngForm" novalidate>
             <div class="form-group">
@@ -57,15 +56,14 @@
               <small id="editOrgContactHelp" hidden="true" class="alert alert-danger form-text text-muted">Enter a logo url to the service
               </small>
             </div>
-            <button class="btn" (click)="cancel()">Save</button>
-            <button class="btn btn-primary" (click)="save()">Cancel</button>
+            <button class="btn" (click)="cancel()">Cancel</button>
+            <button class="btn btn-primary" (click)="save()">Save</button>
           </form>
         </div>
       </div>
     </div>
     <!-- if user is not apart of an organisation, presenting options -->
     <div *ngIf="!hasAnOrganisation">
-      Nope you are not joined to an organisation
       <div class="container">
         <div class="row  orgChoiceCardContainer">
           <div class="col-md-6 orgChoiceCardWrap">
@@ -104,14 +102,12 @@
             <div class="form-group">
               <label for="nameInput">Name</label>
               <input type="text" class="form-control" id="nameInput" name="name" aria-describedby="nameHelp" placeholder="Organisation name" [(ngModel)]="edit.name" required>
-              <small id="nameHelp" hidden="true" class="alert alert-danger form-text text-muted">Enter a logo url to the service
-                      </small>
+              <small id="nameHelp" hidden="true" class="alert alert-danger form-text text-muted">Enter a logo url to the service</small>
             </div>
             <div class="form-group">
               <label for="contactInput">Contact email</label>
               <input type="email" class="form-control" id="contactInput" name="contact" aria-describedby="contactHelp" placeholder="Contact email" [(ngModel)]="edit.email" email required>
-              <small id="contactHelp" hidden="true" class="alert alert-danger form-text text-muted">Enter a logo url to the service
-                      </small>
+              <small id="contactHelp" hidden="true" class="alert alert-danger form-text text-muted">Enter a logo url to the service</small>
             </div>
             <button class="btn btn-success" (click)="createNewOrganisation(); c('Close click')">Create new organisation</button>
           </form>
@@ -151,9 +147,6 @@
           <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
         </div>
       </ng-template>
-      <!-- </div> -->
-      <!-- </div>
-          </div> -->
     </div>
   </div>
 </div>

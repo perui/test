@@ -17,7 +17,9 @@ export class OrganisationService {
   }
 
   public getMyOrganisation(): Observable<Organisation> {
-    return Observable.of(null);
+    const userId = this.idp.client().tokenParsed.sub;
+    const url = `${environment.serviceProviderUrl}/v1/organisation/member/${userId}`;
+    return this.http.get<Organisation>(url, this.createHeader());
   }
 
   public checkIfOrganisationNameIsAvailable(name: string): boolean {
@@ -28,26 +30,19 @@ export class OrganisationService {
     return null;
   }
 
-  public create(organisation: Organisation): Observable<any>  {
-    const url = `${environment.serviceProviderUrl}/organisation/v1/create`;
-    return this.http.post(url, organisation, this.createHeader());
-  }
-
-  add(registration: Registration): Observable<any> {
-    if (registration.id != null) {
-      return Observable.throw('The registration is already saved ' + registration.id);
-    }
-
-    const url = `${environment.serviceProviderUrl}/service/v1/create`;
-    return this.http.post(url, registration, this.createHeader());
+  public create(organisation: Organisation): Observable<Organisation>  {
+    const url = `${environment.serviceProviderUrl}/v1/organisation`;
+    return this.http.post<Organisation>(url, organisation, this.createHeader());
   }
 
   public update(organisation: Organisation) {
-
+    const url = `${environment.serviceProviderUrl}/v1/organisation`;
+    return this.http.put<Organisation>(url, organisation, this.createHeader());
   }
 
   public delete(organisation: Organisation) {
-
+    const url = `${environment.serviceProviderUrl}/v1/organisation/${organisation.identifier}`;
+    return this.http.delete<Organisation>(url, this.createHeader());
   }
 
   public requestMembership(organisation: Organisation) {
@@ -62,6 +57,11 @@ export class OrganisationService {
     return Observable.of(['Monster', 'CS Job']);
   }
 
+
+  public findOrganisationMembers(organisation: Organisation, accepted: boolean): Observable<User[]> {
+    const url = `${environment.serviceProviderUrl}/v1/organisation/${organisation.identifier}/members?accepted=${accepted}`;
+    return this.http.get<User[]>(url, this.createHeader());
+  }
 
   private createHeader() {
     return {
