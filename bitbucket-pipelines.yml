@@ -17,12 +17,12 @@ pipelines:
           - ng build ---prod --no-aot --base-href /
         artifacts:
           -  dist/**
-    - step:
-        name: Build Docker Image
-        script:
-          - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD
-          - docker build -t afekosystem/job-tech-dev .
-          - docker push afekosystem/job-tech-dev
+#    - step:
+#        name: Build Docker Image
+#        script:
+#          - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD
+#          - docker build -t afekosystem/job-tech-dev .
+#          - docker push afekosystem/job-tech-dev
 
 definitions:
   caches:
