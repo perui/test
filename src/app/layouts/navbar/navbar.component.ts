@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { Location } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
+import {Location} from '@angular/common';
 
-import { KeycloakService } from '../../shared/services/keycloak/keycloak.service';
+import {KeycloakService} from '../../shared/services/keycloak/keycloak.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -16,12 +17,13 @@ export class NavbarComponent implements OnInit {
   isCollapsed = true;
   currentRoute: string;
   title;
+  route: string;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    protected keycloakService: KeycloakService,
-    private location: Location) {
+  public useKeycloak;
+
+  constructor(private router: Router,
+              public keycloakService: KeycloakService,
+              private location: Location) {
   }
 
 
@@ -31,19 +33,21 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
 
-    this.router.events.subscribe((event) => {
-      if (!(event instanceof NavigationEnd)) {
-        return;
-      }
-      let newRoute;
-      if (this.location.path() !== '') {
-        newRoute = this.location.path();
-      } else {
-        newRoute = '/home';
-      }
-      this.onRouteChange(newRoute);
-    });
-    this.keycloakService.client().loadUserInfo();
+    this.useKeycloak = environment.useKeycloak;
+
+    this.router.events.subscribe(
+      (event) => {
+        if (!(event instanceof NavigationEnd)) {
+          return;
+        }
+        let newRoute;
+        if (this.location.path() !== '') {
+          newRoute = this.location.path();
+        } else {
+          newRoute = '/home';
+        }
+        this.onRouteChange(newRoute);
+      }, error => (console.error('Failed to load router events: ', error)));
 
   }
 
@@ -56,6 +60,7 @@ export class NavbarComponent implements OnInit {
     console.log('doLogin');
     this.keycloakService.client().login();
   }
+
   doRegister() {
     console.log('doRegister');
     this.keycloakService.client().register();
@@ -63,10 +68,10 @@ export class NavbarComponent implements OnInit {
 
   onRouteChange(newRoute: string) {
     newRoute = newRoute.replace(/^\/+/g, ''); // remove leading slashes
-    console.log('newRoute: ', newRoute);
+    // console.log('newRoute: ', newRoute);
     if (this.currentRoute !== newRoute) {
       this.currentRoute = newRoute;
-      console.log('currentRoute: ', this.currentRoute);
+      // console.log('currentRoute: ', this.currentRoute);
       this.processTitle();
     }
   }
@@ -78,7 +83,7 @@ export class NavbarComponent implements OnInit {
     if (this.noTitleRoutes.indexOf(this.title) !== -1) {
       this.title = '';
     }
-    console.log('title: ', this.title);
+    // console.log('title: ', this.title);
   }
 
 }

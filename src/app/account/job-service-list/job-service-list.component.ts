@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {JobServiceRegistrationService} from '../../shared/services/job-service-registration.service';
 import {Registration} from '../../shared/model/registration';
 import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-job-services-list',
@@ -14,15 +15,14 @@ export class JobServiceListComponent implements OnInit {
   public myRegistrations: Observable<Registration[]>;
 
   constructor(private router: Router,
-              protected jobServicesService: JobServiceRegistrationService) { }
+              private toastrService: ToastrService,
+              protected jobServicesService: JobServiceRegistrationService) {
+  }
 
 
   ngOnInit() {
     this.myRegistrations = this.jobServicesService.list();
 
-    this.myRegistrations.subscribe(list => {
-      console.log('got myRegistrations:', list);
-    });
   }
 
   onAddNew() {
@@ -37,11 +37,25 @@ export class JobServiceListComponent implements OnInit {
     return encodeURI(url);
   }
 
-  togglePublish(registration: Registration){
+  togglePublish(registration: Registration) {
     if (registration.published) {
-      this.jobServicesService.unpublish(registration);
+      const sub = this.jobServicesService.unpublish(registration)
+        .subscribe(
+          () => { this.toastrService.info('registration was unpublish successful'); },
+          error => {
+            this.toastrService.error('Failed to unpublish registration');
+            console.error('Failed to unpublish registration', error);
+          },
+          () => sub.unsubscribe());
     } else {
-      this.jobServicesService.publish(registration);
+      const sub = this.jobServicesService.publish(registration)
+        .subscribe(
+          () => { this.toastrService.info('registration was publish successful'); },
+          error => {
+            this.toastrService.error('Failed to publish registration');
+            console.error('Failed to publish registration', error);
+          },
+          () => sub.unsubscribe());
     }
   }
 }

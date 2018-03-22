@@ -20,9 +20,6 @@ import {Http, Request, XHRBackend, ConnectionBackend, RequestOptions, RequestOpt
 
 import {KeycloakService} from './keycloak.service';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/operator/concatMap';
-import 'rxjs/add/operator/map';
 
 
 /**
@@ -35,7 +32,7 @@ export class KeycloakHttp extends Http {
   }
 
   request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-    if (!this._keycloakService.authenticated()) return super.request(url, options);
+    if (!this._keycloakService.authenticated()) { return super.request(url, options); }
 
     const tokenPromise: Promise<string> = this._keycloakService.getToken();
     const tokenObservable: Observable<string> = Observable.fromPromise(tokenPromise);

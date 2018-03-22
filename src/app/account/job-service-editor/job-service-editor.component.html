@@ -2,20 +2,18 @@
   <div class="card" *ngIf="service; else loading">
 
     <div class="card-body">
-
       <h5 class="card-title">{{isNew ? "Create a new service": "Edit your service"}}</h5>
-
 
       <form (ngSubmit)="onSave(theForm)" #theForm="ngForm" novalidate>
         <div class="row ">
           <div class="col-12 col-md-6">
 
             <div class="form-group">
-              <label for="inputTitle">Title</label>
-              <input type="text" class="form-control" id="inputTitle" aria-describedby="titleHelp"
-                     placeholder="Enter title" #title="ngModel" [(ngModel)]="service.title"
-                     name="title" required>
-              <small id="titleHelp" [hidden]="title.valid || title.pristine"
+              <label for="nameInput">Name</label>
+              <input type="text" class="form-control" id="nameInput" aria-describedby="nameHelp"
+                     placeholder="Enter name" #name="ngModel" [(ngModel)]="service.name"
+                     name="name" required>
+              <small id="nameHelp" [hidden]="name.valid || name.pristine"
                      class="alert alert-danger form-text text-muted">Enter a title
               </small>
             </div>
@@ -32,19 +30,19 @@
             </div>
 
             <div class="form-group">
-              <label for="urlInput">Link</label>
+              <label for="homepageInput">Link</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text" id="btnGroupFavicon">
-                    <img [src]="'https://www.google.com/s2/favicons?domain_url='+doEncodeURI(service.url)" alt="logo">
+                    <img [src]="'https://www.google.com/s2/favicons?domain_url='+doEncodeURI(service.homepage)" alt="favicon">
                   </div>
                 </div>
-                <input type="text" class="form-control" id="urlInput" name="url" aria-describedby="urlHelp"
+                <input type="text" class="form-control" id="homepageInput" name="homepage" aria-describedby="homepageHelp"
                        placeholder="Enter url"
-                       [(ngModel)]="service.url" #url="ngModel" required>
+                       [(ngModel)]="service.homepage" #homepage="ngModel" required>
               </div>
 
-              <small id="urlHelp" [hidden]="url.valid || url.pristine"
+              <small id="homepageHelp" [hidden]="homepage.valid || homepage.pristine"
                      class="alert alert-danger form-text text-muted">Enter what url the service is targeting
               </small>
             </div>
@@ -53,33 +51,30 @@
               <label for="logoInput">Logo</label>
               <input type="text" class="form-control" id="logoInput" name="logo" aria-describedby="logoHelp"
                      placeholder="Enter logo"
-                     [(ngModel)]="service.logo" #logo="ngModel" required>
+                     [(ngModel)]="service.logoUrl" #logo="ngModel" required>
               <small id="logoHelp" [hidden]="logo.valid || logo.pristine"
                      class="alert alert-danger form-text text-muted">Enter a logo url to the service
               </small>
 
-              <img [src]="service.logo" title="logo" alt="logo">
+              <img [src]="service.logoUrl" title="logo" alt="logo">
             </div>
 
           </div>
           <div class="col-12 col-md-6">
-
-
             <div class="form-group">
               <label for="inputCategory">Category</label>
-              <select class="form-control custom-select" [ngModel]="service.category || ''"
+              <select class="form-control custom-select" [ngModel]="service.category"
                       (ngModelChange)="service.category=$event" id="inputCategory" name="category" required>
                 <option value="" disabled default>Select Category</option>
-                <option *ngFor="let option of categories" [value]="option.value">{{option.label}}</option>
+                <option *ngFor="let option of categories | async" [value]="option">{{option}}</option>
               </select>
             </div>
-
 
             <div class="form-group">
               <label for="professionsInput">Professions</label>
 
-              <tag-input class="form-control" [(ngModel)]="service.professions" #professions="ngModel"
-                         id="professionsInput" name="professions">
+              <tag-input class="form-control" [(ngModel)]="professions" #_professions="ngModel"
+                         id="professionsInput" name="_professions">
                 <tag-input-dropdown [autocompleteObservable]="autocompleteForProfessions"></tag-input-dropdown>
               </tag-input>
             </div>
@@ -87,8 +82,8 @@
             <div class="form-group">
               <label for="competencesInput">Competences</label>
 
-              <tag-input class="form-control" [(ngModel)]="service.competences" #competences="ngModel"
-                         id="competencesInput" name="competences">
+              <tag-input class="form-control" [(ngModel)]="competences" #_competences="ngModel"
+                         id="competencesInput" name="_competences">
                 <tag-input-dropdown [autocompleteObservable]="autocompleteForCompetences"></tag-input-dropdown>
               </tag-input>
             </div>

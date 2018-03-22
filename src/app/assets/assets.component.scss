@@ -13,7 +13,8 @@ $zoom-transition-time:200ms;
   img{
      /* Do not scale the image */
     object-position: bottom; /* Center the image within the element */
-    height: 150px;
+    // height: 150px;
+    max-width: 15rem;
 
 
   }

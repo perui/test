@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
   <div>
     <p class="showcase-description text-center">Latest applications that have been built with our APIs, SDKs, and other developer tools.</p>
     <p class="showcase-description text-center">Built an application using our assets?
@@ -6,12 +6,12 @@
   </div>
 
   <div class="card-group" *ngIf="items | async; let items; else loading">
-      
+
     <div *ngFor="let item of items" class="card mb-4" (click)="goToUrl(item.link)">
       <img class="card-img-top" [src]="item.image" [alt]="item.title">
       <div class="card-body">
-        <h5 class="card-title">{{item.title}}</h5>
-        <p class="card-text">{{item.details}}</p>
+        <h5 class="card-title">{{ item.title }}</h5>
+        <p class="card-text">{{ item.details }}</p>
       </div>
     </div>
   </div>

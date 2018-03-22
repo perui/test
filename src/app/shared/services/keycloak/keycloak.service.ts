@@ -21,7 +21,7 @@ import {KeycloakLoginOptions} from './keycloak.d';
 // from the server, you get a compile-time warning on use of the Keycloak()
 // method below.  I'm not sure how to fix this, but it's certainly cleaner
 // to get keycloak.js from the server.
-// 
+//
 import * as Keycloak from './keycloak';
 
 export type KeycloakClient = Keycloak.KeycloakInstance;
@@ -53,7 +53,7 @@ export class KeycloakService {
                 });
         });
     }
-    
+
     /**
      * Expose the underlying Keycloak javascript adapter.
      */
@@ -76,11 +76,11 @@ export class KeycloakService {
     account() {
         KeycloakService.keycloakAuth.accountManagement();
     }
-    
+
     authServerUrl(): string {
         return KeycloakService.keycloakAuth.authServerUrl;
     }
-    
+
     realm(): string {
         return KeycloakService.keycloakAuth.realm;
     }

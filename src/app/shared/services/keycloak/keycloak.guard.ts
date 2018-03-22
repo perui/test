@@ -8,20 +8,20 @@ import {KeycloakService} from './keycloak.service';
 @Injectable()
 export class KeycloakGuard implements CanActivate {
     constructor(private keycloakService: KeycloakService) {}
-    
+
     canActivate(route: ActivatedRouteSnapshot,
                 state: RouterStateSnapshot): boolean {
         if (this.keycloakService.authenticated()) {
             return true;
         }
-        
-        this.keycloakService.login({redirectUri: this.getOrigin()+state.url});
+
+        this.keycloakService.login({redirectUri: this.getOrigin() + state.url});
         return false;
     }
 
     getOrigin() {
         if (!window.location.origin) {
-            return window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
+            return window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
         } else {
             return window.location.origin;
         }

@@ -28,7 +28,7 @@
         </li>
       </ul>
 
-      <div *ngIf="keycloakService.authenticated() == false">
+      <div *ngIf="useKeycloak && keycloakService.authenticated() == false">
 
         <ul class="navbar-nav navbar-right">
 
@@ -43,14 +43,15 @@
         </ul>
       </div>
 
-      <div *ngIf="keycloakService.authenticated()">
+      <div *ngIf="useKeycloak && keycloakService.authenticated()">
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-item">
             <div ngbDropdown class="" placement="bottom-right">
-              <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{ keycloakService.client().userInfo?.name}}</a>
+              <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{ keycloakService.client().tokenParsed['name']}}</a>
               <div class="bg-dark" ngbDropdownMenu aria-labelledby="dropdownAccount">
                 <a class="dropdown-item nav-link" [routerLink]="['/profile']">My profile</a>
-                <a class="dropdown-item nav-link" [routerLink]="['/service']">My services</a>
+                <a class="dropdown-item nav-link" [routerLink]="['/organisation']">Organisation</a>
+                <a class="dropdown-item nav-link" [routerLink]="['/service']">Services</a>
                 <a class="dropdown-item nav-link" (click)="doLogout()">Sign out</a>
               </div>
             </div>
@@ -60,5 +61,9 @@
     </div>
   </nav>
   <h1 class="navbar-dark page-title">{{ title }}</h1>
+  <div *ngIf="this.currentRoute == 'home'">
+    <h1 class="navbar-dark page-title" align="middle"> JobTechdev</h1>
+    <h4 class="navbar-dark page-text" align="middle"> Powerful APIs, widgets and datasets for you to develop the missing app</h4>
+  </div>
 
 </header>

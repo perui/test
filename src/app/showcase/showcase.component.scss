@@ -16,6 +16,10 @@ $zoom-transition-time:200ms;
     }
 }
 
+.card-img-top {
+    max-width: 15rem;
+}
+
 .card-group .card {
     -webkit-transition: all $zoom-transition-time ease-in;
     -webkit-transform: scale(1);

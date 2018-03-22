@@ -3,6 +3,9 @@
 
 header {
   background-image: url('/assets/images/startpage-header-bg.jpg');
+  background-position: 0% 30%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .container-fluid {
@@ -119,6 +122,12 @@ header {
   font-weight: 300;
   display: none;
 }
+.page-text {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: normal;
+  }
+
 
 @include media-breakpoint-up(md) {
   .nav-page-title {
