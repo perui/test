@@ -26,6 +26,15 @@ $zoom-transition-time:200ms;
   }
 }
 
+a {
+  color: inherit;
+
+}
+a:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 .card-group .card {
   -webkit-transition: all $zoom-transition-time ease-in;
   -webkit-transform: scale(1);
