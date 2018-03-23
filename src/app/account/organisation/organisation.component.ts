@@ -9,6 +9,8 @@ import {User} from '../../shared/model/user';
 import {of} from 'rxjs/observable/of';
 import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
 import {KeycloakService} from '../../shared/services/keycloak/keycloak.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-organisation',
@@ -29,8 +31,14 @@ export class OrganisationComponent implements OnInit {
   public isCreateOrgCollapsed = true;
   public isJoinCollapsed = true;
 
+  public members: Observable<User[]>;
+  public pendingMembers: Observable<User[]>;
+  closeResult: string;
+
   constructor(private orgService: OrganisationService,
-              private keycloakService: KeycloakService) { }
+              private keycloakService: KeycloakService,
+              private modalService: NgbModal,
+              private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.loadMyOrganisation();
@@ -38,25 +46,34 @@ export class OrganisationComponent implements OnInit {
   }
 
   private loadMyOrganisation() {
-    // this.organisationAsync = this.orgService.getMyOrganisation();
-    // console.log('loadMyOrganisation');
-    // const sub = this.organisationAsync.subscribe(org => {
-    //   console.log('organisationAsync ', org);
-    //   this.hasAnOrganisation = org != null;
-    //   this.myOrganisation = org;
-    // }, error => {
-    //   console.log('Can not load organisation: ', error);
-    // }, () => {
-    //   // sub.unsubscribe();
-    // });
+    this.organisationAsync = this.orgService.getMyOrganisation();
+    console.log('loadMyOrganisation');
+    const sub = this.organisationAsync.subscribe(org => {
+      console.log('organisationAsync ', org);
+      this.hasAnOrganisation = org != null;
+      this.myOrganisation = org;
 
-    this.myOrganisation = new Organisation();
-    this.myOrganisation.name = 'Monsters';
-    this.myOrganisation.email = 'info@monsters.se';
-    this.myOrganisation.joinRequestQueue = <User[]>[{name: 'Pär E'}];
-    this.myOrganisation.members = <User[]>[{name: 'Olle'}, {name: 'Eva'}];
-    this.hasAnOrganisation = true;
-    this.organisationAsync = Observable.of(this.myOrganisation);
+      if (org != null) {
+        this.members = this.orgService.findOrganisationMembers(org, true);
+        this.pendingMembers = this.orgService.findOrganisationMembers(org, false);
+      }
+    }, error => {
+      console.log('Can not load organisation: ', error);
+    }, () => {
+      console.log('getMyOrganisation done');
+      // sub.unsubscribe();
+    });
+
+
+
+    // dummy data for dev.
+    // this.myOrganisation = new Organisation();
+    // this.myOrganisation.name = 'Monsters';
+    // this.myOrganisation.email = 'info@monsters.se';
+    // this.myOrganisation.joinRequestQueue = <User[]>[{name: 'Pär E'}, {name: 'David Druid'}, {name: 'Rickard Riddare'}];
+    // this.myOrganisation.members = <User[]>[{name: 'Olle'}, {name: 'Eva'}];
+    // this.hasAnOrganisation = true;
+    // this.organisationAsync = Observable.of(this.myOrganisation);
   }
 
   protected enterEditMode() {
@@ -69,7 +86,23 @@ export class OrganisationComponent implements OnInit {
   }
 
   protected save() {
-    this.exitEditMode();
+    this.orgService.update(this.edit).subscribe(
+      saved => {
+        console.log('Organisation was saved: ', saved);
+        this.myOrganisation = saved;
+        this.hasAnOrganisation = saved != null;
+        if (saved != null) {
+          this.members = this.orgService.findOrganisationMembers(saved, true);
+          this.pendingMembers = this.orgService.findOrganisationMembers(saved, false);
+        }
+        this.exitEditMode();
+      },
+      error => {
+        console.log('Organisation failed to be saved: ', error);
+        this.toastrService.error('Failed to create the organisation');
+      }
+
+    );
   }
 
   protected cancel() {
@@ -80,7 +113,23 @@ export class OrganisationComponent implements OnInit {
   }
 
   protected createNewOrganisation() {
-    this.orgService.create(this.edit);
+    this.orgService.create(this.edit).subscribe(
+       saved => {
+         console.log('Organisation was added: ', saved);
+         this.myOrganisation = saved;
+         this.hasAnOrganisation = saved != null;
+         if (saved != null) {
+           this.members = this.orgService.findOrganisationMembers(saved, true);
+           this.pendingMembers = this.orgService.findOrganisationMembers(saved, false);
+         }
+         this.exitEditMode();
+       },
+      error => {
+        console.log('Organisation failed to be added: ', error);
+        this.toastrService.error('Failed to create the organisation');
+      }
+
+    );
   }
 
   protected sendJoinRequest() {
@@ -107,6 +156,24 @@ export class OrganisationComponent implements OnInit {
   public toggleJoinCollapsed() {
     this.isJoinCollapsed = !this.isJoinCollapsed;
     this.isCreateOrgCollapsed = true;
+  }
+
+  public open(content) {
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
   typeaheadOrganisations = (text$: Observable<string>) =>

@@ -5,6 +5,8 @@ import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 
+import {Organisation} from '../../shared/model/organisation';
+
 @Component({
   selector: 'app-job-services-list',
   templateUrl: './job-service-list.component.html',
@@ -13,6 +15,7 @@ import {ToastrService} from 'ngx-toastr';
 export class JobServiceListComponent implements OnInit {
 
   public myRegistrations: Observable<Registration[]>;
+  public myOrganisation: Organisation;
 
   constructor(private router: Router,
               private toastrService: ToastrService,
@@ -22,7 +25,13 @@ export class JobServiceListComponent implements OnInit {
 
   ngOnInit() {
     this.myRegistrations = this.jobServicesService.list();
-
+    //dummy data for UI dev.
+    this.myOrganisation = new Organisation();
+    this.myOrganisation.name = 'Monsters';
+    this.myOrganisation.email = 'info@monsters.se';
+    //this.myOrganisation.joinRequestQueue = <User[]>[{name: 'Pär E'}];
+    //this.myOrganisation.members = <User[]>[{name: 'Olle'}, {name: 'Eva'}];
+    //this.hasAnOrganisation = true;
   }
 
   onAddNew() {
