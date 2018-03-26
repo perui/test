@@ -152,7 +152,7 @@ export const ASSETS = [
     'externallinks': [
       {
         'name': 'Go to API',
-        'link': 'http://jobtechdev.se/swagger/',
+        'link': './swagger/index.html',
       },
 
 
