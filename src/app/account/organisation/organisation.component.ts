@@ -88,6 +88,7 @@ export class OrganisationComponent implements OnInit {
   }
 
   protected save() {
+    console.log('Organisation save: ', this.edit);
     this.orgService.update(this.edit).subscribe(
       saved => {
         console.log('Organisation was saved: ', saved);
@@ -129,6 +130,7 @@ export class OrganisationComponent implements OnInit {
   }
 
   protected createNewOrganisation() {
+    console.log('createNewOrganisation, ', this.edit);
     this.orgService.create(this.edit).subscribe(
        saved => {
          console.log('Organisation was added: ', saved);
