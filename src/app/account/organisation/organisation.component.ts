@@ -11,6 +11,7 @@ import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
 import {KeycloakService} from '../../shared/services/keycloak/keycloak.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrService} from 'ngx-toastr';
+import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap/modal/modal-ref';
 
 @Component({
   selector: 'app-organisation',
@@ -34,6 +35,7 @@ export class OrganisationComponent implements OnInit {
   public members: Observable<User[]>;
   public pendingMembers: Observable<User[]>;
   closeResult: string;
+  private dialog: NgbModalRef;
 
   constructor(private orgService: OrganisationService,
               private keycloakService: KeycloakService,
@@ -108,8 +110,22 @@ export class OrganisationComponent implements OnInit {
   protected cancel() {
     this.exitEditMode();
   }
+
   protected delete() {
-    this.exitEditMode();
+    this.orgService.delete(this.myOrganisation).subscribe(
+      respond => {
+        this.toastrService.info(`Delete the organisation: ${this.myOrganisation.name}`);
+        this.myOrganisation = null;
+        this.hasAnOrganisation = false;
+        this.organisationAsync = this.orgService.getMyOrganisation();
+
+        this.closeDialog('Success to delete organisation');
+      },
+      error => {
+        console.log('Failed to deltete the Organisation: ', error);
+        this.toastrService.error('Failed to delete the organisation');
+      }
+    );
   }
 
   protected createNewOrganisation() {
@@ -122,7 +138,7 @@ export class OrganisationComponent implements OnInit {
            this.members = this.orgService.findOrganisationMembers(saved, true);
            this.pendingMembers = this.orgService.findOrganisationMembers(saved, false);
          }
-         this.exitEditMode();
+         this.closeDialog('User click');
        },
       error => {
         console.log('Organisation failed to be added: ', error);
@@ -134,6 +150,7 @@ export class OrganisationComponent implements OnInit {
 
   protected sendJoinRequest() {
 
+    this.closeDialog('User click');
   }
 
   protected acceptMemberRequest(user: User) {
@@ -158,12 +175,26 @@ export class OrganisationComponent implements OnInit {
     this.isCreateOrgCollapsed = true;
   }
 
-  public open(content) {
-    this.modalService.open(content).result.then((result) => {
+  public openDialog(template) {
+    this.dialog = this.modalService.open(template);
+    this.dialog.result.then((result) => {
+      console.log('dialog result closed, ', result);
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      console.log('dialog result dismissed, ', reason);
+    }).catch(result => {
+      console.log('Failed to open dialog, ', result);
     });
+  }
+
+  public closeDialog(reason) {
+    this.dialog.close(reason);
+    this.exitEditMode();
+  }
+
+  public dismissDialog(reason) {
+    this.dialog.dismiss(reason);
   }
 
   private getDismissReason(reason: any): string {
