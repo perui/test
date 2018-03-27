@@ -6,10 +6,10 @@
         <!-- STRUCTURE THIS IN A GRID!!! -->
         <div *ngIf="!editMode">
           <div class="row">
-            <div class="col-9">
+            <div class="col-8">
               <h2>{{myOrganisation.name}}</h2>
             </div>
-            <div class="col-3 text-right">
+            <div class="col-4 text-right">
               <button class="btn btn-secondary" (click)="openDialog(deleteOrgDialogTemplate)"><i class="fa fa-eraser"></i>Delete</button>
               <button class="btn btn-primary" (click)="enterEditMode()"><i class="fa fa-wrench"></i>Edit</button>
             </div>
@@ -22,7 +22,7 @@
                   <p class="memberReqName">{{member.name}}</p>
                   <div class="memberDecideButtons">
                     <button class="btn btn-success" (click)="acceptMemberRequest(member)">Accept</button>
-                    <button class="btn btn-danger" (click)="rejectemberRequest(member)">Reject</button>
+                    <button class="btn btn-danger" (click)="rejectMemberRequest(member)">Reject</button>
                   </div>
                 </li>
                 <li class="list-group-item" *ngIf="(pendingMembers | async | json) == '[]'">No pending request</li>
@@ -33,7 +33,9 @@
           <p>Members:</p>
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let member of members | async">{{member.name}}
-              <a class="link-delete memberDecideButtons" href="#" (click)="removeMember(member)">Remove</a>
+              <button type="button" class="btn btn-link text-danger pull-right"
+                      (click)="removeMember(member)"
+                      *ngIf="(members | async)?.length > 1">Remove</button>
             </li>
             <li class="list-group-item" *ngIf="(members | async | json) == '[]'">No members is attached</li>
           </ul>
@@ -179,8 +181,8 @@
       <div class="form-group">
         <label for="reqOrgNameInput">Organisation name</label>
         <input type="text" class="form-control" id="reqOrgNameInput" name="reqOrgNameInput"
-               placeholder="Organisation name" [(ngModel)]="joinRequestOrganisationName"
-               [ngbTypeahead]="typeaheadOrganisations" #modelElement="ngModel"
+               placeholder="Organisation name" [(ngModel)]="joinRequestOrganisation"
+               [ngbTypeahead]="typeaheadOrganisations" [resultFormatter]="formatter" [inputFormatter]="formatter" #modelElement="ngModel"
                required>
       </div>
       <div class="form-group">

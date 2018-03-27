@@ -25,7 +25,7 @@ export class OrganisationComponent implements OnInit {
   public myOrganisation: Organisation;
   public hasAnOrganisation = false;
   public editMode = false;
-  public joinRequestOrganisationName: string;
+  public joinRequestOrganisation: Organisation;
   public joinRequestMemberName: string;
 
   public edit: Organisation = new Organisation();
@@ -34,7 +34,7 @@ export class OrganisationComponent implements OnInit {
 
   public members: Observable<User[]>;
   public pendingMembers: Observable<User[]>;
-  closeResult: string;
+  private closeResult: string;
   private dialog: NgbModalRef;
 
   constructor(private orgService: OrganisationService,
@@ -92,12 +92,7 @@ export class OrganisationComponent implements OnInit {
     this.orgService.update(this.edit).subscribe(
       saved => {
         console.log('Organisation was saved: ', saved);
-        this.myOrganisation = saved;
-        this.hasAnOrganisation = saved != null;
-        if (saved != null) {
-          this.members = this.orgService.findOrganisationMembers(saved, true);
-          this.pendingMembers = this.orgService.findOrganisationMembers(saved, false);
-        }
+        this.loadMyOrganisation();
         this.exitEditMode();
       },
       error => {
@@ -108,17 +103,15 @@ export class OrganisationComponent implements OnInit {
     );
   }
 
-  protected cancel() {
+  public cancel() {
     this.exitEditMode();
   }
 
-  protected delete() {
+  public delete() {
     this.orgService.delete(this.myOrganisation).subscribe(
       respond => {
         this.toastrService.info(`Delete the organisation: ${this.myOrganisation.name}`);
-        this.myOrganisation = null;
-        this.hasAnOrganisation = false;
-        this.organisationAsync = this.orgService.getMyOrganisation();
+        this.loadMyOrganisation();
 
         this.closeDialog('Success to delete organisation');
       },
@@ -129,17 +122,12 @@ export class OrganisationComponent implements OnInit {
     );
   }
 
-  protected createNewOrganisation() {
+  public createNewOrganisation() {
     console.log('createNewOrganisation, ', this.edit);
     this.orgService.create(this.edit).subscribe(
        saved => {
          console.log('Organisation was added: ', saved);
-         this.myOrganisation = saved;
-         this.hasAnOrganisation = saved != null;
-         if (saved != null) {
-           this.members = this.orgService.findOrganisationMembers(saved, true);
-           this.pendingMembers = this.orgService.findOrganisationMembers(saved, false);
-         }
+         this.loadMyOrganisation();
          this.closeDialog('User click');
        },
       error => {
@@ -150,21 +138,59 @@ export class OrganisationComponent implements OnInit {
     );
   }
 
-  protected sendJoinRequest() {
+  public sendJoinRequest() {
 
+    console.log('sendJoinRequest, ', this.joinRequestOrganisation);
+    this.orgService.requestMembership(this.joinRequestOrganisation).subscribe(
+      response => {
+        console.log('sendJoinRequestd: ', response);
+        this.toastrService.info('Your request has been sent');
+        this.closeDialog('User click');
+      },
+      error => {
+        console.log('Organisation failed to be added: ', error);
+        this.toastrService.error('Failed to create the organisation');
+      }
+
+    );
     this.closeDialog('User click');
   }
 
-  protected acceptMemberRequest(user: User) {
+  public acceptMemberRequest(member: User) {
 
+    this.orgService.acceptOrRejectOrganisationMember(this.myOrganisation, member, true).subscribe(
+      response => {
+        console.log('acceptMemberRequest: ', response);
+        this.loadMyOrganisation();
+      }, error => {
+        console.log('Failed to accept member: ', error);
+        this.toastrService.error('Failed to accept member');
+      }
+    );
   }
 
-  protected rejectemberRequest(user: User) {
-
+  public rejectMemberRequest(member: User) {
+    this.orgService.acceptOrRejectOrganisationMember(this.myOrganisation, member, false).subscribe(
+      response => {
+        console.log('rejectMemberRequest: ', response);
+        this.loadMyOrganisation();
+      }, error => {
+        console.log('Failed to reject member: ', error);
+        this.toastrService.error('Failed to reject member');
+      }
+    );
   }
 
-  protected removeMember(user: User) {
-
+  public removeMember(member: User) {
+    this.orgService.removeOrganisationMember(this.myOrganisation, member).subscribe(
+      response => {
+        console.log('removeMember: ', response);
+        this.loadMyOrganisation();
+      }, error => {
+        console.log('Failed to remove member: ', error);
+        this.toastrService.error('Failed to remove member');
+      }
+    );
   }
 
   public toggleCreateOrgCollapsed() {
@@ -209,13 +235,17 @@ export class OrganisationComponent implements OnInit {
     }
   }
 
-  typeaheadOrganisations = (text$: Observable<string>) =>
+  formatter = (org: Organisation) => org.name;
+
+  typeaheadOrganisations = (text$: Observable<Organisation>) =>
     text$
       .debounceTime(300)
       .distinctUntilChanged()
       .switchMap(term =>
         this.orgService.findNameOrganisations(term)
-          .catch(() => {
+          .do(response => console.log(`typeaheadOrganisations ${term} response:`, response))
+          .catch((err) => {
+            console.log(`typeaheadOrganisations ${term} err:`, err);
             return of([]);
           }))
 
