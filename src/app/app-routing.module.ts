@@ -23,9 +23,9 @@ export const routes: Routes = [
   {path: 'platform', component: PlatformComponent},
   {path: 'showcase', component: ShowcaseComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [KeycloakGuard]},
-  {path: 'service/:id', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
   {path: 'service', component: JobServiceListComponent, canActivate: [KeycloakGuard]},
   {path: 'service/add', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
+  {path: 'service/:id', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
   {path: 'organisation', component: OrganisationComponent, canActivate: [KeycloakGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [KeycloakGuard]},
   {path: '**', component: HomeComponent}
