@@ -52,7 +52,7 @@ export const SHOWCASES = [
   },
   {
     'title': 'Job Postings',
-    'details': 'Add Job postings list to your site in minutes.',
+    'details': 'Add Job postings list to your site in minutes. \n \nFor example get all job postings in a municipaliti.',
     'link': 'https://github.com/jobtechdev/vacancieswidget',
     'image': 'assets/images/widget.png',
     'type': 'VACANCIES WIDGET'
