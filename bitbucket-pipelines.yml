@@ -3,6 +3,10 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
+#
+# Validate the script here: https://bitbucket-pipelines.prod.public.atl-paas.net/validator
+#
+
 pipelines:
   default:
     - step:
@@ -17,12 +21,51 @@ pipelines:
           - ng build ---prod --no-aot --base-href /
         artifacts:
           -  dist/**
-    - step:
-        name: Build Docker Image
-        script:
-          - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD
-          - docker build -t afekosystem/job-tech-dev .
-          - docker push afekosystem/job-tech-dev
+
+  branches:
+    develop:
+      - step:
+          name: Build and Test
+          image: afekosystem/ng-builder
+          caches:
+            - node
+            - node-global
+          script:
+            - npm install
+            - ng test --watch false --browser PhantomJS --single-run
+            - ng build ---prod --no-aot --base-href /
+          artifacts:
+            -  dist/**
+      - step:
+          name: Build Develop Docker Image
+          script:
+            - echo "Develop pipeline"
+            - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD
+            - docker build -t afekosystem/job-tech-dev:$BITBUCKET_BRANCH .
+            - docker push afekosystem/job-tech-dev:$BITBUCKET_BRANCH
+
+  tags:
+    '*':
+      - step:
+          name: Build and Test
+          image: afekosystem/ng-builder
+          caches:
+            - node
+            - node-global
+          script:
+            - npm install
+            - ng test --watch false --browser PhantomJS --single-run
+            - ng build ---prod --no-aot --base-href /
+          artifacts:
+            -  dist/**
+      - step:
+          name: Build Tagged Docker Image
+          script:
+            - echo "tag pipeline "+$BITBUCKET_TAG
+            - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD
+            - docker build -t afekosystem/job-tech-dev:$BITBUCKET_TAG .
+            - docker push afekosystem/job-tech-dev:$BITBUCKET_TAG
+            - docker push afekosystem/job-tech-dev:latest
 
 definitions:
   caches:

@@ -38,11 +38,6 @@ export class UserService {
   }
 
 
-  getMyOrganisation() {
-
-
-  }
-
 }
 
 
