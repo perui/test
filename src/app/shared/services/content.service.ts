@@ -115,7 +115,7 @@ export const ASSETS = [
       {
         'header': 'Description',
 
-        'description': 'API Occupation Forecasts (API Vägledning) contains 5 and 10 years forecasts for different occupations. Forecasts are made from in-depth interviews with employers. \n\nLong-term forecasts of five and ten years were made in February 2016 \n\nYou can retrieve long-term job forecasts in XML and JSON format through the API, while the short-term forecasts can be downloaded in CSV format at Short-time forecasts \n\nWith API Occupation Forecasts (API Vägledning) it is possible to integrate the Employment Agencys long - term forecasts into in custom built applications. \n \nThe API is an open interface without contract or registration requirements.\n\nYou´ll find the API Url and methods in the Technical description.',
+        'description': 'API Occupation Forecasts (API Vägledning) contains 1 and 5 years forecasts for different occupations. The Forecasts are made and published in February 2018 \n\nThe forecasts are based on the standard SSYK (Swedish standard occupation classification)\n\n Readmore about <a href="http://www.scb.se/dokumentation/klassifikationer-och-standarder/standard-for-svensk-yrkesklassificering-ssyk/" target="_blank">SSYK</a> \n\nWith API Occupation Forecasts (API Vägledning) it is possible to integrate Arbetsförmedlingen (the Employment Agency) forecasts into in custom built applications. \n \nThe API is an open interface without contract or registration requirements.\n\n',
       },
       {
         'header': '',
@@ -124,15 +124,21 @@ export const ASSETS = [
     ],
     'image': 'assets/images/dev-services-puff.jpg',
     'headimage': 'assets/images/services-head.jpg',
+    'externallinks': [
+      {
+        'name': 'Go to API',
+        'link': 'http://api.arbetsformedlingen.se/af/v2/forecasts/api/#!/forecasts/'
+      }
+    ],
     'files': [
       {
-        'name': 'Technical description',
-        'url': 'http://jobtechdev.se/resource/forecast/tekniskvl.pdf'
+        'name': '',
+        'url': ''
       },
       {
-        'name': 'Short-time forecasts',
-        'url': 'https://www.arbetsformedlingen.se/download/18.40fa4e7b159ff02933133dfe/1499250831440/kortsiktiga-prognoser.csv'
-      },
+        'name': '',
+        'url': ''
+      }
 
     ]
   },
@@ -218,7 +224,7 @@ export const ASSETS = [
         'description': 'We provide a microservice for basic statistics and queries on the dataset.\n\nExamples\nA notebook with examples can be found <a href="https://github.com/simonbe/afhistorik/blob/master/notebooks/API_description.ipynb" target="_blank">here</a>\n\nData format \nEach line in a file contains a job listing in a JSON format '
       }
     ],
-    'image': 'assets/images/data-analysis-puff.jpg',
+    'image': 'assets/images/data-analysis-puff_x239.jpg',
     'externallinks': [
       {
         'name': 'Go to API',
