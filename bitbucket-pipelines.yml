@@ -3,6 +3,10 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
+#
+# Validate the script here: https://bitbucket-pipelines.prod.public.atl-paas.net/validator
+#
+
 pipelines:
   default:
     - step:
@@ -21,23 +25,23 @@ pipelines:
   branches:
     develop:
       - step:
-        name: Build Develop Docker Image
-        script:
-          - echo "Develop pipeline"
-          - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD
-          - docker build -t afekosystem/job-tech-dev:$BITBUCKET_BRANCH .
-          - docker push afekosystem/job-tech-dev:$BITBUCKET_BRANCH
+          name: Build Develop Docker Image
+          script:
+            - echo "Develop pipeline"
+            - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD
+            - docker build -t afekosystem/job-tech-dev:$BITBUCKET_BRANCH .
+            - docker push afekosystem/job-tech-dev:$BITBUCKET_BRANCH
 
   tags:
     '*':
       - step:
-        name: Build Tagged Docker Image
-        script:
-          - echo "tag pipeline "+$BITBUCKET_TAG
-          - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD
-          - docker build -t afekosystem/job-tech-dev:$BITBUCKET_TAG .
-          - docker push afekosystem/job-tech-dev:$BITBUCKET_TAG
-          - docker push afekosystem/job-tech-dev:latest
+          name: Build Tagged Docker Image
+          script:
+            - echo "tag pipeline "+$BITBUCKET_TAG
+            - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD
+            - docker build -t afekosystem/job-tech-dev:$BITBUCKET_TAG .
+            - docker push afekosystem/job-tech-dev:$BITBUCKET_TAG
+            - docker push afekosystem/job-tech-dev:latest
 
 definitions:
   caches:
