@@ -25,6 +25,18 @@ pipelines:
   branches:
     develop:
       - step:
+          name: Build and Test
+          image: afekosystem/ng-builder
+          caches:
+            - node
+            - node-global
+          script:
+            - npm install
+            - ng test --watch false --browser PhantomJS --single-run
+            - ng build ---prod --no-aot --base-href /
+          artifacts:
+            -  dist/**
+      - step:
           name: Build Develop Docker Image
           script:
             - echo "Develop pipeline"
@@ -34,6 +46,18 @@ pipelines:
 
   tags:
     '*':
+      - step:
+          name: Build and Test
+          image: afekosystem/ng-builder
+          caches:
+            - node
+            - node-global
+          script:
+            - npm install
+            - ng test --watch false --browser PhantomJS --single-run
+            - ng build ---prod --no-aot --base-href /
+          artifacts:
+            -  dist/**
       - step:
           name: Build Tagged Docker Image
           script:
