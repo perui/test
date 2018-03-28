@@ -19,8 +19,6 @@ pipelines:
           - npm install
           - ng test --watch false --browser PhantomJS --single-run
           - ng build ---prod --no-aot --base-href /
-        artifacts:
-          -  dist/**
 
   branches:
     develop:
@@ -63,7 +61,7 @@ pipelines:
           script:
             - echo "tag pipeline "+$BITBUCKET_TAG
             - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD
-            - docker build -t afekosystem/job-tech-dev:$BITBUCKET_TAG .
+            - docker build -t afekosystem/job-tech-dev:$BITBUCKET_TAG -t afekosystem/job-tech-dev:latest .
             - docker push afekosystem/job-tech-dev:$BITBUCKET_TAG
             - docker push afekosystem/job-tech-dev:latest
 
