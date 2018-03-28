@@ -11,6 +11,7 @@ import {NgbTypeaheadConfig} from '@ng-bootstrap/ng-bootstrap';
 import {KeycloakService} from '../../shared/services/keycloak/keycloak.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrService} from 'ngx-toastr';
+import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap/modal/modal-ref';
 
 @Component({
   selector: 'app-organisation',
@@ -24,7 +25,7 @@ export class OrganisationComponent implements OnInit {
   public myOrganisation: Organisation;
   public hasAnOrganisation = false;
   public editMode = false;
-  public joinRequestOrganisationName: string;
+  public joinRequestOrganisation: Organisation;
   public joinRequestMemberName: string;
 
   public edit: Organisation = new Organisation();
@@ -33,7 +34,8 @@ export class OrganisationComponent implements OnInit {
 
   public members: Observable<User[]>;
   public pendingMembers: Observable<User[]>;
-  closeResult: string;
+  private closeResult: string;
+  private dialog: NgbModalRef;
 
   constructor(private orgService: OrganisationService,
               private keycloakService: KeycloakService,
@@ -86,15 +88,11 @@ export class OrganisationComponent implements OnInit {
   }
 
   protected save() {
+    console.log('Organisation save: ', this.edit);
     this.orgService.update(this.edit).subscribe(
       saved => {
         console.log('Organisation was saved: ', saved);
-        this.myOrganisation = saved;
-        this.hasAnOrganisation = saved != null;
-        if (saved != null) {
-          this.members = this.orgService.findOrganisationMembers(saved, true);
-          this.pendingMembers = this.orgService.findOrganisationMembers(saved, false);
-        }
+        this.loadMyOrganisation();
         this.exitEditMode();
       },
       error => {
@@ -105,24 +103,32 @@ export class OrganisationComponent implements OnInit {
     );
   }
 
-  protected cancel() {
-    this.exitEditMode();
-  }
-  protected delete() {
+  public cancel() {
     this.exitEditMode();
   }
 
-  protected createNewOrganisation() {
+  public delete() {
+    this.orgService.delete(this.myOrganisation).subscribe(
+      respond => {
+        this.toastrService.info(`Delete the organisation: ${this.myOrganisation.name}`);
+        this.loadMyOrganisation();
+
+        this.closeDialog('Success to delete organisation');
+      },
+      error => {
+        console.log('Failed to deltete the Organisation: ', error);
+        this.toastrService.error('Failed to delete the organisation');
+      }
+    );
+  }
+
+  public createNewOrganisation() {
+    console.log('createNewOrganisation, ', this.edit);
     this.orgService.create(this.edit).subscribe(
        saved => {
          console.log('Organisation was added: ', saved);
-         this.myOrganisation = saved;
-         this.hasAnOrganisation = saved != null;
-         if (saved != null) {
-           this.members = this.orgService.findOrganisationMembers(saved, true);
-           this.pendingMembers = this.orgService.findOrganisationMembers(saved, false);
-         }
-         this.exitEditMode();
+         this.loadMyOrganisation();
+         this.closeDialog('User click');
        },
       error => {
         console.log('Organisation failed to be added: ', error);
@@ -132,20 +138,59 @@ export class OrganisationComponent implements OnInit {
     );
   }
 
-  protected sendJoinRequest() {
+  public sendJoinRequest() {
 
+    console.log('sendJoinRequest, ', this.joinRequestOrganisation);
+    this.orgService.requestMembership(this.joinRequestOrganisation).subscribe(
+      response => {
+        console.log('sendJoinRequestd: ', response);
+        this.toastrService.info('Your request has been sent');
+        this.closeDialog('User click');
+      },
+      error => {
+        console.log('Organisation failed to be added: ', error);
+        this.toastrService.error('Failed to create the organisation');
+      }
+
+    );
+    this.closeDialog('User click');
   }
 
-  protected acceptMemberRequest(user: User) {
+  public acceptMemberRequest(member: User) {
 
+    this.orgService.acceptOrRejectOrganisationMember(this.myOrganisation, member, true).subscribe(
+      response => {
+        console.log('acceptMemberRequest: ', response);
+        this.loadMyOrganisation();
+      }, error => {
+        console.log('Failed to accept member: ', error);
+        this.toastrService.error('Failed to accept member');
+      }
+    );
   }
 
-  protected rejectemberRequest(user: User) {
-
+  public rejectMemberRequest(member: User) {
+    this.orgService.acceptOrRejectOrganisationMember(this.myOrganisation, member, false).subscribe(
+      response => {
+        console.log('rejectMemberRequest: ', response);
+        this.loadMyOrganisation();
+      }, error => {
+        console.log('Failed to reject member: ', error);
+        this.toastrService.error('Failed to reject member');
+      }
+    );
   }
 
-  protected removeMember(user: User) {
-
+  public removeMember(member: User) {
+    this.orgService.removeOrganisationMember(this.myOrganisation, member).subscribe(
+      response => {
+        console.log('removeMember: ', response);
+        this.loadMyOrganisation();
+      }, error => {
+        console.log('Failed to remove member: ', error);
+        this.toastrService.error('Failed to remove member');
+      }
+    );
   }
 
   public toggleCreateOrgCollapsed() {
@@ -158,12 +203,26 @@ export class OrganisationComponent implements OnInit {
     this.isCreateOrgCollapsed = true;
   }
 
-  public open(content) {
-    this.modalService.open(content).result.then((result) => {
+  public openDialog(template) {
+    this.dialog = this.modalService.open(template);
+    this.dialog.result.then((result) => {
+      console.log('dialog result closed, ', result);
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      console.log('dialog result dismissed, ', reason);
+    }).catch(result => {
+      console.log('Failed to open dialog, ', result);
     });
+  }
+
+  public closeDialog(reason) {
+    this.dialog.close(reason);
+    this.exitEditMode();
+  }
+
+  public dismissDialog(reason) {
+    this.dialog.dismiss(reason);
   }
 
   private getDismissReason(reason: any): string {
@@ -176,13 +235,17 @@ export class OrganisationComponent implements OnInit {
     }
   }
 
-  typeaheadOrganisations = (text$: Observable<string>) =>
+  formatter = (org: Organisation) => org.name;
+
+  typeaheadOrganisations = (text$: Observable<Organisation>) =>
     text$
       .debounceTime(300)
       .distinctUntilChanged()
       .switchMap(term =>
         this.orgService.findNameOrganisations(term)
-          .catch(() => {
+          .do(response => console.log(`typeaheadOrganisations ${term} response:`, response))
+          .catch((err) => {
+            console.log(`typeaheadOrganisations ${term} err:`, err);
             return of([]);
           }))
 
