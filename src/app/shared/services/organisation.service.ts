@@ -29,10 +29,6 @@ export class OrganisationService {
     return true;
   }
 
-  public findOrganisations(name: string): Observable<Organisation[]> {
-    return null;
-  }
-
   public create(organisation: Organisation): Observable<Organisation>  {
     const url = `${this.ws}/organisation/v1`;
     return this.http.post<Organisation>(url, organisation, this.createHeader());

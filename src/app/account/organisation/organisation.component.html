@@ -3,7 +3,6 @@
     <!-- If user are apart on an organisation -->
     <div *ngIf="hasAnOrganisation">
       <div class="container-fluid card orgInfoCard">
-        <!-- STRUCTURE THIS IN A GRID!!! -->
         <div *ngIf="!editMode">
           <div class="row">
             <div class="col-8">
@@ -21,8 +20,8 @@
                 <li class="list-group-item" *ngFor="let member of pendingMembers | async">
                   <p class="memberReqName">{{member.name}}</p>
                   <div class="memberDecideButtons">
-                    <button class="btn btn-success" (click)="acceptMemberRequest(member)">Accept</button>
-                    <button class="btn btn-danger" (click)="rejectMemberRequest(member)">Reject</button>
+                    <button class="btn btn-success" (click)="acceptMemberRequest(member)"><i class="fa fa-plus-circle"></i>Accept</button>
+                    <button class="btn btn-danger" (click)="rejectMemberRequest(member)"><i class="fa fa-minus-circle"></i>Reject</button>
                   </div>
                 </li>
                 <li class="list-group-item" *ngIf="(pendingMembers | async | json) == '[]'">No pending request</li>
@@ -35,14 +34,13 @@
             <li class="list-group-item" *ngFor="let member of members | async">{{member.name}}
               <button type="button" class="btn btn-link text-danger pull-right"
                       (click)="removeMember(member)"
-                      *ngIf="(members | async)?.length > 1">Remove</button>
+                      *ngIf="(members | async)?.length > 1"><i class="fa fa-minus-circle"></i>Remove</button>
             </li>
             <li class="list-group-item" *ngIf="(members | async | json) == '[]'">No members is attached</li>
           </ul>
         </div>
         <!--Edit organisation view -->
         <div *ngIf="editMode">
-          <!--{{edit | json}}-->
           <form #theForm="ngForm" novalidate>
             <div class="row">
               <div class="col-md-6">
@@ -82,7 +80,7 @@
 
                 <div class="text-right">
                   <button class="btn" (click)="cancel()">Cancel</button>
-                  <button class="btn btn-primary" (click)="save()">Save</button>
+                  <button class="btn btn-primary" (click)="save()"><i class="fa fa-save"></i> Save</button>
                 </div>
               </div>
             </div>
@@ -98,21 +96,13 @@
             <!--<form>-->
             <div class="col-md-12 orgChoiceCard">
               <h4>New Organisation</h4>
-              <!--<button type="button" class="btn btn-primary" (click)="toggleCreateOrgCollapsed()"
-                          [attr.aria-expanded]="!isCreateOrgCollapsed" aria-controls="collapseCreateNew">
-                    Create
-                  </button> -->
-              <button class="btn btn-primary" (click)="openDialog(createOrg)">CREATE</button>
+              <button class="btn btn-primary" (click)="openDialog(createOrg)"><i class="fa fa-plus-circle"></i> CREATE</button>
             </div>
           </div>
           <div class="col-md-6 orgChoiceCardWrap">
             <div class="col-md-12 orgChoiceCard">
               <h4>Join a Organisation</h4>
-              <!-- <button type="button" class="btn btn-secondary" (click)="toggleJoinCollapsed()"
-                          [attr.aria-expanded]="!isJoinCollapsed" aria-controls="collapseJoin">
-                    Create
-                  </button> -->
-              <button class="btn btn-primary" (click)="openDialog(joinOrg)">JOIN</button>
+              <button class="btn btn-primary" (click)="openDialog(joinOrg)"><i class="fa fa-user-plus"></i> JOIN</button>
             </div>
           </div>
         </div>
@@ -161,11 +151,11 @@
           service
         </small>
       </div>
-      <button class="btn btn-success" (click)="createNewOrganisation();">Create new organisation</button>
+      <button class="btn btn-success" (click)="createNewOrganisation();"><i class="fa fa-plus-circle"></i> Create new organisation</button>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="closeDialog('Close click')">Close</button>
+    <button type="button" class="btn btn-light" (click)="closeDialog('Close click')">Abort</button>
   </div>
 </ng-template>
 

@@ -60,6 +60,9 @@ export class OrganisationComponent implements OnInit {
         this.pendingMembers = this.orgService.findOrganisationMembers(org, false);
       }
     }, error => {
+
+      this.hasAnOrganisation = null;
+      this.myOrganisation = null;
       console.log('Can not load organisation: ', error);
     }, () => {
       console.log('getMyOrganisation done');
