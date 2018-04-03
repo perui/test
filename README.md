@@ -31,4 +31,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 docker build -t afekosystem/job-tech-dev:develop .
 docker run -p 4200:80 -it afekosystem/job-tech-dev:develop
+docker exec -it [container] bash
 
