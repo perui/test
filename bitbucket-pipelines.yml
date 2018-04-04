@@ -30,7 +30,8 @@ pipelines:
             - node-global
           script:
             - npm install
-            - ng test --watch false --browser PhantomJS --single-run
+#            - ng test --watch false --browser PhantomJS --single-run
+#            - ng build --aot=false --environment=dev --output-hashing=all --sourcemaps=false --extract-css=true --named-chunks=false --build-optimizer=false --base-href /
             - ng build ---prod --no-aot --base-href /
           artifacts:
             -  dist/**
