@@ -6,6 +6,8 @@ import {JobServiceRegistrationService} from '../../shared/services/job-service-r
 import {OntologyService} from '../../shared/services/ontology.service';
 import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs/Observable';
+import {OrganisationService} from '../../shared/services/organisation.service';
+import {Organisation} from '../../shared/model/organisation';
 
 @Component({
   selector: 'app-job-service-editor',
@@ -18,6 +20,8 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
   private registration: Observable<Registration>;
   private subscription: any;
   private registrationId;
+  private organisationAsync:  Observable<Organisation>;
+  public organisation: Organisation;
   protected isNew = true;
 
   public service: Registration;
@@ -27,11 +31,14 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
   public professions: string[] = [];
   public competences: string[] = [];
 
+  private orgSub;
+
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
               private toastrService: ToastrService,
               protected jobServicesService: JobServiceRegistrationService,
+              private orgService: OrganisationService,
               protected ontologyService: OntologyService) {
   }
 
@@ -59,6 +66,14 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.categories = this.jobServicesService.getCategories();
+
+    this.orgSub = this.orgService.getMyOrganisation().subscribe(
+      org => { this.organisation = org; },
+      error => {
+        this.toastrService.error('Failed to load your organisation!');
+        console.error('Failed to load your organisation! ', error);
+      }
+    );
 
     this.subscription = this.route.params.subscribe(params => {
       this.registrationId = params['id'];
@@ -96,7 +111,7 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
       const sub = this.jobServicesService.remove(this.registrationId).subscribe(
         () => {
           this.toastrService.success('Removed service');
-          this.router.navigate(['/service']);
+          this.router.navigate(['/services']);
         },
         (error) => {
           this.toastrService.error('Failed to remove the service');
@@ -111,9 +126,19 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
   onSave(theForm) {
     if (theForm.form.valid) {
 
+      if (!this.organisation) {
+        this.toastrService.error('Failed to load your organisation!');
+        return;
+      }
+
       this.service.industries = JobServiceEditorComponent.arrayToString(this.industries);
       this.service.professions = JobServiceEditorComponent.arrayToString(this.professions);
       this.service.competences = JobServiceEditorComponent.arrayToString(this.competences);
+
+      this.service.organisation = {
+        identifier: this.organisation.identifier,
+        name: this.organisation.name
+      };
 
       console.log('onSave ', this.service);
 
@@ -122,7 +147,7 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
           .subscribe(
             () => {
               this.toastrService.success('The service was successfully registered');
-              this.router.navigate(['/service']);
+              this.router.navigate(['/services']);
             },
             (error) => {
               this.toastrService.error('Failed to register the service');
@@ -134,7 +159,7 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
           .subscribe(
             () => {
               this.toastrService.success('Changes was saved successful');
-              this.router.navigate(['/service']);
+              this.router.navigate(['/services']);
             },
             (error) => {
               this.toastrService.error('Failed to save the changes');
@@ -156,7 +181,11 @@ export class JobServiceEditorComponent implements OnInit, OnDestroy {
   }
 
   onBackToList() {
-    this.router.navigate(['/service']);
+    this.router.navigate(['/services']);
+  }
+
+  autocompleteForIndustries = (text: string): Observable<any> => {
+    return this.ontologyService.industries(text);
   }
 
   autocompleteForProfessions = (text: string): Observable<any> => {

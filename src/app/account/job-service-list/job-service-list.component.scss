@@ -1,4 +1,17 @@
+@import '~scss/styles';
 
 .category {
   text-transform:capitalize;
+}
+
+
+
+@include media-breakpoint-down(sm) {
+  .competences {
+    display: none;
+  }
+
+  .published {
+    display: none;
+  }
 }

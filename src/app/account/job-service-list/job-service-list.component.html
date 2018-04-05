@@ -1,12 +1,11 @@
 <div class="container mt-2 mb-2" *ngIf="myRegistrations | async; let registrations; else loading">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">List of your registered services</h5>
         <!-- <p>{{myOrganisation | json}}</p> -->
       <!-- Organistaion Check & Presentation -->
       <div id="serviceHeader">
-        <div *ngIf="myOrganisation.name; else showRegInfo">
-          <h2>{{myOrganisation.name}}</h2>
+        <div *ngIf="myOrganisation | async; else showRegInfo">
+          <h5 class="card-title">{{(myOrganisation | async)?.name}} registered services</h5>
         </div>
         <!-- Presents user to register an organisation if it has none -->
         <ng-template #showRegInfo>
@@ -20,8 +19,8 @@
             <col width="5%">
             <col>
             <col width="30%">
-            <col width="20%">
-            <col width="10%">
+            <col width="20%" class="competences">
+            <col width="10%" class="published">
             <col width="10%">
           </colgroup>
           <thead>
@@ -29,16 +28,18 @@
             <th scope="col"></th>
             <th scope="col">Name</th>
             <th scope="col">Category</th>
-            <th scope="col">Competences</th>
-            <th scope="col" title="If the service is published public on Job store">Published</th>
+            <th scope="col" class="competences">Competences</th>
+            <th scope="col" class="published" title="If the service is published public on Job store">Published</th>
             <th scope="col">Action</th>
           </tr>
           </thead>
           <tfoot>
           <tr>
-            <td colspan="5">&nbsp;</td>
+            <td colspan="3">&nbsp;</td>
+            <td class="competences">&nbsp;</td>
+            <td class="competences">&nbsp;</td>
             <td>
-              <button type="button" class="btn btn-primary" (click)="onAddNew()" [disabled]="!myOrganisation.name"><i class="fa fa-plus-circle"></i> Add</button>
+              <button type="button" class="btn btn-primary" (click)="onAddNew()" [disabled]="!(myOrganisation | async)"><i class="fa fa-plus-circle"></i> Add</button>
             </td>
           </tr>
           </tfoot>
@@ -47,13 +48,13 @@
               <td><img [src]="'https://www.google.com/s2/favicons?domain_url='+doEncodeURI(registration.homepage)" alt="logo"></td>
               <th scope="row">{{ registration.name }}</th>
               <td class="category">{{ registration.category }}</td>
-              <td>{{ registration.competences }}</td>
-              <td >
+              <td class="competences">{{ registration.competences }}</td>
+              <td class="published">
                 <i [class]="registration.published ? 'fa fa-toggle-on' : 'fa fa-toggle-off'" (click)="togglePublish(registration)"> {{ registration.published?'Yes':'No' }}</i>
               </td>
               <td>
-                <button type="button" class="btn btn-secondary" (click)="onEdit(registration.id)"><i
-                  class="fa fa-wrench"></i> Edit
+                <button type="button" class="btn btn-secondary" (click)="onEdit(registration.id)">
+                  <i class="fa fa-wrench"></i> Edit
                 </button>
               </td>
             </tr>

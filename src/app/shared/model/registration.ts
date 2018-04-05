@@ -3,9 +3,7 @@ export class Registration {
   name: string;
   description: string;
   created: string;
-  createdBy: string;
   updated: string;
-  updatedBy: string;
   category: string;
   industries: string;
   professions: string;
@@ -14,4 +12,8 @@ export class Registration {
   banned: boolean;
   homepage: string;
   logoUrl: string;
+  organisation: {
+    identifier: string;
+    name: string;
+  };
 }

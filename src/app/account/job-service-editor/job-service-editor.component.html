@@ -2,7 +2,7 @@
   <div class="card" *ngIf="service; else loading">
 
     <div class="card-body">
-      <h5 class="card-title">{{isNew ? "Create a new service": "Edit your service"}}</h5>
+      <h5 class="card-title">{{isNew ? "Create a new service": "Edit your service"}} on behaf of organisation {{organisation?.name}}</h5>
 
       <form (ngSubmit)="onSave(theForm)" #theForm="ngForm" novalidate>
         <div class="row ">
@@ -68,6 +68,15 @@
                 <option value="" disabled default>Select Category</option>
                 <option *ngFor="let option of categories | async" [value]="option">{{option}}</option>
               </select>
+            </div>
+
+            <div class="form-group">
+              <label for="industriesInput">Industries</label>
+
+              <tag-input class="form-control" [(ngModel)]="industries" #_industries="ngModel"
+                         id="industriesInput" name="_industries">
+                <tag-input-dropdown [autocompleteObservable]="autocompleteForIndustries"></tag-input-dropdown>
+              </tag-input>
             </div>
 
             <div class="form-group">

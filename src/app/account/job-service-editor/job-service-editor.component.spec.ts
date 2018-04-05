@@ -8,6 +8,7 @@ import {Observable} from 'rxjs/Observable';
 import {OntologyService} from '../../shared/services/ontology.service';
 import {TagInputModule} from 'ngx-chips';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {OrganisationService} from '../../shared/services/organisation.service';
 
 
 class MockJobServiceRegistrationService {
@@ -22,6 +23,9 @@ class MockJobServiceRegistrationService {
 
 class MockToastrService { }
 class MockOntologyService { }
+class MockOrganisationService {
+  getMyOrganisation() { return Observable.of(''); }
+}
 
 describe('JobServiceEditorComponent', () => {
   let component: JobServiceEditorComponent;
@@ -35,6 +39,7 @@ describe('JobServiceEditorComponent', () => {
         {provide: JobServiceRegistrationService, useClass: MockJobServiceRegistrationService},
         {provide: ToastrService, useClass: MockToastrService},
         {provide: OntologyService, useClass: MockOntologyService},
+        {provide: OrganisationService, useClass: MockOrganisationService},
       ]
     })
     .compileComponents();

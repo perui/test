@@ -10,7 +10,7 @@ export class OntologyService {
   constructor(
     private http: HttpClient) { }
 
-  professions(text: string): Observable<any> {
+  industries(text: string): Observable<any> {
     return Observable.of([
       'Administration, ekonomi, juridik',
       'Bygg och anläggning',
@@ -35,8 +35,15 @@ export class OntologyService {
       'Transport']);
   }
 
+  professions(text: string): Observable<any> {
+    const url = `http://ontologi.arbetsformedlingen.se/ontology/v1/concept?filter=${text}&type=occupation&limit=10`;
+    return this.http
+      .get(url)
+      .map((data: Array<string>) => data.map((row: any) => row.name));
+  }
+
   competences(text: string): Observable<any> {
-    const url = `http://ontologi.arbetsformedlingen.se/ontology/v1/concept?limit=10&filter=${text}`;
+    const url = `http://ontologi.arbetsformedlingen.se/ontology/v1/concept?filter=${text}&type=skill&limit=10`;
     return this.http
       .get(url)
       .map((data: Array<string>) => data.map((row: any) => row.name));

@@ -13,13 +13,12 @@ export class JobServiceRegistrationService {
     private http: HttpClient) {
   }
 
-  list(): Observable<Registration[]> {
+  getOrganisationsServices(organisationIdentifyer: string): Observable<Registration[]> {
     if (!this.idp.authenticated()) {
       throw new Error('Not authenticated yet');
     }
 
-    const userId = this.idp.client().tokenParsed.sub;
-    const url = `${environment.serviceProviderUrl}/service/provider/v1/${userId}/services`;
+    const url = `${environment.serviceProviderUrl}/service/v1/findByOrganisation/${organisationIdentifyer}`;
     return  this.http.get<Registration[]>(url, this.createHeader());
   }
 

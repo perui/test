@@ -15,15 +15,15 @@ import {OrganisationComponent} from './account/organisation/organisation.compone
 
 export const routes: Routes = [
   // { path: '', redirectTo: 'race-list', pathMatch: 'full' },
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: '', component: HomeComponent},
+  {path: 'home', redirectTo: '', pathMatch: 'full'},
   {path: 'assets', component: AssetsComponent},
   {path: 'assets/:id', component: DetailsComponent},
   {path: 'news', component: NewsComponent},
   {path: 'platform', component: PlatformComponent},
   {path: 'showcase', component: ShowcaseComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [KeycloakGuard]},
-  {path: 'service', component: JobServiceListComponent, canActivate: [KeycloakGuard]},
+  {path: 'services', component: JobServiceListComponent, canActivate: [KeycloakGuard]},
   {path: 'service/add', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
   {path: 'service/:id', component: JobServiceEditorComponent, canActivate: [KeycloakGuard]},
   {path: 'organisation', component: OrganisationComponent, canActivate: [KeycloakGuard]},

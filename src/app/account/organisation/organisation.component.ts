@@ -64,6 +64,7 @@ export class OrganisationComponent implements OnInit {
       this.hasAnOrganisation = null;
       this.myOrganisation = null;
       console.log('Can not load organisation: ', error);
+      this.toastrService.error('Failed to load your organisation!');
     }, () => {
       console.log('getMyOrganisation done');
       // sub.unsubscribe();

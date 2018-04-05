@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {JobServiceRegistrationService} from '../../shared/services/job-service-registration.service';
 import {Registration} from '../../shared/model/registration';
 import {Observable} from 'rxjs/Observable';
@@ -6,32 +6,46 @@ import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 
 import {Organisation} from '../../shared/model/organisation';
+import {OrganisationService} from '../../shared/services/organisation.service';
+import {ISubscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-job-services-list',
   templateUrl: './job-service-list.component.html',
   styleUrls: ['./job-service-list.component.scss']
 })
-export class JobServiceListComponent implements OnInit {
+export class JobServiceListComponent implements OnInit, OnDestroy {
 
   public myRegistrations: Observable<Registration[]>;
-  public myOrganisation: Organisation;
+  public myOrganisation: Observable<Organisation>;
+  private orgSub: ISubscription;
 
   constructor(private router: Router,
               private toastrService: ToastrService,
-              protected jobServicesService: JobServiceRegistrationService) {
+              protected jobServicesService: JobServiceRegistrationService,
+              private orgService: OrganisationService) {
   }
 
-
   ngOnInit() {
-    this.myRegistrations = this.jobServicesService.list();
-    //dummy data for UI dev.
-    this.myOrganisation = new Organisation();
-    this.myOrganisation.name = 'Monsters';
-    this.myOrganisation.email = 'info@monsters.se';
-    //this.myOrganisation.joinRequestQueue = <User[]>[{name: 'Pär E'}];
-    //this.myOrganisation.members = <User[]>[{name: 'Olle'}, {name: 'Eva'}];
-    //this.hasAnOrganisation = true;
+
+
+    // this.myRegistrations.subscribe(service => console.log('Loaded service: ', service));
+
+    this.myOrganisation = this.orgService.getMyOrganisation();
+    this.orgSub = this.myOrganisation.subscribe(
+      org => {
+        console.log('Loaded organisation ', org);
+        this.myRegistrations = this.jobServicesService.getOrganisationsServices(org.identifier);
+      },
+      error => {
+        this.toastrService.error('Failed to load your organisation!');
+        console.error('Failed to load your organisation! ', error);
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.orgSub.unsubscribe();
   }
 
   onAddNew() {
