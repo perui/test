@@ -9,8 +9,8 @@
               <h2>{{myOrganisation.name}}</h2>
             </div>
             <div class="col-4 text-right">
-              <button class="btn btn-secondary" (click)="openDialog(deleteOrgDialogTemplate)"><i class="fa fa-eraser"></i>Delete</button>
-              <button class="btn btn-primary" (click)="enterEditMode()"><i class="fa fa-wrench"></i>Edit</button>
+              <button class="btn btn-secondary" (click)="openDialog(deleteOrgDialogTemplate)">Delete</button>
+              <button class="btn btn-primary" (click)="enterEditMode()">Edit</button>
             </div>
           </div>
           <div class="mt-4 row">
@@ -20,8 +20,8 @@
                 <li class="list-group-item" *ngFor="let member of pendingMembers | async">
                   <p class="memberReqName">{{member.name}}</p>
                   <div class="memberDecideButtons">
-                    <button class="btn btn-success" (click)="acceptMemberRequest(member)"><i class="fa fa-plus-circle"></i>Accept</button>
-                    <button class="btn btn-danger" (click)="rejectMemberRequest(member)"><i class="fa fa-minus-circle"></i>Reject</button>
+                    <button class="btn btn-success" (click)="acceptMemberRequest(member)">Accept</button>
+                    <button class="btn btn-danger" (click)="rejectMemberRequest(member)">Reject</button>
                   </div>
                 </li>
                 <li class="list-group-item" *ngIf="(pendingMembers | async | json) == '[]'">No pending request</li>
@@ -96,13 +96,13 @@
             <!--<form>-->
             <div class="col-md-12 orgChoiceCard">
               <h4>New Organisation</h4>
-              <button class="btn btn-primary" (click)="openDialog(createOrg)"><i class="fa fa-plus-circle"></i> CREATE</button>
+              <button class="btn btn-primary" (click)="openDialog(createOrg)">CREATE</button>
             </div>
           </div>
           <div class="col-md-6 orgChoiceCardWrap">
             <div class="col-md-12 orgChoiceCard">
               <h4>Join a Organisation</h4>
-              <button class="btn btn-primary" (click)="openDialog(joinOrg)"><i class="fa fa-user-plus"></i> JOIN</button>
+              <button class="btn btn-primary" (click)="openDialog(joinOrg)">JOIN</button>
             </div>
           </div>
         </div>

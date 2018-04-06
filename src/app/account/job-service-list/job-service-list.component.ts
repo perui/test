@@ -8,6 +8,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Organisation} from '../../shared/model/organisation';
 import {OrganisationService} from '../../shared/services/organisation.service';
 import {ISubscription} from 'rxjs/Subscription';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-job-services-list',
@@ -17,6 +18,7 @@ import {ISubscription} from 'rxjs/Subscription';
 export class JobServiceListComponent implements OnInit, OnDestroy {
 
   public myRegistrations: Observable<Registration[]>;
+  public registrations: Registration[];
   public myOrganisation: Observable<Organisation>;
   private orgSub: ISubscription;
 
@@ -28,9 +30,6 @@ export class JobServiceListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-
-    // this.myRegistrations.subscribe(service => console.log('Loaded service: ', service));
-
     this.myOrganisation = this.orgService.getMyOrganisation();
     this.orgSub = this.myOrganisation.subscribe(
       org => {
@@ -38,8 +37,10 @@ export class JobServiceListComponent implements OnInit, OnDestroy {
         this.myRegistrations = this.jobServicesService.getOrganisationsServices(org.identifier);
       },
       error => {
-        this.toastrService.error('Failed to load your organisation!');
-        console.error('Failed to load your organisation! ', error);
+        console.error('Failed to load your organisation!! ', error);
+        if (error.status === 404) {
+          this.toastrService.error('No organisation was connected to your account!');
+        }
       }
     );
   }
