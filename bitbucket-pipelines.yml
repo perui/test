@@ -18,7 +18,7 @@ pipelines:
         script:
           - npm install
           - ng test --watch false --browser PhantomJS --single-run
-          - ng build ---prod --no-aot --base-href /developer/
+          - ng build --prod --no-aot --base-href /developer/
 
   branches:
     develop:
@@ -53,7 +53,7 @@ pipelines:
           script:
             - npm install
             - ng test --watch false --browser PhantomJS --single-run
-            - ng build ---prod --no-aot --base-href /developer/
+            - ng build --prod --no-aot --base-href /developer/
           artifacts:
             -  dist/**
       - step:

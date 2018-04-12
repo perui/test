@@ -1,23 +1,22 @@
-$primary-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$primary-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
-.ng-valid[required], .ng-valid.required  {
+.ng-valid[required], .ng-valid.required {
   border-left: 5px solid #42A948; /* green */
 }
 
-.ng-invalid:not(form)  {
+.ng-invalid:not(form) {
   border-left: 5px solid #a94442; /* red */
 }
 
-
-.orgContent{
+.orgContent {
   min-height: 100vh;
 }
 
-.orgInfoCard{
+.orgInfoCard {
   padding: 2%;
 }
 
-.orgChoiceCardContainer{
+.orgChoiceCardContainer {
   margin-right: 20px;
   margin-left: 20px;
   margin-top: 10%;
@@ -36,11 +35,11 @@ $primary-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   border-radius: 2px;
   background-color: #FFF;
 
-  h4{
+  h4 {
     padding-top: 50px;
   }
 
-  button{
+  button {
     margin-top: 20%;
     width: 50%;
     height: 20%;
@@ -48,31 +47,29 @@ $primary-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   }
 }
 
-.orgEditBtn{
-  position:absolute;
-  top:0;
+.orgEditBtn {
+  position: absolute;
+  top: 0;
   right: 0;
   margin-top: 10px;
   margin-right: 10px;
   padding: 10px 20px 10px 20px;
 }
 
-.memberReqList{
-//justify-content: space-between;
+.memberReqList {
+  //justify-content: space-between;
 }
 
-.memberReqName{
+.memberReqName {
   display: inline-block;
 }
 
-.memberDecideButtons{
-   float: right;
+.memberDecideButtons {
+  float: right;
 }
 
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .orgChoiceCard {
-      height: 350px;
-    }
+    height: 350px;
+  }
 }
