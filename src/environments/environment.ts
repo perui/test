@@ -7,13 +7,12 @@ export const environment = {
   production: false,
 
   keycloak: {
-
-    url: 'http://localhost:8080/auth',
+    url: 'http://local.jobtechsweden.se/auth',
     realm: 'jobtechdev',
     clientId: 'job-tech-dev'
   },
 
-  serviceProviderUrl: 'http://localhost:8082',
+  serviceProviderUrl: 'http://local.jobtechsweden.se/sp/api',
   useKeycloak: true,
 
   googleAnalytics: 'UA-114390036-2'

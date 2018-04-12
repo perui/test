@@ -1,11 +1,11 @@
-@import '~scss/_variables';
+@import '../../scss/_variables';
 
 .jumbotron {
   margin-top: -85px;
   margin-bottom: 0px;
   height: 200px;
   border-radius: 0;
-  background-image: url("../../assets/images/startpage-header-bg.jpg");
+  background-image: url("/assets/images/startpage-header-bg.jpg");
 
 }
 .work-in-progress {
