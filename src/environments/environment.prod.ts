@@ -8,7 +8,7 @@ export const environment = {
   },
 
   serviceProviderUrl: '/sp/api',
-  useKeycloak: true,
+  useKeycloak: false,
 
   googleAnalytics: 'UA-114390036-1'
 };
