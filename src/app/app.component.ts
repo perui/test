@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
-import {UserService} from './shared/services/user.service';
 declare let ga: Function;
 
 @Component({
@@ -11,8 +10,7 @@ declare let ga: Function;
 export class AppComponent {
   title = 'app';
 
-  constructor(private userService: UserService,
-              public router: Router) {
+  constructor(public router: Router) {
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {

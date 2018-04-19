@@ -11,8 +11,6 @@ import {CommonModule} from '@angular/common';
 import {CookieLawModule} from 'angular2-cookie-law';
 import {FooterComponent} from './layouts/footer/footer.component';
 import {ContentService} from './shared/services/content.service';
-import {KeycloakService} from './shared/services/keycloak/keycloak.service';
-import {UserService} from './shared/services/user.service';
 
 describe('AppComponent', () => {
 
@@ -36,9 +34,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         AppModule,
-        ContentService,
-        {provide: UserService, useClass: MockUserService},
-        {provide: KeycloakService, useClass: MockKeycloakService},
+        ContentService
       ]
     }).compileComponents();
   }));
@@ -53,11 +49,5 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('app');
   }));
 
-  // it('should render title in a h1 tag', async(() => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.debugElement.nativeElement;
-  //   expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
-  // }));
 });
 

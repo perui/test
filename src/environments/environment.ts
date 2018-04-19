@@ -6,15 +6,6 @@
 export const environment = {
   production: false,
 
-  keycloak: {
-    url: 'http://local.jobtechsweden.se/auth',
-    realm: 'jobtechdev',
-    clientId: 'job-tech-dev'
-  },
-
-  serviceProviderUrl: 'http://local.jobtechsweden.se/sp/api',
-  useKeycloak: true,
-
   googleAnalytics: 'UA-114390036-2'
 
 };

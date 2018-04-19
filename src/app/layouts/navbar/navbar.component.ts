@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {Location} from '@angular/common';
-
-import {KeycloakService} from '../../shared/services/keycloak/keycloak.service';
 import {environment} from '../../../environments/environment';
 
 @Component({
@@ -19,10 +17,7 @@ export class NavbarComponent implements OnInit {
   title;
   route: string;
 
-  public useKeycloak;
-
   constructor(private router: Router,
-              public keycloakService: KeycloakService,
               private location: Location) {
   }
 
@@ -32,8 +27,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.useKeycloak = environment.useKeycloak;
 
     this.router.events.subscribe(
       (event) => {
@@ -49,21 +42,6 @@ export class NavbarComponent implements OnInit {
         this.onRouteChange(newRoute);
       }, error => (console.error('Failed to load router events: ', error)));
 
-  }
-
-  doLogout() {
-    console.log('doLogout');
-    this.keycloakService.client().logout({redirectUri: NavbarComponent.getHostUrl()});
-  }
-
-  doLogin() {
-    console.log('doLogin');
-    this.keycloakService.client().login();
-  }
-
-  doRegister() {
-    console.log('doRegister');
-    this.keycloakService.client().register();
   }
 
   onRouteChange(newRoute: string) {

@@ -27,37 +27,6 @@
           <a class="nav-link" [routerLink]="['/news']">NEWS</a>
         </li>
       </ul>
-
-      <div *ngIf="useKeycloak && keycloakService.authenticated() == false">
-
-        <ul class="navbar-nav navbar-right">
-
-          <li class="nav-item">
-            <div class="nav-link nowrap">
-              <a (click)="doLogin()">Login</a>
-              <span>or</span>
-              <a (click)="doRegister()">Register</a>
-            </div>
-
-          </li>
-        </ul>
-      </div>
-
-      <div *ngIf="useKeycloak && keycloakService.authenticated()">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="nav-item">
-            <div ngbDropdown class="" placement="bottom-right">
-              <a class="nav-link" id="dropdownAccount" ngbDropdownToggle>{{ keycloakService.client().tokenParsed['name']}}</a>
-              <div class="bg-dark" ngbDropdownMenu aria-labelledby="dropdownAccount">
-                <a class="dropdown-item nav-link" [routerLink]="['/profile']">My profile</a>
-                <a class="dropdown-item nav-link" [routerLink]="['/organisation']">Organisation</a>
-                <a class="dropdown-item nav-link" [routerLink]="['/services']">Services</a>
-                <a class="dropdown-item nav-link" (click)="doLogout()">Sign out</a>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
     </div>
   </nav>
   <h1 class="navbar-dark page-title">{{ title }}</h1>

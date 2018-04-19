@@ -11,12 +11,7 @@ import {CookieLawModule} from 'angular2-cookie-law';
 import {TagInputModule} from 'ngx-chips';  // https://www.npmjs.com/package/ngx-chips
 
 import {ContentService} from './shared/services/content.service';
-import {KeycloakService} from './shared/services/keycloak/keycloak.service';
-import {JobServiceRegistrationService} from './shared/services/job-service-registration.service';
 import {OntologyService} from './shared/services/ontology.service';
-import {UserService} from './shared/services/user.service';
-
-import {KeycloakGuard} from './shared/services/keycloak/keycloak.guard';
 
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './layouts/navbar/navbar.component';
@@ -24,15 +19,10 @@ import {AssetsComponent} from './assets/assets.component';
 import {PlatformComponent} from './platform/platform.component';
 import {ShowcaseComponent} from './showcase/showcase.component';
 import {NewsComponent} from './news/news.component';
-import {ProfileComponent} from './account/profile/profile.component';
 import {HomeComponent} from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FooterComponent} from './layouts/footer/footer.component';
 import {DetailsComponent} from './assets/details/details.component';
-import {JobServiceEditorComponent} from './account/job-service-editor/job-service-editor.component';
-import {JobServiceListComponent} from './account/job-service-list/job-service-list.component';
-import { OrganisationComponent } from './account/organisation/organisation.component';
-import {OrganisationService} from './shared/services/organisation.service';
 
 @NgModule({
   declarations: [
@@ -42,13 +32,9 @@ import {OrganisationService} from './shared/services/organisation.service';
     PlatformComponent,
     ShowcaseComponent,
     NewsComponent,
-    ProfileComponent,
     HomeComponent,
     FooterComponent,
-    DetailsComponent,
-    JobServiceListComponent,
-    JobServiceEditorComponent,
-    OrganisationComponent
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,13 +49,8 @@ import {OrganisationService} from './shared/services/organisation.service';
     TagInputModule
   ],
   providers: [
-    KeycloakGuard,
     ContentService,
-    KeycloakService,
-    JobServiceRegistrationService,
-    OntologyService,
-    UserService,
-    OrganisationService
+    OntologyService
   ],
   exports: [
     RouterModule
