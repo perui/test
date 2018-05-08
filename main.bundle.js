@@ -1115,7 +1115,7 @@ var ImgmodalComponent = /** @class */ (function () {
 /***/ "./src/app/layouts/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"p-3 bg-dark text-light\">\r\n    <span class=\"mr-2\">Follow us:</span>\r\n    <a href=\"https://twitter.com/jobtechdev\" target=\"_blank\">\r\n      <img src=\"/assets/images/social/Twitter_White.png\" alt=\"Twitter\" class=\"social-media\" />\r\n    </a>\r\n    <a href=\"https://github.com/jobtechdev\" target=\"_blank\">\r\n      <img src=\"/assets/images/social/GitHub_White.png\" alt=\"Github\" class=\"social-media\" />\r\n    </a>\r\n  </div>\r\n"
+module.exports = "\r\n<div class=\"p-3 bg-dark text-light\">\r\n    <span class=\"mr-2\">Follow us:</span>\r\n    <a href=\"https://twitter.com/jobtechdev\" target=\"_blank\">\r\n      <img src=\"assets/images/social/Twitter_White.png\" alt=\"Twitter\" class=\"social-media\" />\r\n    </a>\r\n    <a href=\"https://github.com/jobtechdev\" target=\"_blank\">\r\n      <img src=\"assets/images/social/GitHub_White.png\" alt=\"Github\" class=\"social-media\" />\r\n    </a>\r\n  </div>\r\n"
 
 /***/ }),
 
