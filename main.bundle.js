@@ -1057,7 +1057,7 @@ var HomeComponent = /** @class */ (function () {
 /***/ "./src/app/imgmodal/imgmodal.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ng-template #content let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Jobtech Forum</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('Cross click')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <img src=\"../../assets/images/pdf-inbjudan.jpg\" width=\"100%\">\n  </div>\n  <div class=\"modal-footer\">\n        <a href=\"http://af.kagan.se/Default.aspx?ProjectId=252\">Anmäl dig här!</a>\n\n\n  </div>\n</ng-template>\n\n<img src=\"assets/images/pdf-inbjudan.jpg\" width=\"100%\" (click)=\"open(content)\">\n\n<hr>\n\n<pre>{{closeResult}}</pre>\n"
+module.exports = "<ng-template #content let-c=\"close\" let-d=\"dismiss\">\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\">Jobtech Forum</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('Cross click')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <img src=\"assets/images/pdf-inbjudan.jpg\" width=\"100%\">\n  </div>\n  <div class=\"modal-footer\">\n        <a href=\"http://af.kagan.se/Default.aspx?ProjectId=252\">Anmäl dig här!</a>\n\n\n  </div>\n</ng-template>\n\n<img src=\"assets/images/pdf-inbjudan.jpg\" width=\"100%\" (click)=\"open(content)\">\n\n<hr>\n\n<pre>{{closeResult}}</pre>\n"
 
 /***/ }),
 
