@@ -1,0 +1,22 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Jobtech Forum</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img src="../../assets/images/pdf-inbjudan.jpg" width="100%">
+  </div>
+  <div class="modal-footer">
+        <a href="http://af.kagan.se/Default.aspx?ProjectId=252">Anmäl dig här!</a>
+
+
+  </div>
+</ng-template>
+
+<img src="../../assets/images/pdf-inbjudan.jpg" width="100%" (click)="open(content)">
+
+<hr>
+
+<pre>{{closeResult}}</pre>
