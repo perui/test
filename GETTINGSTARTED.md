@@ -57,13 +57,15 @@ This means that version 2 is not fixed for the moment but will be in a future re
 
 ## Authentication
 
-* Follow the instructions on how to get and api key here: [https://apirequest.jobtechdev.se/](https://apirequest.jobtechdev.se/)
-* If you are using curl you have to add the api-key in the headers like this:
-  curl "{URL}" -H "accept: application/json" -H "api-key: {YOUR API KEY}" 
+1. Follow the instructions on how to get and api key here: [https://apirequest.jobtechdev.se/](https://apirequest.jobtechdev.se/)
 
-* If you are using the swagger UI you have to log in with the "Authorize" button in the top right corner and add your api-key.
+2. If you are using curl you have to add the api-key in the headers like this:
 
-  ![alt text](swagger-authorize.png "How to log into swagger")
+  `` curl "{URL}" -H "accept: application/json" -H "api-key: {YOUR API KEY}" ``
+
+3. If you are using the swagger UI you have to log in with the "Authorize" button in the top right corner and add your api-key.
+
+![alt text](swagger-authorize.png "How to log into swagger")
 
 ## Endpoints
 Below we only show the URLs. If you prefer the curl command, you type it like:
@@ -182,9 +184,8 @@ http://jobtech-taxonomy-api-develop-jobtech-taxonomy-api.test.services.jtech.se/
 
 http://jobtech-taxonomy-api-develop-jobtech-taxonomy-api.test.services.jtech.se/v1/taxonomy/main/concepts?related-ids=d68E_e74_a59&relation=related
 
-
-
 ```
+
 Let’s say a user wants to find jobs as a “Lastbilsförare” and starts typing the word “lastb”.
 
 We make a first request to this endpoint also limiting the result to occupation-name and keyword.
