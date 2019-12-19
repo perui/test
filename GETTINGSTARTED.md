@@ -1,4 +1,4 @@
-# JobTech Taxonomy Beta - 
+# JobTech Taxonomy Beta - xxxxxxx
 
 The Jobtech Taxonomy API gives access to different taxonomies like occupation names, skills and SSYK, SNI etc.      
 
