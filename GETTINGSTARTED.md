@@ -67,10 +67,9 @@ This means that version 2 is not fixed for the moment but will be in a future re
 ![text](https://raw.githubusercontent.com/JobtechSwe/jobtech-taxonomy-api/develop/swagger-authorize.png "How to log into swagger")
 
 ## Endpoints
-Below we only show the URLs. If you prefer the curl command, you type it like:
+Below we only show the URLs. If you prefer the curl command, you type it like: curl "{URL}" -H "accept: application/json" -H "api-key: {YOUR API KEY}"
 
-``` curl "{URL}" -H "accept: application/json" -H "api-key: {YOUR API KEY}" ```
-
+ 
 ### Main
 
 
