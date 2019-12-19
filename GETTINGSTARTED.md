@@ -1,10 +1,10 @@
-# JobTech Taxonomy Beta - xxxxxxx
+# JobTech Taxonomy Beta - Getting started
 
 The Jobtech Taxonomy API gives access to different taxonomies like occupation names, skills and SSYK, SNI etc.      
 
 It’s main purpose is to act as a common language for labour market related systems.
 
-[Jobtech Taxonomy API Swagger UI](https://taxonomy.api.jobtechdev.se/v0/taxonomy/swagger-ui/index.html)
+[Jobtech Taxonomy API Swagger UI](https://taxonomy.api.jobtechdev.se/v1/taxonomy/swagger-ui/index.html)
 
 In order to use the api you need a key which you need to authenticate yourself.
 
@@ -20,6 +20,7 @@ In order to use the api you need a key which you need to authenticate yourself.
 * [Endpoints](#endpoints)
 * [Results](#results)
 * [Errors](#errors)
+* [Diagrams](#diagrams)
 
 
 ## Introduction
@@ -34,7 +35,7 @@ The Suggesters section contains endpoints that helps end users finding values fr
 
 For a more in depth documentation about Jobtech Taxonomy please see this guide:
 
-(Reference documentation)[https://github.com/JobtechSwe/jobtech-taxonomy-api/blob/develop/REFERENCE.md]
+[Reference documentation](https://github.com/JobtechSwe/jobtech-taxonomy-api/blob/develop/REFERENCE.md)
 
 ## Status
 For the time being the Jobtech Taxonomy API is still in beta and minor breaking changes can still occur to the API event though 
@@ -59,20 +60,16 @@ This means that version 2 is not fixed for the moment but will be in a future re
 
 1. Follow the instructions on how to get and api key here: [https://apirequest.jobtechdev.se/](https://apirequest.jobtechdev.se/)
 
-2. If you are using curl you have to add the api-key in the headers like this:
-
-    ``` 
-    curl "{URL}" -H "accept: application/json" -H "api-key: {YOUR API KEY}" 
-    ```
+2. If you are using curl you have to add the api-key in the headers like this: curl "{URL}" -H "accept: application/json" -H "api-key: {YOUR API KEY}"
 
 3. If you are using the swagger UI you have to log in with the "Authorize" button in the top right corner and add your api-key.
 
-
+![text](https://raw.githubusercontent.com/JobtechSwe/jobtech-taxonomy-api/develop/swagger-authorize.png "How to log into swagger")
 
 ## Endpoints
 Below we only show the URLs. If you prefer the curl command, you type it like:
 
-  curl "{URL}" -H "accept: application/json" -H "api-key: {YOUR API KEY}"
+``` curl "{URL}" -H "accept: application/json" -H "api-key: {YOUR API KEY}" ```
 
 ### Main
 
@@ -131,6 +128,8 @@ http://jobtech-taxonomy-api-develop-jobtech-taxonomy-api.test.services.jtech.se/
 
 http://jobtech-taxonomy-api-develop-jobtech-taxonomy-api.test.services.jtech.se/v1/taxonomy/main/graph?edge-relation-type=broader&source-concept-type=ssyk-level-4&target-concept-type=occupation-field
 
+
+
 ```
 With the help of these two request you can build a tree view bottom up of the occupation-name -> ssyk-level-4 -> occupation-field hierarchy
 
@@ -184,8 +183,9 @@ http://jobtech-taxonomy-api-develop-jobtech-taxonomy-api.test.services.jtech.se/
 
 http://jobtech-taxonomy-api-develop-jobtech-taxonomy-api.test.services.jtech.se/v1/taxonomy/main/concepts?related-ids=d68E_e74_a59&relation=related
 
-```
 
+
+```
 Let’s say a user wants to find jobs as a “Lastbilsförare” and starts typing the word “lastb”.
 
 We make a first request to this endpoint also limiting the result to occupation-name and keyword.
@@ -208,3 +208,21 @@ Unsuccessful queries will have a response code of:
 | 400 | Bad Request | Something wrong in the query |
 | 401 | Unauthorized | You are not using a valid API key |
 | 500 | Internal Server Error | Something wrong on the server side |
+
+## Diagrams
+
+Here is a diagram over the types in the taxonomies and what relations they have to eachother.
+The "broader" relation always has an implicit "narrower" relation in the opposite direction.
+The "related" relation always has an implicit "related" relation in the opposite direction.
+
+___
+<!--- The diagrams are generated from the mermaid file taxonomies.mmd ---> 
+![Alt text](https://raw.githubusercontent.com/JobtechSwe/jobtech-taxonomy-api/develop/taxonomy-diagram-part-1.svg?sanitize=true)
+
+___
+
+![Alt text](https://raw.githubusercontent.com/JobtechSwe/jobtech-taxonomy-api/develop/taxonomy-diagram-part-2.svg?sanitize=true)
+
+___
+
+![Alt text](https://raw.githubusercontent.com/JobtechSwe/jobtech-taxonomy-api/develop/taxonomy-diagram-part-3.svg?sanitize=true)
